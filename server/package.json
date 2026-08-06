@@ -1,0 +1,18 @@
+{
+  "name": "pc-activity-monitor-server",
+  "version": "1.0.0",
+  "description": "PC Activity monitoring server with Express & SQLite3",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
+  },
+  "author": "Antigravity Dev Team",
+  "license": "MIT"
+}

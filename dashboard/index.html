@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>PGuard Admin - Activity Monitoring System</title>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- SheetJS (Excel Export) CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#090D16',
+                        panelBg: 'rgba(17, 24, 39, 0.7)',
+                        accentPurple: '#6366F1',
+                        accentPink: '#EC4899',
+                        accentEmerald: '#10B981',
+                        accentAmber: '#F59E0B',
+                        cardBorder: 'rgba(255, 255, 255, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 50% 50%, #111827 0%, #090D16 100%);
+            color: #E5E7EB;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .pulse-emerald {
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-em 2s infinite;
+        }
+        @keyframes pulse-em {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        /* 드롭다운 옵션 가독성 확보 (브라우저 기본 흰색 배경 대응) */
+        select option {
+            color: #0F172A !important;
+            background-color: #FFFFFF !important;
+        }
+
+        /* ========================================== */
+        /* PREMIUM LIGHT THEME OVERRIDES */
+        /* ========================================== */
+        body.light-theme {
+            background: radial-gradient(circle at 50% 50%, #F8FAFC 0%, #E2E8F0 100%);
+            color: #1E293B;
+        }
+
+        body.light-theme .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            border-color: rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        /* Sidebar Buttons */
+        body.light-theme aside button[data-target] {
+            color: #475569;
+        }
+        body.light-theme aside button[data-target]:hover {
+            background: rgba(0, 0, 0, 0.04);
+            color: #0F172A;
+        }
+        body.light-theme aside button[data-target].bg-indigo-600\/20 {
+            background-color: rgba(99, 102, 241, 0.15) !important;
+            border-color: rgba(99, 102, 241, 0.3) !important;
+            color: #4F46E5 !important;
+        }
+
+        /* Text Overrides */
+        body.light-theme .text-white {
+            color: #0F172A !important;
+        }
+        body.light-theme .text-slate-400 {
+            color: #475569 !important;
+        }
+        body.light-theme .text-slate-300 {
+            color: #334155 !important;
+        }
+        body.light-theme .text-slate-500 {
+            color: #64748B !important;
+        }
+        body.light-theme .text-slate-200 {
+            color: #1E293B !important;
+        }
+
+        /* Background Overrides */
+        body.light-theme .bg-white\/5 {
+            background-color: rgba(0, 0, 0, 0.03) !important;
+        }
+        body.light-theme .bg-slate-900 {
+            background-color: #FFFFFF !important;
+        }
+        body.light-theme .bg-slate-950\/40 {
+            background-color: rgba(0, 0, 0, 0.02) !important;
+        }
+        body.light-theme .hover\:bg-white\/5:hover {
+            background-color: rgba(0, 0, 0, 0.02) !important;
+        }
+        body.light-theme .bg-indigo-950\/40 {
+            background-color: rgba(99, 102, 241, 0.08) !important;
+            color: #4F46E5 !important;
+            border-color: rgba(99, 102, 241, 0.15) !important;
+        }
+
+        /* Border Overrides */
+        body.light-theme .border-cardBorder {
+            border-color: rgba(0, 0, 0, 0.08) !important;
+        }
+        body.light-theme .border-white\/5 {
+            border-color: rgba(0, 0, 0, 0.05) !important;
+        }
+        body.light-theme .border-white\/10 {
+            border-color: rgba(0, 0, 0, 0.08) !important;
+        }
+        body.light-theme .divide-white\/5 > :not([hidden]) ~ :not([hidden]) {
+            border-color: rgba(0, 0, 0, 0.05) !important;
+        }
+
+        /* Select, Input, and Textarea elements */
+        body.light-theme select,
+        body.light-theme input,
+        body.light-theme textarea {
+            background-color: #FFFFFF !important;
+            border-color: rgba(0, 0, 0, 0.12) !important;
+            color: #0F172A !important;
+        }
+        body.light-theme select option {
+            background-color: #FFFFFF !important;
+            color: #0F172A !important;
+        }
+
+        /* Table header & lists */
+        body.light-theme thead tr.bg-white\/5 {
+            background-color: rgba(0, 0, 0, 0.04) !important;
+        }
+
+        /* Glow effects */
+        body.light-theme .bg-indigo-900\/20 {
+            background-color: rgba(99, 102, 241, 0.03) !important;
+        }
+        body.light-theme .bg-pink-900\/10 {
+            background-color: rgba(236, 72, 153, 0.015) !important;
+        }
+
+        /* Chart container */
+        body.light-theme .chart-container {
+            background: transparent !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+
+    <!-- Beautiful Fullscreen Login Overlay -->
+    <div id="loginOverlay" class="fixed inset-0 z-50 flex items-center justify-center bg-darkBg/80 backdrop-blur-xl hidden">
+        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-900/10 via-transparent to-pink-900/10 pointer-events-none"></div>
+        <div class="w-full max-w-md p-8 glass-panel rounded-3xl relative z-10 border border-white/10 shadow-2xl mx-4 transform transition-all duration-300 scale-95 opacity-0" id="loginCard">
+            <!-- 로그인 화면 언어 선택기 -->
+            <div class="flex justify-end mb-4 relative z-20">
+                <div class="relative inline-block">
+                    <select id="loginLangSelector" class="bg-white/5 hover:bg-white/10 text-slate-300 border border-cardBorder text-xs rounded-xl px-2.5 py-1.5 font-medium focus:outline-none transition duration-300 cursor-pointer">
+                        <option value="ko" class="bg-slate-900 text-slate-200">🇰🇷 한국어</option>
+                        <option value="en" class="bg-slate-900 text-slate-200">🇺🇸 English</option>
+                        <option value="th" class="bg-slate-900 text-slate-200">🇹🇭 ไทย</option>
+                        <option value="lo" class="bg-slate-900 text-slate-200">🇱🇦 ລາວ</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-center mb-8">
+                <div class="inline-flex bg-indigo-600 p-3.5 rounded-2xl text-white mb-4 shadow-lg shadow-indigo-600/35 animate-bounce">
+                    <i data-lucide="shield-check" class="w-8 h-8"></i>
+                </div>
+                <h3 class="font-outfit font-extrabold text-2xl bg-gradient-to-r from-white via-indigo-100 to-indigo-300 bg-clip-text text-transparent">PGuard Admin Login</h3>
+                <p class="text-xs text-slate-400 mt-2" data-i18n="login_subtitle">보안 모니터링 관리자 인증이 필요합니다.</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="login_company_code">회사 연동 코드 (Company Code)</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
+                            <i data-lucide="building" class="w-4 h-4"></i>
+                        </span>
+                        <input type="text" id="loginCompanyCode" required class="w-full bg-white/5 border border-cardBorder rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/35 transition duration-300 font-mono" data-i18n-placeholder="placeholder_login_company_code" placeholder="회사 코드를 입력하세요">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="login_username">관리자 아이디</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
+                            <i data-lucide="user" class="w-4 h-4"></i>
+                        </span>
+                        <input type="text" id="loginUsername" required class="w-full bg-white/5 border border-cardBorder rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/35 transition duration-300" data-i18n-placeholder="placeholder_login_username" placeholder="아이디를 입력하세요">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="login_password">비밀번호</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
+                            <i data-lucide="lock" class="w-4 h-4"></i>
+                        </span>
+                        <input type="password" id="loginPassword" required class="w-full bg-white/5 border border-cardBorder rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/35 transition duration-300" data-i18n-placeholder="placeholder_login_password" placeholder="비밀번호를 입력하세요">
+                    </div>
+                </div>
+                
+                <div id="loginError" class="text-xs text-rose-400 bg-rose-500/10 border border-rose-500/20 px-4 py-2.5 rounded-xl hidden flex items-center gap-2">
+                    <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                    <span id="loginErrorMsg" data-i18n="login_error_msg">아이디 또는 비밀번호가 잘못되었습니다.</span>
+                </div>
+
+                <button type="submit" class="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-indigo-600 to-pink-600 hover:from-indigo-700 hover:to-pink-700 text-white rounded-xl font-bold shadow-lg shadow-indigo-600/20 transition duration-300">
+                    <i data-lucide="log-in" class="w-4 h-4"></i>
+                    <span data-i18n="login_btn">인증 및 로그인</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Top Background Glows -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-900/20 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-10 right-1/4 w-80 h-80 bg-pink-900/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 glass-panel border-r border-cardBorder hidden md:flex flex-col z-20">
+            <div class="p-6 border-b border-cardBorder">
+                <div class="flex items-center gap-3">
+                    <div class="bg-indigo-600 p-2 rounded-lg text-white">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-outfit font-extrabold text-lg bg-gradient-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent">PGuard Admin</h1>
+                        <span class="text-xs text-slate-400" data-i18n="sidebar_subtitle">Activity Monitoring</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="flex-1 px-4 py-6 space-y-2" id="sidebarMenu">
+                <button data-target="tab-overview" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-indigo-600/20 border border-indigo-500/30 text-white font-medium transition duration-300">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 text-indigo-400"></i>
+                    <span data-i18n="menu_overview">종합 모니터링</span>
+                </button>
+                <button data-target="tab-employees" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span data-i18n="menu_employees">직원 활동 현황</span>
+                </button>
+                <button data-target="tab-violations" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300">
+                    <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                    <span data-i18n="menu_violations">비업무 로그</span>
+                </button>
+                <button data-target="tab-idle-logs" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300">
+                    <i data-lucide="clock" class="w-5 h-5"></i>
+                    <span data-i18n="menu_idlelogs">자리비움 로그</span>
+                </button>
+                <button data-target="tab-worklogs" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300">
+                    <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                    <span data-i18n="menu_worklogs">업무 로그</span>
+                </button>
+                <button id="btn-patterns" data-target="tab-patterns" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300">
+                    <i data-lucide="sliders" class="w-5 h-5"></i>
+                    <span data-i18n="menu_patterns">분류 패턴 관리</span>
+                </button>
+                <button data-target="tab-settings" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                    <span data-i18n="menu_settings">대시보드 설정</span>
+                </button>
+                <button data-target="tab-download" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300">
+                    <i data-lucide="download-cloud" class="w-5 h-5"></i>
+                    <span data-i18n="menu_download">에이전트 다운로드</span>
+                </button>
+                <button id="btn-super" data-target="tab-super" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300 hidden">
+                    <i data-lucide="building-2" class="w-5 h-5"></i>
+                    <span data-i18n="menu_super">회사 및 권한 관리</span>
+                </button>
+                <button data-target="tab-audit" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300">
+                    <i data-lucide="history" class="w-5 h-5"></i>
+                    <span data-i18n="menu_audit">관리자 활동 로그</span>
+                </button>
+                <button id="btnLogout" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-rose-500/10 text-slate-400 hover:text-rose-400 transition duration-300 mt-8">
+                    <i data-lucide="log-out" class="w-5 h-5"></i>
+                    <span data-i18n="menu_logout">로그아웃</span>
+                </button>
+            </nav>
+
+            <div class="p-6 border-t border-cardBorder text-[10px] text-slate-500 text-center">
+                <span>System version 1.0.0</span><br>
+                <span>© 2026 Antigravity Inc.</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col overflow-y-auto relative z-10 p-6 md:p-8">
+            <!-- Top Controls (Header) -->
+            <header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-indigo-400 font-semibold tracking-widest uppercase" data-i18n="header_tag">OVERVIEW</span>
+                        <span id="companyBadge" class="px-2 py-0.5 bg-indigo-600/30 text-indigo-300 text-[10px] rounded-full border border-indigo-500/20 font-mono hidden"></span>
+                    </div>
+                    <h2 class="font-outfit text-3xl font-bold tracking-tight text-white mt-1" id="headerTitle" data-i18n="header_title">실시간 생산성 대시보드</h2>
+                    <p class="text-sm text-slate-400 mt-1" id="headerDesc" data-i18n="header_desc">직원들의 소프트웨어 사용 점유율과 비업무 활동 내역을 시각화합니다.</p>
+                </div>
+                <div class="flex items-center gap-3 flex-wrap">
+                    <!-- 오늘 날짜 표시 영역 -->
+                    <div id="todayDateDisplay" class="flex items-center gap-2 px-3 py-2 bg-white/5 border border-cardBorder text-slate-300 text-xs rounded-xl font-medium">
+                        <i data-lucide="calendar" class="w-3.5 h-3.5 text-indigo-400"></i>
+                        <span id="currentDateText" class="font-mono">2026-05-26</span>
+                    </div>
+
+                    <!-- Timezone Selector (Dropdown) -->
+                    <div class="relative inline-block ml-2">
+                        <select id="tzSelector" class="bg-white/5 hover:bg-white/10 text-slate-200 border border-cardBorder text-xs rounded-xl px-3 py-2 font-medium focus:outline-none transition duration-300 cursor-pointer">
+                            <option value="Asia/Seoul" class="bg-slate-900 text-slate-200" data-i18n="tz_seoul">🕒 한국 서울시간</option>
+                            <option value="Asia/Vientiane" class="bg-slate-900 text-slate-200" data-i18n="tz_vientiane">🕒 라오스 비엔티안시간</option>
+                        </select>
+                    </div>
+
+                    <!-- Language Selector (Dropdown) -->
+                    <div class="relative inline-block ml-2">
+                        <select id="langSelector" class="bg-white/5 hover:bg-white/10 text-slate-200 border border-cardBorder text-xs rounded-xl px-3 py-2 font-medium focus:outline-none transition duration-300 cursor-pointer">
+                            <option value="ko" class="bg-slate-900 text-slate-200">🇰🇷 한국어</option>
+                            <option value="en" class="bg-slate-900 text-slate-200">🇺🇸 English</option>
+                            <option value="th" class="bg-slate-900 text-slate-200">🇹🇭 ไทย (Thai)</option>
+                            <option value="lo" class="bg-slate-900 text-slate-200">🇱🇦 ລາວ (Lao)</option>
+                        </select>
+                    </div>
+
+                    <!-- Theme Toggle Button -->
+                    <button id="themeToggleBtn" class="flex items-center justify-center w-9 h-9 bg-white/5 hover:bg-white/10 border border-cardBorder rounded-xl transition duration-300 shrink-0" title="화면 테마 변경">
+                        <i data-lucide="sun" class="w-4 h-4 text-amber-400 hidden" id="themeSunIcon"></i>
+                        <i data-lucide="moon" class="w-4 h-4 text-indigo-400" id="themeMoonIcon"></i>
+                    </button>
+                    
+                    <button id="refreshBtn" class="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-cardBorder text-sm rounded-xl font-medium transition duration-300">
+                        <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                        <span data-i18n="btn_refresh">새로고침</span>
+                    </button>
+                    <div class="flex items-center gap-2 px-4 py-2 bg-indigo-950/40 border border-indigo-500/20 text-indigo-300 text-xs rounded-xl font-semibold">
+                        <span class="inline-block w-2.5 h-2.5 bg-emerald-500 rounded-full pulse-emerald"></span>
+                        <span data-i18n="status_polling">실시간 폴링 ON</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========================================== -->
+            <!-- TAB 1: 종합 모니터링 (Overview) -->
+            <!-- ========================================== -->
+            <div id="tab-overview" class="tab-content space-y-8">
+                <!-- KPI Cards Grid -->
+                <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <div class="glass-panel rounded-2xl p-6 relative overflow-hidden group hover:border-indigo-500/30 transition duration-500">
+                        <div class="absolute -right-4 -bottom-4 text-indigo-500/5 group-hover:scale-110 transition duration-500">
+                            <i data-lucide="users" class="w-24 h-24"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-400 tracking-wider" data-i18n="kpi_total_employees">전체 관리 사원</span>
+                        <h3 class="text-4xl font-outfit font-extrabold text-white mt-2" id="kpiTotalEmp">-</h3>
+                        <div class="flex items-center gap-2 mt-4 text-xs">
+                            <span class="text-emerald-400 font-semibold" data-i18n="kpi_monitoring_active">모니터링 활성화</span>
+                        </div>
+                    </div>
+                    <div class="glass-panel rounded-2xl p-6 relative overflow-hidden group hover:border-emerald-500/30 transition duration-500">
+                        <div class="absolute -right-4 -bottom-4 text-emerald-500/5 group-hover:scale-110 transition duration-500">
+                            <i data-lucide="user-check" class="w-24 h-24"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-400 tracking-wider" data-i18n="kpi_active_employees">실시간 접속 직원</span>
+                        <h3 class="text-4xl font-outfit font-extrabold text-emerald-400 mt-2" id="kpiActiveEmp">-</h3>
+                        <div class="flex items-center gap-2 mt-4 text-xs text-slate-500">
+                            <span data-i18n="kpi_active_desc">현재 PC 활동 신호 감지</span>
+                        </div>
+                    </div>
+                    <div class="glass-panel rounded-2xl p-6 relative overflow-hidden group hover:border-pink-500/30 transition duration-500">
+                        <div class="absolute -right-4 -bottom-4 text-pink-500/5 group-hover:scale-110 transition duration-500">
+                            <i data-lucide="alert-triangle" class="w-24 h-24"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-400 tracking-wider" data-i18n="kpi_nonwork_time">오늘 비업무 체류 시간</span>
+                        <h3 class="text-4xl font-outfit font-extrabold text-pink-500 mt-2" id="kpiNonWorkCount">-</h3>
+                        <div class="flex items-center gap-2 mt-4 text-xs text-slate-500">
+                            <span data-i18n="kpi_nonwork_desc">유튜브 / 웹툰 / 쇼핑몰 등</span>
+                        </div>
+                    </div>
+                    <div class="glass-panel rounded-2xl p-6 relative overflow-hidden group hover:border-indigo-500/30 transition duration-500">
+                        <div class="absolute -right-4 -bottom-4 text-indigo-500/5 group-hover:scale-110 transition duration-500">
+                            <i data-lucide="pie-chart" class="w-24 h-24"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-400 tracking-wider" data-i18n="kpi_productivity">평균 업무 집중도</span>
+                        <h3 class="text-4xl font-outfit font-extrabold text-indigo-400 mt-2" id="kpiProductivity">-</h3>
+                        <div class="flex items-center gap-2 mt-4 text-xs text-slate-500">
+                            <span data-i18n="kpi_prod_desc">전체 근무 대비 실무 비중</span>
+                        </div>
+                    </div>
+                    <div class="glass-panel rounded-2xl p-6 relative overflow-hidden group hover:border-amber-500/30 transition duration-500">
+                        <div class="absolute -right-4 -bottom-4 text-amber-500/5 group-hover:scale-110 transition duration-500">
+                            <i data-lucide="clock" class="w-24 h-24"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-400 tracking-wider" data-i18n="kpi_idle_time">오늘 자리비움 합계시간</span>
+                        <h3 class="text-4xl font-outfit font-extrabold text-amber-500 mt-2" id="kpiIdleTime">-</h3>
+                        <div class="flex items-center gap-2 mt-4 text-xs text-slate-500">
+                            <span data-i18n="kpi_idle_desc">에이전트 자리비움 감지 시간</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Charts & Active Status -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Category Dist -->
+                    <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-outfit text-lg font-bold text-white mb-1" data-i18n="chart_category_title">근무 시간 구성 비율</h4>
+                            <p class="text-xs text-slate-400 mb-6" data-i18n="chart_category_desc">업무, 비업무, 자리비움 누적 배분율</p>
+                        </div>
+                        <div class="h-64 flex justify-center items-center">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                        <div class="mt-6 flex justify-around text-xs">
+                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 bg-indigo-500 rounded"></span><span data-i18n="legend_work">업무 (Work)</span></div>
+                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 bg-rose-500 rounded"></span><span data-i18n="legend_nonwork">비업무 (Non-work)</span></div>
+                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 bg-amber-500 rounded"></span><span data-i18n="legend_idle">자리비움 (Idle)</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Program Usage -->
+                    <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-outfit text-lg font-bold text-white mb-1" data-i18n="chart_program_title">소프트웨어 사용 점유율</h4>
+                            <p class="text-xs text-slate-400 mb-6" data-i18n="chart_program_desc">활성화된 소프트웨어 Top 5</p>
+                        </div>
+                        <div class="h-64 flex justify-center items-center">
+                            <canvas id="programChart"></canvas>
+                        </div>
+                        <div class="h-5"></div>
+                    </div>
+
+                    <!-- Web Site Leaderboard -->
+                    <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-outfit text-lg font-bold text-white mb-1" data-i18n="panel_leaderboard_title">비업무 도메인 체류 순위</h4>
+                            <p class="text-xs text-slate-400 mb-6" data-i18n="panel_leaderboard_desc">가장 유입량이 높은 비업무 사이트</p>
+                        </div>
+                        <div id="nonWorkLeaderboard" class="space-y-4 flex-1 overflow-y-auto max-h-[250px] pr-1">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 실시간 PC 활동 현황 (Wide Card Grid at the Bottom) -->
+                <div class="glass-panel rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+                        <div>
+                            <h4 class="font-outfit text-lg font-bold text-white mb-1" data-i18n="panel_realtime_title">실시간 PC 활동 현황</h4>
+                            <p class="text-xs text-slate-400" data-i18n="panel_realtime_desc">현재 기동 중인 에이전트 신호</p>
+                        </div>
+                    </div>
+                    <div id="realtimeUserList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Injected dynamically as cards -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 2: 직원 활동 현황 (Employees Status) -->
+            <!-- ========================================== -->
+            <div id="tab-employees" class="tab-content space-y-6 hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Left: 사원 목록 테이블 (7열) -->
+                    <div class="glass-panel rounded-2xl p-6 lg:col-span-7 flex flex-col justify-between">
+                        <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+                            <div>
+                                <h4 class="font-outfit text-xl font-bold text-white mb-1.5" data-i18n="emp_tab_title">관리 사원 세부 현황</h4>
+                                <p class="text-xs text-slate-400" data-i18n="emp_tab_desc">등록된 직원들의 최신 통신 기록 및 누적 가동 데이터</p>
+                            </div>
+                            <button id="btnExportAll" class="flex items-center gap-2 px-4 py-2 bg-emerald-600/20 hover:bg-emerald-600 border border-emerald-500/30 text-emerald-300 hover:text-white text-xs rounded-xl font-bold transition duration-300">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                <span data-i18n="btn_export_all">전체 요약 Excel</span>
+                            </button>
+                        </div>
+                        <div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs border-collapse">
+                                    <thead>
+                                        <tr class="text-slate-400 border-b border-cardBorder bg-white/5">
+                                            <th class="py-4 px-4 font-semibold" data-i18n="th_emp_id">사원 번호</th>
+                                            <th class="py-4 px-4 font-semibold" data-i18n="th_emp_name">사원명</th>
+                                            <th class="py-4 px-4 font-semibold" data-i18n="th_emp_tags">태그</th>
+                                            <th class="py-4 px-4 font-semibold text-left col-company hidden" data-i18n="th_company">회사</th>
+                                            <th class="py-4 px-4 font-semibold" data-i18n="th_last_seen">마지막 활동 통신</th>
+                                            <th class="py-4 px-4 font-semibold text-center" data-i18n="th_emp_status">접속 여부</th>
+                                            <th class="py-4 px-4 font-semibold text-center">메시지</th>
+                                            <th class="py-4 px-4 font-semibold text-center" data-i18n="th_action">작업</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="employeeListBody" class="divide-y divide-white/5">
+                                        <!-- Injected dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: 사원별 활동 통계 분석 패널 (5열) -->
+                    <div class="glass-panel rounded-2xl p-6 lg:col-span-5 flex flex-col justify-between" id="employeeDetailPanel">
+                        <!-- Default Placeholder State -->
+                        <div id="empStatsPlaceholder" class="flex-1 flex flex-col items-center justify-center py-20 text-center">
+                            <div class="bg-indigo-600/10 border border-indigo-500/25 p-4 rounded-3xl text-indigo-400 mb-4 shadow-lg shadow-indigo-500/5">
+                                <i data-lucide="bar-chart-3" class="w-12 h-12"></i>
+                            </div>
+                            <h5 class="font-outfit font-bold text-white text-base" data-i18n="emp_stats_title">사원별 활동 통계 분석</h5>
+                            <p class="text-xs text-slate-400 max-w-xs mt-2" data-i18n="emp_select_placeholder">분석할 사원을 목록에서 선택하거나 분석 버튼을 눌러주세요.</p>
+                        </div>
+
+                        <!-- Active Stats Content State -->
+                        <div id="empStatsContent" class="hidden space-y-6">
+                            <div class="flex items-center justify-between border-b border-white/5 pb-4 flex-wrap gap-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-indigo-600 p-2.5 rounded-xl text-white">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-outfit text-lg font-bold text-white" id="statEmpName">-</h4>
+                                        <p class="text-[10px] text-slate-400 font-mono" id="statEmpId">-</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end gap-2">
+                                    <div class="flex items-center gap-2">
+                                        <input type="date" id="exportStartDate" class="bg-white/5 border border-cardBorder text-[11px] text-slate-300 rounded-lg px-2 py-1 focus:outline-none focus:border-indigo-500">
+                                        <span class="text-slate-500 text-[11px]">~</span>
+                                        <input type="date" id="exportEndDate" class="bg-white/5 border border-cardBorder text-[11px] text-slate-300 rounded-lg px-2 py-1 focus:outline-none focus:border-indigo-500">
+                                    </div>
+                                    <button id="btnExportDetail" class="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600/20 hover:bg-indigo-600 border border-indigo-500/30 text-indigo-300 hover:text-white text-[11px] rounded-lg font-bold transition duration-200">
+                                        <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
+                                        <span data-i18n="btn_export_detail">상세 엑셀 다운로드</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Employee Tags Registration -->
+                            <div class="flex items-center justify-between bg-white/5 border border-cardBorder rounded-xl p-3.5 gap-2" id="empTagsPanel">
+                                <div class="flex-1 min-w-0">
+                                    <label class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1" data-i18n="label_emp_tags">사원 태그</label>
+                                    <input type="text" id="editEmpTags" list="managerTagsList" class="w-full bg-transparent text-sm text-white focus:outline-none border-b border-white/10 focus:border-indigo-500 pb-1" placeholder="예: dev, hr">
+                                    <datalist id="managerTagsList"></datalist>
+                                </div>
+                                <button id="btnSaveEmpTags" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs rounded-lg font-bold transition duration-200 shrink-0">
+                                    저장
+                                </button>
+                            </div>
+
+                            <!-- Productivity Focus Score -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-end">
+                                    <span class="text-xs font-semibold text-slate-400" data-i18n="emp_prod_score">업무 집중도 (Focus Score)</span>
+                                    <span class="text-2xl font-outfit font-extrabold text-indigo-400" id="statFocusScore">-%</span>
+                                </div>
+                                <div class="w-full bg-white/5 rounded-full h-3 overflow-hidden border border-cardBorder">
+                                    <div class="bg-gradient-to-r from-indigo-500 to-pink-500 h-full rounded-full transition-all duration-500" id="statFocusScoreBar" style="width: 0%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Time Allocation (Work / Non-work / Idle) -->
+                            <div class="space-y-3">
+                                <span class="text-xs font-semibold text-slate-400 block" data-i18n="emp_time_alloc">근무 시간 배분 구성</span>
+                                <div class="w-full bg-white/5 rounded-full h-4 overflow-hidden flex border border-cardBorder">
+                                    <div class="bg-indigo-500 h-full transition-all duration-500" id="statAllocWork" style="width: 0%"></div>
+                                    <div class="bg-rose-500 h-full transition-all duration-500" id="statAllocNonWork" style="width: 0%"></div>
+                                    <div class="bg-amber-500 h-full transition-all duration-500" id="statAllocIdle" style="width: 0%"></div>
+                                </div>
+                                <div class="flex justify-between text-[10px] text-slate-400">
+                                    <div class="flex items-center gap-1"><span class="w-2 h-2 bg-indigo-500 rounded-full"></span><span data-i18n="legend_work">업무</span> <span id="lblAllocWork">0h</span></div>
+                                    <div class="flex items-center gap-1"><span class="w-2 h-2 bg-rose-500 rounded-full"></span><span data-i18n="legend_nonwork">비업무</span> <span id="lblAllocNonWork">0h</span></div>
+                                    <div class="flex items-center gap-1"><span class="w-2 h-2 bg-amber-500 rounded-full"></span><span data-i18n="legend_idle">자리비움</span> <span id="lblAllocIdle">0h</span></div>
+                                </div>
+                            </div>
+
+                            <!-- Top 5 Software -->
+                            <div class="space-y-3">
+                                <span class="text-xs font-semibold text-slate-400 block" data-i18n="emp_top_software">최다 사용 소프트웨어</span>
+                                <div id="statTopSoftwareList" class="space-y-3">
+                                    <!-- Dynamic elements -->
+                                </div>
+                            </div>
+
+                            <!-- Top 5 Domains -->
+                            <div class="space-y-3">
+                                <span class="text-xs font-semibold text-slate-400 block" data-i18n="emp_top_domains">최다 체류 비업무 사이트</span>
+                                <div id="statTopDomainsList" class="space-y-3">
+                                    <!-- Dynamic elements -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 3: 비업무 로그 (Non-Work Logs) -->
+            <!-- ========================================== -->
+            <div id="tab-violations" class="tab-content space-y-6 hidden">
+                <div class="glass-panel rounded-2xl p-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-1" data-i18n="violation_tab_title">비업무 활동 로그</h4>
+                            <p class="text-xs text-slate-400" data-i18n="violation_tab_desc">비업무로 분류된 활동 로그입니다. 관리자는 업무 전환 버튼으로 카테고리를 변경할 수 있습니다.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2 shrink-0">
+                            <select id="violEmployeeSelect" class="bg-white/5 border border-cardBorder rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                                <option value="" data-i18n="all_employees">전체 직원</option>
+                            </select>
+                            <span class="text-xs text-slate-400 font-semibold" data-i18n="label_date">기간:</span>
+                            <input type="date" id="violStartDate" class="bg-white/5 border border-cardBorder rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                            <span class="text-slate-500 text-xs">~</span>
+                            <input type="date" id="violEndDate" class="bg-white/5 border border-cardBorder rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                            <button id="btnApplyViolFilter" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold transition" data-i18n="btn_apply">적용</button>
+                            <button id="btnExportViolExcel" class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-white border border-emerald-500/30 rounded-lg text-xs font-semibold transition">
+                                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                                <span data-i18n="btn_excel_download">Excel 다운로드</span>
+                            </button>
+                            <div id="violTotalDuration" class="flex items-center gap-1.5 px-3 py-1.5 bg-rose-500/10 border border-rose-500/20 rounded-lg text-xs font-bold text-rose-400">
+                                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                                <span data-i18n="duration_total">합계: -</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="text-slate-400 border-b border-cardBorder bg-white/5">
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_time">시각</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_name">이름 (사번)</th>
+                                    <th class="py-4 px-4 font-semibold text-left col-company hidden" data-i18n="th_company">회사</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_process">프로세스명</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_domain">감지 도메인</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_idle_reason">사유</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_title">타이틀</th>
+                                    <th class="py-4 px-4 font-semibold text-right" data-i18n="th_duration">체류 시간</th>
+                                    <th class="py-4 px-4 font-semibold text-center" data-i18n="th_action">조작</th>
+                                </tr>
+                            </thead>
+                            <tbody id="violationListBody" class="divide-y divide-white/5">
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5">
+                        <button id="btnPrevViolPage" class="px-4 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs transition disabled:opacity-30" data-i18n="btn_prev">이전</button>
+                        <span id="violPageInfo" class="text-xs text-slate-500">1 / 1</span>
+                        <button id="btnNextViolPage" class="px-4 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs transition disabled:opacity-30" data-i18n="btn_next">다음</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 3b: 자리비움 로그 (Idle Logs) [NEW] -->
+            <!-- ========================================== -->
+            <div id="tab-idle-logs" class="tab-content space-y-6 hidden">
+                <div class="glass-panel rounded-2xl p-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-1" data-i18n="idlelog_tab_title">자리비움 활동 로그</h4>
+                            <p class="text-xs text-slate-400" data-i18n="idlelog_tab_desc">직원들의 자리비움 감지 내역입니다. 업무로 변경 단추를 클릭해 해당 시간대를 업무 상태로 변경할 수 있습니다.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2 shrink-0">
+                            <select id="idleEmployeeSelect" class="bg-white/5 border border-cardBorder rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                                <option value="" data-i18n="all_employees">전체 직원</option>
+                            </select>
+                            <span class="text-xs text-slate-400 font-semibold mr-1" data-i18n="label_date">기간:</span>
+                            <input type="date" id="idleStartDate" class="bg-white/5 border border-cardBorder rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                            <span class="text-slate-500 text-xs">~</span>
+                            <input type="date" id="idleEndDate" class="bg-white/5 border border-cardBorder rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                            <button id="btnApplyIdleFilter" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold transition" data-i18n="btn_apply">적용</button>
+                            <button id="btnExportIdleExcel" class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-white border border-emerald-500/30 rounded-lg text-xs font-semibold transition">
+                                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                                <span data-i18n="btn_excel_download">Excel 다운로드</span>
+                            </button>
+                            <div id="idleTotalDuration" class="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/10 border border-amber-500/20 rounded-lg text-xs font-bold text-amber-400">
+                                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                                <span data-i18n="duration_total">합계: -</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="text-slate-400 border-b border-cardBorder bg-white/5">
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_time">시각</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_name">이름 (사번)</th>
+                                    <th class="py-4 px-4 font-semibold text-left col-company hidden" data-i18n="th_company">회사</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_process">프로세스명</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_idle_reason">사유</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_title">타이틀</th>
+                                    <th class="py-4 px-4 font-semibold text-right" data-i18n="th_duration">체류 시간</th>
+                                    <th class="py-4 px-4 font-semibold text-center" data-i18n="th_action">조작</th>
+                                </tr>
+                            </thead>
+                            <tbody id="idleLogBody" class="divide-y divide-white/5">
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5">
+                        <button id="btnPrevIdlePage" class="px-4 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs transition disabled:opacity-30" data-i18n="btn_prev">이전</button>
+                        <span id="idlePageInfo" class="text-xs text-slate-500">1 / 1</span>
+                        <button id="btnNextIdlePage" class="px-4 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs transition disabled:opacity-30" data-i18n="btn_next">다음</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 3c: 업무 로그 (Work Logs) -->
+            <!-- ========================================== -->
+            <div id="tab-worklogs" class="tab-content space-y-6 hidden">
+                <div class="glass-panel rounded-2xl p-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-1" data-i18n="worklog_tab_title">PC 활동 업무 로그</h4>
+                            <p class="text-xs text-slate-400" data-i18n="worklog_tab_desc">업무로 분류된 PC 활동 상세 내역입니다. 관리자는 비업무 전환 버튼으로 카테고리를 변경할 수 있습니다.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2 shrink-0">
+                            <select id="workEmployeeSelect" class="bg-white/5 border border-cardBorder rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                                <option value="" data-i18n="all_employees">전체 직원</option>
+                            </select>
+                            <span class="text-xs text-slate-400 font-semibold mr-1" data-i18n="label_date">기간:</span>
+                            <input type="date" id="workStartDate" class="bg-white/5 border border-cardBorder rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                            <span class="text-slate-500 text-xs">~</span>
+                            <input type="date" id="workEndDate" class="bg-white/5 border border-cardBorder rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                            <button id="btnApplyWorkFilter" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold transition" data-i18n="btn_apply">적용</button>
+                            <button id="btnExportWorkExcel" class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-white border border-emerald-500/30 rounded-lg text-xs font-semibold transition">
+                                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                                <span data-i18n="btn_excel_download">Excel 다운로드</span>
+                            </button>
+                            <div id="workTotalDuration" class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-xs font-bold text-emerald-400">
+                                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                                <span data-i18n="duration_total">합계: -</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="text-slate-400 border-b border-cardBorder bg-white/5">
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_time">시각</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_name">이름 (사번)</th>
+                                    <th class="py-4 px-4 font-semibold text-left col-company hidden" data-i18n="th_company">회사</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_process">프로세스명</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_domain">도메인</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_idle_reason">사유</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_title">활성 타이틀</th>
+                                    <th class="py-4 px-4 font-semibold text-right" data-i18n="th_duration">체류 시간</th>
+                                    <th class="py-4 px-4 font-semibold text-center" data-i18n="th_action">조작</th>
+                                </tr>
+                            </thead>
+                            <tbody id="workLogBody" class="divide-y divide-white/5">
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5">
+                        <button id="btnPrevWorkPage" class="px-4 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs transition disabled:opacity-30" data-i18n="btn_prev">이전</button>
+                        <span id="workPageInfo" class="text-xs text-slate-500">1 / 1</span>
+                        <button id="btnNextWorkPage" class="px-4 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs transition disabled:opacity-30" data-i18n="btn_next">다음</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB: 분류 패턴 관리 (Patterns) -->
+            <!-- ========================================== -->
+            <div id="tab-patterns" class="tab-content space-y-6 hidden">
+                <div class="glass-panel rounded-2xl p-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-1" data-i18n="tab_patterns_title">🧩 업무/비업무 자동 분류 패턴 관리</h4>
+                            <p class="text-xs text-slate-400" data-i18n="tab_patterns_desc">특정 프로세스명, 도메인, 활성 타이틀의 키워드를 기반으로 업무/비업무 로그를 자동 분류하는 규칙을 구성합니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- 패턴 등록 폼 -->
+                    <form id="formAddPattern" class="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 rounded-xl bg-white/5 border border-white/5 mb-6">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-[10px] font-bold text-slate-400" data-i18n="th_pattern_type">패턴 유형</label>
+                            <select id="patternType" class="bg-[#0b1019] text-white border border-white/10 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500">
+                                <option value="process" data-i18n="option_process">프로세스명 (EXE)</option>
+                                <option value="domain" data-i18n="option_domain">감지 도메인 (웹사이트)</option>
+                                <option value="title" data-i18n="option_title">활성 타이틀 (창 제목)</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-2 md:col-span-2">
+                            <label class="text-[10px] font-bold text-slate-400" data-i18n="th_pattern_value">매칭 단어 (대소문자 미구분, 부분일치)</label>
+                            <input type="text" id="patternValue" placeholder="예: excel.exe, youtube.com, 쇼핑" class="bg-[#0b1019] text-white border border-white/10 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500 placeholder-slate-600">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label class="text-[10px] font-bold text-slate-400" data-i18n="th_pattern_category">지정 분류</label>
+                            <div class="flex gap-2 items-center h-full">
+                                <select id="patternCategory" class="flex-1 bg-[#0b1019] text-white border border-white/10 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500">
+                                    <option value="work" data-i18n="menu_worklogs">업무</option>
+                                    <option value="non-work" data-i18n="menu_violations">비업무</option>
+                                </select>
+                                <button type="submit" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs rounded-xl font-bold transition duration-300 whitespace-nowrap h-full" data-i18n="btn_register">
+                                    등록
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- 패턴 목록 테이블 -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="text-slate-400 border-b border-cardBorder bg-white/5">
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_pattern_type">패턴 유형</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_pattern_value">매칭 단어</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_pattern_category">지정 분류</th>
+                                    <th class="py-4 px-4 font-semibold" data-i18n="th_time">등록일</th>
+                                    <th class="py-4 px-4 font-semibold text-center" data-i18n="th_action">조작</th>
+                                </tr>
+                            </thead>
+                            <tbody id="patternsListBody" class="divide-y divide-white/5">
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 4: 대시보드 설정 (Settings) -->
+            <!-- ========================================== -->
+            <div id="tab-settings" class="tab-content space-y-6 hidden">
+
+                <!-- 에이전트 메시지 전송 패널 -->
+                <div class="glass-panel rounded-2xl p-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-1" data-i18n="menu_send_agent_message">📢 에이전트 메시지 전송</h4>
+                            <p class="text-xs text-slate-400" data-i18n="desc_send_agent_message">개별 직원 또는 전체 직원의 PC 화면에 팝업 메시지를 전송합니다.</p>
+                        </div>
+                        <button id="btnSendMessageAll" class="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-pink-600 hover:from-indigo-700 hover:to-pink-700 text-white text-sm rounded-xl font-bold shadow-lg shadow-indigo-600/20 transition duration-300 shrink-0">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            <span data-i18n="btn_send_all_employees">전체 직원에게 전송</span>
+                        </button>
+                    </div>
+                    <div id="messageEmpList" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
+                        <!-- 직원 메시지 카드 동적 주입 -->
+                        <div class="text-xs text-slate-500 italic" data-i18n="msg_no_agents_connected">직원 활동 현황 탭에서 에이전트가 연결되면 여기에 직원 목록이 표시됩니다.</div>
+                    </div>
+                </div>
+
+                <!-- 에이전트 동작 및 보안 설정 패널 -->
+                <div id="idleSettingsPanel" class="glass-panel rounded-2xl p-6">
+                    <h4 class="font-outfit text-xl font-bold text-white mb-1" data-i18n="settings_title">⚙️ 에이전트 동작 및 보안 설정</h4>
+                    <p class="text-xs text-slate-400 mb-6" data-i18n="settings_desc">연결된 PC 에이전트의 자리비움 기준, 감시 스캔 주기 및 백엔드 전송 주기를 통합 설정합니다.</p>
+                    
+                    <div class="space-y-6">
+                        <!-- 1. 자리비움 감지 시간 -->
+                        <div class="flex flex-col md:flex-row md:items-center gap-4 border-b border-white/5 pb-6">
+                            <div class="w-full md:w-1/3">
+                                <label class="block text-sm font-semibold text-white mb-1" data-i18n="label_idle_threshold">⏱ 자리비움 감지 시간</label>
+                                <span class="text-xs text-slate-400" data-i18n="desc_idle_threshold">미입력 시 자리비움 판정 기준 (1분 ~ 60분)</span>
+                            </div>
+                            <div class="flex-1 flex items-center gap-6">
+                                <div class="flex-1">
+                                    <input type="range" id="idleThresholdSlider" min="1" max="60" value="10"
+                                        class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                                    <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                                        <span>1분</span><span>15분</span><span>30분</span><span>45분</span><span>60분</span>
+                                    </div>
+                                </div>
+                                <div class="text-center shrink-0 w-16">
+                                    <span class="text-2xl font-outfit font-extrabold text-indigo-400" id="idleThresholdDisplay">10</span>
+                                    <span class="text-xs text-slate-500" data-i18n="unit_min">분</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. 에이전트 스캔 주기 -->
+                        <div class="flex flex-col md:flex-row md:items-center gap-4 border-b border-white/5 pb-6">
+                            <div class="w-full md:w-1/3">
+                                <label class="block text-sm font-semibold text-white mb-1" data-i18n="label_scan_interval">🔍 에이전트 감시 스캔 주기</label>
+                                <span class="text-xs text-slate-400" data-i18n="desc_scan_interval">활성 창 및 입력 상태 확인 빈도 (1초 ~ 300초)</span>
+                            </div>
+                            <div class="flex-1 flex items-center gap-6">
+                                <div class="flex-1">
+                                    <input type="range" id="agentScanSlider" min="1" max="300" value="2"
+                                        class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                                    <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                                        <span>1초</span><span>75초</span><span>150초</span><span>225초</span><span>300초</span>
+                                    </div>
+                                </div>
+                                <div class="text-center shrink-0 w-16">
+                                    <span class="text-2xl font-outfit font-extrabold text-indigo-400" id="agentScanDisplay">2</span>
+                                    <span class="text-xs text-slate-500" data-i18n="unit_sec">초</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. 에이전트 서버 전송 주기 -->
+                        <div class="flex flex-col md:flex-row md:items-center gap-4 pb-2">
+                            <div class="w-full md:w-1/3">
+                                <label class="block text-sm font-semibold text-white mb-1" data-i18n="label_send_interval">📡 에이전트 서버 전송 주기</label>
+                                <span class="text-xs text-slate-400" data-i18n="desc_send_interval">수집 로그 백엔드 일괄 전송 빈도 (10초 ~ 3600초)</span>
+                            </div>
+                            <div class="flex-1 flex items-center gap-6">
+                                <div class="flex-1">
+                                    <input type="range" id="agentSendSlider" min="10" max="3600" step="10" value="600"
+                                        class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                                    <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                                        <span>10초</span><span>900초</span><span>1800초</span><span>2700초</span><span>3600초</span>
+                                    </div>
+                                </div>
+                                <div class="text-center shrink-0 w-16">
+                                    <span class="text-2xl font-outfit font-extrabold text-indigo-400" id="agentSendDisplay">600</span>
+                                    <span class="text-xs text-slate-500" data-i18n="unit_sec">초</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. 에이전트 연동 토큰 -->
+                        <div class="flex flex-col md:flex-row md:items-center gap-4 pb-2">
+                            <div class="w-full md:w-1/3">
+                                <label class="block text-sm font-semibold text-white mb-1" data-i18n="label_agent_token">🔑 에이전트 연동 토큰</label>
+                                <span class="text-xs text-slate-400" data-i18n="desc_agent_token">에이전트 설정 GUI(또는 config.json)의 API 토큰 입력란에 붙여넣는 회사 인증 토큰입니다.</span>
+                            </div>
+                            <div class="flex-1 flex flex-col md:flex-row md:items-center gap-3">
+                                <div class="flex-1 relative">
+                                    <input type="text" id="agentApiTokenInput" readonly
+                                        class="w-full bg-white/5 border border-white/10 text-white text-xs font-mono rounded-xl px-3 py-2.5 pr-9"
+                                        value="••••••••••••••••">
+                                    <button id="btnToggleTokenVisible" type="button" title="표시/숨기기"
+                                        class="absolute right-1 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-white transition">
+                                        <i data-lucide="eye" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <button id="btnRegenToken" type="button"
+                                    class="flex items-center justify-center gap-2 px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white text-xs rounded-xl font-bold transition duration-300 shrink-0">
+                                    <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                                    <span data-i18n="btn_regen_token">토큰 재발급</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end mt-4">
+                        <button id="btnSaveIdleThreshold" class="flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-sm rounded-xl font-bold transition duration-300">
+                            <i data-lucide="save" class="w-4 h-4"></i>
+                            <span data-i18n="btn_save_settings">설정 저장</span>
+                        </button>
+                    </div>
+                    <div id="idleSettingMsg" class="text-xs mt-3 hidden"></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                    <!-- System Info -->
+                    <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-2" data-i18n="settings_info_title">PGuard 모니터링 시스템 정보</h4>
+                            <p class="text-xs text-slate-400 mb-6" data-i18n="settings_info_desc">현재 로컬 가동 중인 시스템의 설정 사양입니다.</p>
+
+                            <div class="space-y-4 text-sm text-slate-300">
+                                <div class="flex justify-between border-b border-white/5 pb-2">
+                                    <span class="text-slate-500" data-i18n="set_agent_interval">에이전트 스캔 주기</span>
+                                    <span class="font-semibold text-white">1분 (60 seconds)</span>
+                                </div>
+                                <div class="flex justify-between border-b border-white/5 pb-2">
+                                    <span class="text-slate-500" data-i18n="set_send_interval">에이전트 서버 전송 주기</span>
+                                    <span class="font-semibold text-white">10분 (600 seconds) - 버퍼링 전송</span>
+                                </div>
+                                <div class="flex justify-between border-b border-white/5 pb-2">
+                                    <span class="text-slate-500" data-i18n="set_server_port">Express API 서버 포트</span>
+                                    <span class="font-semibold text-indigo-400">http://localhost:3000</span>
+                                </div>
+                                <div class="flex justify-between border-b border-white/5 pb-2">
+                                    <span class="text-slate-500" data-i18n="set_db_engine">데이터베이스 엔진</span>
+                                    <span class="font-semibold text-white">SQLite3 (database.sqlite)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-2"></div>
+                    </div>
+
+                    <!-- Security & Association Settings -->
+                    <div id="securitySettingsPanel" class="glass-panel rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-2" data-i18n="settings_security_title">보안 및 회사 연동 설정</h4>
+                            <p class="text-xs text-slate-400 mb-6" data-i18n="settings_security_desc">에이전트 연동용 회사 코드와 관리자 비밀번호를 안전하게 수정합니다.</p>
+
+                            <form id="securitySettingsForm" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="label_company_code">회사 연동 코드 (Company Code)</label>
+                                    <input type="text" id="settingCompanyCode" class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 font-mono transition duration-300" data-i18n-placeholder="placeholder_enter_company_code" placeholder="회사 코드를 입력하세요.">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="label_new_password">새 관리자 비밀번호 (New Admin Password)</label>
+                                    <input type="password" id="settingNewPassword" class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition duration-300" data-i18n-placeholder="placeholder_new_password_help" placeholder="변경할 경우에만 입력하세요.">
+                                </div>
+                                <button type="submit" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm rounded-xl font-bold transition duration-300">
+                                    <i data-lucide="save" class="w-4 h-4"></i>
+                                    <span data-i18n="btn_save_settings">설정 저장하기</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- DB Reset & Controls -->
+                    <div id="dbResetPanel" class="glass-panel rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-2 text-rose-500" data-i18n="settings_reset_title">데이터베이스 관리 (위험 구역)</h4>
+                            <p class="text-xs text-slate-400 mb-6" data-i18n="settings_reset_desc">누적된 수집 로그를 제거하거나 초기화할 수 있습니다.</p>
+                            
+                            <p class="text-sm text-slate-300 leading-relaxed mb-6" data-i18n="settings_reset_warning">
+                                ⚠️ <b>주의:</b> 데이터베이스의 모든 PC 활동 이력 로그 및 웹 브라우저 방문 기록을 안전하게 전체 삭제합니다. 삭제된 데이터는 복구할 수 없습니다.
+                            </p>
+                        </div>
+
+                        <button id="resetDbBtn" class="w-full flex items-center justify-center gap-2 px-6 py-4 bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-bold shadow-lg transition duration-300">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                            <span data-i18n="btn_reset_db">활동 데이터베이스 전체 초기화</span>
+                        </button>
+                    </div>
+
+                    <!-- Sub-Admin Management -->
+                    <div id="subAdminPanel" class="glass-panel rounded-2xl p-6 flex flex-col justify-between hidden">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-2" data-i18n="settings_subadmin_title">서브/직원 관리자 관리</h4>
+                            <p class="text-xs text-slate-400 mb-6" data-i18n="settings_subadmin_desc">현재 회사의 서브 관리자 및 직원 관리자 계정을 추가하거나 삭제합니다.</p>
+                            
+                            <form id="subAdminForm" class="space-y-4 mb-6">
+                                <div>
+                                    <input type="text" id="subAdminId" required class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 font-mono transition duration-300" data-i18n-placeholder="placeholder_admin_id" placeholder="관리자 아이디">
+                                </div>
+                                <div>
+                                    <input type="password" id="subAdminPassword" required class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition duration-300" data-i18n-placeholder="placeholder_temp_password" placeholder="초기 비밀번호">
+                                </div>
+                                <div>
+                                    <select id="subAdminRole" class="w-full bg-[#0F1723] border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition duration-300">
+                                        <option value="sub_admin" class="bg-[#0F1723] text-white" data-i18n="role_sub_admin" selected>서브 관리자 (Sub-admin)</option>
+                                        <option value="employee_manager" class="bg-[#0F1723] text-white" data-i18n="role_employee_manager">직원 관리자 (Employee Manager)</option>
+                                    </select>
+                                </div>
+                                <div id="subAdminTagsContainer" class="hidden">
+                                    <input type="text" id="subAdminTags" class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 font-mono transition duration-300" data-i18n-placeholder="placeholder_managed_tags" placeholder="관리할 사원 태그 (쉼표로 구분)">
+                                </div>
+                                <button type="submit" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm rounded-xl font-bold transition duration-300">
+                                    <i data-lucide="user-plus" class="w-4 h-4"></i>
+                                    <span data-i18n="btn_add_subadmin">추가하기</span>
+                                </button>
+                            </form>
+
+                            <div class="overflow-y-auto max-h-48 border border-white/5 rounded-xl">
+                                <table class="w-full text-left text-xs border-collapse">
+                                    <tbody id="subAdminList" class="divide-y divide-white/5">
+                                        <!-- Injected dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 5: 회사 및 권한 관리 (Super Admin Only) -->
+            <!-- ========================================== -->
+            <div id="tab-super" class="tab-content space-y-8 hidden">
+                <!-- Grid for Forms: Company Register/Edit & Admin Account Creation -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Company Register Card -->
+                    <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-2" data-i18n="super_company_title">회사 등록 및 수정</h4>
+                            <p class="text-xs text-slate-400 mb-6" data-i18n="super_company_desc">새로운 회사를 등록하거나 기존 회사의 이름을 수정합니다.</p>
+
+                            <form id="companyForm" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="label_super_comp_code">회사 코드 (Company Code)</label>
+                                    <input type="text" id="superCompCode" required class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 font-mono transition duration-300" placeholder="예: AUTON123">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="label_super_comp_name">회사명 (Company Name)</label>
+                                    <input type="text" id="superCompName" required class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition duration-300" placeholder="예: 주식회사 아우톤">
+                                </div>
+                                <div class="flex gap-3">
+                                    <button type="submit" id="btnCompanySubmit" class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm rounded-xl font-bold transition duration-300">
+                                        <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                                        <span data-i18n="btn_super_comp_register">회사 등록하기</span>
+                                    </button>
+                                    <button type="button" id="btnCompanyCancel" class="px-4 py-2.5 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-sm rounded-xl font-semibold transition duration-300 hidden">
+                                        <span data-i18n="btn_cancel">취소</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Admin Register Card -->
+                    <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-2" data-i18n="super_admin_title">회사 관리자 계정 생성</h4>
+                            <p class="text-xs text-slate-400 mb-6" data-i18n="super_admin_desc">특정 회사에 귀속된 독립 관리자 계정을 생성합니다.</p>
+
+                            <form id="superAdminForm" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="label_super_admin_comp">소속 회사 선택 (Select Company)</label>
+                                    <select id="superAdminComp" required class="w-full bg-slate-900 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition duration-300 cursor-pointer">
+                                        <!-- Dynamic companies options -->
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="label_super_admin_id">관리자 ID (Admin ID)</label>
+                                    <input type="text" id="superAdminId" required class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition duration-300" placeholder="관리자 ID를 입력하세요">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="label_super_admin_pw">임시 비밀번호 (Temporary Password)</label>
+                                    <input type="password" id="superAdminPw" required class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition duration-300" data-i18n-placeholder="placeholder_login_password" placeholder="비밀번호를 입력하세요">
+                                </div>
+                                <button type="submit" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-pink-600 hover:bg-pink-700 text-white text-sm rounded-xl font-bold transition duration-300">
+                                    <i data-lucide="user-plus" class="w-4 h-4"></i>
+                                    <span data-i18n="btn_super_admin_create">관리자 계정 생성</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tables for Companies & Admins Lists -->
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                    <!-- Companies Table -->
+                    <div class="glass-panel rounded-2xl p-6">
+                        <h4 class="font-outfit text-lg font-bold text-white mb-2" data-i18n="super_company_table_title">회사 목록 관리</h4>
+                        <p class="text-xs text-slate-400 mb-6" data-i18n="super_company_table_desc">등록된 모든 회사 목록입니다. 삭제 시 소속 직원 및 수집 로그가 영구 삭제됩니다.</p>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="text-slate-400 border-b border-cardBorder bg-white/5">
+                                        <th class="py-3 px-4 font-semibold" data-i18n="th_company_code">회사 코드</th>
+                                        <th class="py-3 px-4 font-semibold" data-i18n="th_company_name">회사명</th>
+                                        <th class="py-3 px-4 font-semibold" data-i18n="th_created_at">등록일</th>
+                                        <th class="py-3 px-4 font-semibold text-center" data-i18n="th_action">작업</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="superCompanyListBody" class="divide-y divide-white/5">
+                                    <!-- Injected dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Admins Table -->
+                    <div class="glass-panel rounded-2xl p-6">
+                        <h4 class="font-outfit text-lg font-bold text-white mb-2" data-i18n="super_admin_table_title">회사 관리자 목록 관리</h4>
+                        <p class="text-xs text-slate-400 mb-6" data-i18n="super_admin_table_desc">등록된 회사별 관리자 계정 목록입니다.</p>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="text-slate-400 border-b border-cardBorder bg-white/5">
+                                        <th class="py-3 px-4 font-semibold" data-i18n="th_super_admin_id">관리자 ID</th>
+                                        <th class="py-3 px-4 font-semibold" data-i18n="th_super_admin_comp">소속 회사</th>
+                                        <th class="py-3 px-4 font-semibold" data-i18n="th_created_at">생성일</th>
+                                        <th class="py-3 px-4 font-semibold text-center" data-i18n="th_action">작업</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="superAdminListBody" class="divide-y divide-white/5">
+                                    <!-- Injected dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 5: 에이전트 다운로드 (Agent Download) -->
+            <!-- ========================================== -->
+            <div id="tab-download" class="tab-content space-y-8 hidden">
+                <div class="glass-panel rounded-3xl p-8 max-w-4xl mx-auto mt-10">
+                    <div class="text-center mb-10">
+                        <div class="inline-flex bg-indigo-600/20 p-4 rounded-2xl text-indigo-400 mb-4 border border-indigo-500/30">
+                            <i data-lucide="download-cloud" class="w-10 h-10"></i>
+                        </div>
+                        <h3 class="font-outfit font-extrabold text-3xl text-white mb-2" data-i18n="download_title">PGuard Agent 다운로드</h3>
+                        <p class="text-slate-400 text-sm" data-i18n="download_desc">직원들의 PC에 설치할 모니터링 에이전트를 다운로드하세요. 운영체제에 맞는 버전을 선택해 주십시오.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Windows Download Card -->
+                        <div class="bg-white/5 border border-cardBorder hover:border-indigo-500/50 rounded-2xl p-6 transition duration-300 flex flex-col items-center text-center group relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"></div>
+                            <i data-lucide="monitor" class="w-16 h-16 text-slate-300 group-hover:text-indigo-400 transition duration-300 mb-4"></i>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-2">Windows (PC)</h4>
+                            <p class="text-xs text-slate-400 mb-6 flex-1" data-i18n="download_win_desc">Windows 10/11 이상 환경을 지원합니다. 더블 클릭하여 설치 없이 즉시 실행할 수 있습니다.</p>
+                            <a href="/download/PGuardAgent.exe" download="PGuardAgent.exe" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition duration-300 shadow-lg shadow-indigo-600/20">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                <span data-i18n="btn_download_win">Windows용 다운로드</span>
+                            </a>
+                        </div>
+
+                        <!-- macOS Download Card -->
+                        <div class="bg-white/5 border border-cardBorder hover:border-pink-500/50 rounded-2xl p-6 transition duration-300 flex flex-col items-center text-center group relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-b from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"></div>
+                            <i data-lucide="apple" class="w-16 h-16 text-slate-300 group-hover:text-pink-400 transition duration-300 mb-4"></i>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-2">macOS (Apple)</h4>
+                            <p class="text-xs text-slate-400 mb-6 flex-1" data-i18n="download_mac_desc">macOS 환경을 지원합니다. 다운로드 후 실행하면 자동으로 설치 및 데몬이 등록됩니다.</p>
+                            <a href="/download/install_mac.command" download="install_mac.command" class="w-full py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition duration-300 shadow-lg shadow-pink-600/20">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                <span data-i18n="btn_download_mac">Mac용 다운로드</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TAB 6: 관리자 활동 로그 (Admin Audit Logs) -->
+            <!-- ========================================== -->
+            <div id="tab-audit" class="tab-content space-y-6 hidden">
+                <div class="glass-panel rounded-2xl p-6">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h4 class="font-outfit text-xl font-bold text-white mb-1" data-i18n="audit_title">관리자 활동 로그</h4>
+                            <p class="text-xs text-slate-400" data-i18n="audit_desc">시스템 내에서 관리자들이 수행한 모든 보안 설정 변경 및 접근 이력을 실시간으로 추적합니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- Filter Controls -->
+                    <div class="flex flex-wrap items-center gap-4 bg-white/5 border border-cardBorder p-4 rounded-2xl mb-6">
+                        <!-- Date Selectors -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-slate-400" data-i18n="label_date">기간:</span>
+                            <input type="date" id="auditStartDate" class="bg-white/5 border border-cardBorder rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 font-mono transition duration-300">
+                            <span class="text-slate-500">~</span>
+                            <input type="date" id="auditEndDate" class="bg-white/5 border border-cardBorder rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 font-mono transition duration-300">
+                        </div>
+
+                        <!-- Action Type Filter -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-slate-400" data-i18n="label_action_type">활동 분류:</span>
+                            <select id="auditActionType" class="bg-slate-900 border border-cardBorder text-slate-200 text-xs rounded-xl px-3 py-2 font-medium focus:outline-none cursor-pointer transition">
+                                <option value="" data-i18n="all_actions">전체 활동</option>
+                                <option value="login_success" data-i18n="act_login_success">로그인 성공</option>
+                                <option value="login_failure" data-i18n="act_login_failure">로그인 실패</option>
+                                <option value="logout" data-i18n="act_logout">로그아웃</option>
+                                <option value="company_settings_update" data-i18n="act_company_settings">자리비움 설정 변경</option>
+                                <option value="message_send" data-i18n="act_message_send">에이전트 메시지 발송</option>
+                                <option value="category_update" data-i18n="act_category_update">활동 분류 수정</option>
+                                <option value="reset_data" data-i18n="act_reset_data">활동 로그 초기화</option>
+                                <option value="sub_admin_create" data-i18n="act_sub_admin_create">서브 관리자 생성</option>
+                                <option value="sub_admin_delete" data-i18n="act_sub_admin_delete">서브 관리자 삭제</option>
+                                <option value="company_create" data-i18n="act_company_create">회사 등록</option>
+                                <option value="company_edit" data-i18n="act_company_edit">회사명 수정</option>
+                                <option value="company_delete" data-i18n="act_company_delete">회사 영구 삭제</option>
+                                <option value="admin_create" data-i18n="act_admin_create">회사 관리자 생성</option>
+                                <option value="admin_delete" data-i18n="act_admin_delete">회사 관리자 삭제</option>
+                                <option value="settings_update" data-i18n="act_settings_update">관리자 정보 변경</option>
+                            </select>
+                        </div>
+
+                        <!-- Admin ID Text Filter -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-slate-400" data-i18n="label_admin_user">관리자 ID:</span>
+                            <input type="text" id="auditAdminUser" class="bg-white/5 border border-cardBorder rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 transition duration-300 placeholder-slate-600" placeholder="ID 검색..." data-i18n-placeholder="search_admin_id_placeholder">
+                        </div>
+
+                        <button id="btnApplyAuditFilter" class="flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs rounded-xl font-bold shadow-lg transition duration-300 ml-auto sm:ml-0">
+                            <i data-lucide="filter" class="w-3.5 h-3.5"></i>
+                            <span data-i18n="btn_apply">적용</span>
+                        </button>
+                    </div>
+
+                    <!-- Audit Logs Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="text-slate-400 border-b border-cardBorder bg-white/5">
+                                    <th class="py-3.5 px-4 font-semibold" data-i18n="th_timestamp">발생 시간</th>
+                                    <th class="py-3.5 px-4 font-semibold" data-i18n="th_admin_username">관리자 ID</th>
+                                    <th class="py-3.5 px-4 font-semibold" data-i18n="th_action_type">활동 분류</th>
+                                    <th class="py-3.5 px-4 font-semibold" data-i18n="th_details">작업 상세 내용</th>
+                                    <th class="py-3.5 px-4 font-semibold" data-i18n="th_ip_address">IP 주소</th>
+                                </tr>
+                            </thead>
+                            <tbody id="auditListBody" class="divide-y divide-white/5">
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5">
+                        <button id="btnPrevAuditPage" class="px-4 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs transition disabled:opacity-30" data-i18n="btn_prev">이전</button>
+                        <span id="auditPageInfo" class="text-xs text-slate-500 font-mono">1 / 1</span>
+                        <button id="btnNextAuditPage" class="px-4 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs transition disabled:opacity-30" data-i18n="btn_next">다음</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ===== 메시지 전송 모달 ===== -->
+    <div id="msgModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm hidden">
+        <div class="w-full max-w-lg glass-panel rounded-3xl p-8 border border-white/10 shadow-2xl mx-4 animate-fade-in">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h3 class="font-outfit text-xl font-bold text-white" data-i18n="menu_send_agent_message">📤 메시지 전송</h3>
+                    <p class="text-xs text-slate-400 mt-1" id="msgModalTarget">전체 직원</p>
+                </div>
+                <button id="btnCloseMsgModal" class="p-2 hover:bg-white/10 rounded-xl text-slate-400 hover:text-white transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-2" data-i18n="label_message_content">메시지 내용</label>
+                    <textarea id="msgContent" rows="4"
+                        class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 resize-none transition duration-300"
+                        data-i18n-placeholder="placeholder_message_content" placeholder="PC 화면에 표시할 메시지를 입력하세요..."></textarea>
+                </div>
+                <div id="msgModalError" class="text-xs text-rose-400 bg-rose-500/10 border border-rose-500/20 px-4 py-2 rounded-lg hidden"></div>
+            </div>
+            <div class="flex gap-3 mt-6">
+                <button id="btnCancelMsg" class="flex-1 px-4 py-3 bg-white/5 hover:bg-white/10 text-slate-300 rounded-xl font-semibold transition duration-300" data-i18n="btn_cancel">취소</button>
+                <button id="btnSendMsg" class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-pink-600 hover:from-indigo-700 hover:to-pink-700 text-white rounded-xl font-bold shadow-lg shadow-indigo-600/20 transition duration-300">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    <span data-i18n="btn_send_submit">전송하기</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
