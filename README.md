@@ -8,7 +8,7 @@
 
 ```mermaid
 graph TD
-    subgraph Client [직원 PC (Python 에이전트)]
+    subgraph Client [직원 PC Python 에이전트]
         A[Active Window 감지] --> B{OS 판별}
         B -->|Windows| C[win32gui / psutil]
         B -->|macOS| D[NSWorkspace / Quartz / psutil]
@@ -18,12 +18,12 @@ graph TD
         F --> G[POST /api/activity]
     end
 
-    subgraph Server [중앙 백엔드 (Node.js Express)]
+    subgraph Server [중앙 백엔드 Node.js Express]
         G --> H[Express Server]
         H --> I[(SQLite3 Database)]
     end
 
-    subgraph Dashboard [관리자 대시보드 (Tailwind CSS)]
+    subgraph Dashboard [관리자 대시보드 Tailwind CSS]
         J[Web Browser] -->|GET /api/dashboard/stats| H
         J --> K[차트 및 실시간 로그 표시]
         J --> L[Excel 내보내기 SheetJS]
