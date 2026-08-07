@@ -2,7 +2,7 @@
 
 본 프로젝트는 직원들의 주요 업무 프로그램(Excel, PPT, Word, VS Code 등) 사용량과 웹 브라우저상의 비업무용 사이트(유튜브, 웹툰, 쿠팡 등) 체류 시간을 백그라운드에서 추적하고, 이를 관리자가 현대적인 대시보드 화면을 통해 분석·모니터링할 수 있도록 돕는 풀스택 솔루션입니다. 여기에 더해 **사내 전자결재(결재/합의/참조, 다국어 번역, 첨부파일) 시스템**을 통합하여, 관리자와 직원 모두가 결재 문서를 작성·승인할 수 있습니다.
 
-> **에이전트 안내**: PC 활동 수집 에이전트는 **Flutter 기반 Windows/macOS 앱**(`pguard_agent_flutter/`)으로 제공됩니다. 기존 Python 에이전트(`agent/`)는 **폐기(deprecated)** 되었으며 신규 배포에는 사용하지 않습니다.
+> **에이전트 안내**: PC 활동 수집 에이전트는 **Flutter 기반 Windows/macOS 앱**(`pguard_agent_flutter/`)으로 제공됩니다. 기존 Python 에이전트는 제거되었습니다.
 
 ---
 
@@ -50,9 +50,8 @@ graph TD
 
 ```text
 Back_PC/
-├── pguard_agent_flutter/   # ✅ 현행 PC 활동 수집 에이전트 (Flutter, Windows/macOS)
+├── pguard_agent_flutter/   # PC 활동 수집 에이전트 (Flutter, Windows/macOS)
 │   └── lib/core/monitor/   # 활성 창 감지·분류·도메인 추출 로직
-├── agent/                  # ⚠️ (Deprecated) 레거시 Python 에이전트 — 신규 배포 미사용
 ├── server/                 # 중앙 백엔드 API 서버 (Node.js & SQLite)
 │   ├── package.json        # 의존성(express, sqlite3, bcryptjs, cors, multer)
 │   ├── server.js           # REST API, SQLite 스키마/마이그레이션, 전자결재·번역·첨부
@@ -109,8 +108,6 @@ cd pguard_agent_flutter
 ```
 - 최초 실행 시 회사 코드/직원 정보를 입력하면 백그라운드에서 활성 창을 집계하여 서버(`POST /api/activity`)로 전송합니다.
 - 다국어 UI(ko/en/th/lo) 지원, 상세 빌드/서명 절차는 `pguard_agent_flutter/README.md`, `CODE_SIGNING_GUIDE.md` 참조.
-
-> ⚠️ 레거시 Python 에이전트(`agent/`)는 폐기되었습니다. 신규 설치에는 위 Flutter 앱을 사용하세요.
 
 ---
 
