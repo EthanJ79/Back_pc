@@ -6082,10 +6082,10 @@ async function renderNewDocumentForm(container) {
     container.className = "";
     container.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm">${dict.loading_text || "불러오는 중..."}</div>`;
 
-    // 템플릿 목록 + 참여자 로드
+    // 템플릿 목록(작성용, 직원 접근 가능) + 참여자 로드
     let templates = [];
     try {
-        const r = await authenticatedFetch(`${API_BASE_URL}/approval/templates`);
+        const r = await authenticatedFetch(`${API_BASE_URL}/approval/templates-available`);
         if (r.ok) templates = await r.json();
     } catch (e) {}
     await fetchParticipantsOnce();

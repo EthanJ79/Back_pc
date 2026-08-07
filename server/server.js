@@ -2278,6 +2278,16 @@ function normalizeJson(value, fallback) {
 
 const APPROVAL_CATEGORIES = ['general', 'leave', 'expense', 'purchase', 'report', 'hr', 'it_request', 'other'];
 
+// 0. 문서 작성용 활성 템플릿 목록 (모든 로그인 사용자 — 직원 포함, 읽기 전용)
+app.get('/api/approval/templates-available', authMiddleware, (req, res) => {
+    const companyCode = req.companyCode === 'auton' ? (req.query.company_code || '').trim().toUpperCase() : req.companyCode;
+    if (!companyCode) return res.json([]);
+    db.all("SELECT id, category, title, body_schema, default_approval_line, default_agreement_line, default_cc_line FROM approval_templates WHERE company_code = ? AND is_active = 1 ORDER BY updated_at DESC", [companyCode], (err, rows) => {
+        if (err) return res.status(500).json({ error: '템플릿 조회 실패: ' + err.message });
+        return res.json(rows || []);
+    });
+});
+
 // 1. 템플릿 목록 조회 (관리자 모드)
 app.get('/api/approval/templates', authMiddleware, approvalAdminOnly, (req, res) => {
     const companyCode = req.companyCode;
@@ -2606,8 +2616,8 @@ app.post('/api/approval/documents', authMiddleware, (req, res) => {
     });
 });
 
-// ── 문서 목록 조회 (필터: status, category, view, search) ──
-app.get('/api/approval/documents', authMiddleware, (req, res) => {
+// ── 문서 목록 조회 (전체 문서 = 관리자 전용, 필터: status, category, search) ──
+app.get('/api/approval/documents', authMiddleware, approvalAdminOnly, (req, res) => {
     const companyCode = req.companyCode;
     const { status, category, search } = req.query;
 
@@ -2638,6 +2648,22 @@ app.get('/api/approval/documents/:id', authMiddleware, (req, res) => {
             return res.status(403).json({ error: '권한이 없습니다.' });
         }
 
+        // 열람 권한: 관리자/기안자/결재선 참여자만 (임의 문서 id 열람 차단)
+        const isAdminViewer = companyCode === 'auton' || req.role === 'admin' || req.role === 'sub_admin';
+        const isDrafter = doc.submitted_by === actor.id && doc.submitted_by_type === actor.type;
+        const proceed = () => loadDocumentDetail(id, doc, actor, res);
+        if (isAdminViewer || isDrafter) return proceed();
+        db.get("SELECT 1 FROM approval_lines WHERE document_id = ? AND approver_id = ? AND approver_type = ? LIMIT 1", [id, actor.id, actor.type], (e, row) => {
+            if (e) return res.status(500).json({ error: 'DB 오류' });
+            if (!row) return res.status(403).json({ error: '이 문서를 열람할 권한이 없습니다.' });
+            return proceed();
+        });
+    });
+});
+
+// 문서 상세 로드 + 읽음 처리 (권한 확인 후 호출)
+function loadDocumentDetail(id, doc, actor, res) {
+    {
         // 읽음 처리 먼저: 현재 사용자가 라인에 포함되고 read_at 이 없으면 기록 (응답 라인에 반영되도록 선행)
         db.run(
             "UPDATE approval_lines SET read_at = CURRENT_TIMESTAMP WHERE document_id = ? AND approver_id = ? AND approver_type = ? AND read_at IS NULL",
@@ -2661,8 +2687,8 @@ app.get('/api/approval/documents/:id', authMiddleware, (req, res) => {
                 });
             }
         );
-    });
-});
+    }
+}
 
 // ── 초안 수정 (기안자 + draft 상태에서만) ──
 app.put('/api/approval/documents/:id', authMiddleware, (req, res) => {
