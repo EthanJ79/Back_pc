@@ -1722,8 +1722,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     populateEmployeeDropdowns();
 
-    // 10초 실시간 폴링 가동
-    setInterval(fetchCurrentTab, 10000);
+    // 10초 실시간 폴링 가동 (결재 탭은 폼/입력 보존을 위해 자동 재렌더 제외, 배지만 갱신)
+    setInterval(() => {
+        if (typeof refreshPendingBadge === "function") refreshPendingBadge();
+        if (activeTab === "tab-approval-user" || activeTab === "tab-approval-admin") return;
+        fetchCurrentTab();
+    }, 10000);
 
     // 새로고침 버튼 이벤트
     const refreshBtn = document.getElementById("refreshBtn");
