@@ -193,7 +193,7 @@ const translations = {
         approval_pill_pending: "대기 문서",
         approval_pill_all: "전체 문서",
         approval_pill_templates: "템플릿 관리",
-        approval_pill_accounts: "직원 계정",
+        approval_pill_accounts: "직원 관리",
         approval_pill_settings: "결재 설정",
         approval_pill_new: "새 결재 작성",
         approval_pill_mine: "내가 올린 문서",
@@ -227,6 +227,12 @@ const translations = {
         th_login_status: "로그인 상태",
         th_admin_role: "관리 권한",
         th_actions: "작업",
+        emp_add: "직원 추가", emp_edit: "정보 수정", emp_delete: "삭제", th_emp_tags: "태그",
+        emp_manage_help: "직원을 추가·수정·삭제하고, 로그인 계정 생성 및 관리 권한(서브 관리자/직원 관리자)을 부여할 수 있습니다. 최고 관리자(admin) 권한은 부여되지 않습니다.",
+        prompt_emp_id: "사번(직원 ID)을 입력하세요", prompt_emp_name: "직원 이름을 입력하세요", prompt_emp_tags: "태그(부서 등, 쉼표 구분, 선택)",
+        err_emp_id_required: "사번은 필수입니다.", err_emp_name_required: "이름은 필수입니다.",
+        emp_added: "직원이 추가되었습니다.", emp_add_failed: "직원 추가 실패: ", emp_updated: "직원 정보가 수정되었습니다.", emp_update_failed: "직원 수정 실패: ",
+        emp_confirm_delete: "직원을 삭제하시겠습니까? 활동 로그도 함께 삭제될 수 있습니다.", emp_delete_failed: "직원 삭제 실패: ",
         btn_edit: "수정",
         btn_delete: "삭제",
         btn_save: "저장",
@@ -533,7 +539,7 @@ const translations = {
         approval_pill_pending: "Pending",
         approval_pill_all: "All Documents",
         approval_pill_templates: "Templates",
-        approval_pill_accounts: "Employee Accounts",
+        approval_pill_accounts: "Employees",
         approval_pill_settings: "Settings",
         approval_pill_new: "New Document",
         approval_pill_mine: "My Submissions",
@@ -567,6 +573,12 @@ const translations = {
         th_login_status: "Login Status",
         th_admin_role: "Privilege",
         th_actions: "Actions",
+        emp_add: "Add Employee", emp_edit: "Edit", emp_delete: "Delete", th_emp_tags: "Tags",
+        emp_manage_help: "Add, edit, and delete employees, create login accounts, and grant management roles (Sub Admin / Employee Manager). The top admin role is never granted.",
+        prompt_emp_id: "Enter employee ID", prompt_emp_name: "Enter employee name", prompt_emp_tags: "Tags (dept, comma-separated, optional)",
+        err_emp_id_required: "Employee ID is required.", err_emp_name_required: "Name is required.",
+        emp_added: "Employee added.", emp_add_failed: "Failed to add employee: ", emp_updated: "Employee updated.", emp_update_failed: "Failed to update employee: ",
+        emp_confirm_delete: "Delete this employee? Activity logs may also be removed.", emp_delete_failed: "Failed to delete employee: ",
         btn_edit: "Edit",
         btn_delete: "Delete",
         btn_save: "Save",
@@ -874,7 +886,7 @@ const translations = {
         approval_pill_pending: "รอดำเนินการ",
         approval_pill_all: "เอกสารทั้งหมด",
         approval_pill_templates: "แม่แบบ",
-        approval_pill_accounts: "บัญชีพนักงาน",
+        approval_pill_accounts: "จัดการพนักงาน",
         approval_pill_settings: "ตั้งค่า",
         approval_pill_new: "สร้างเอกสารใหม่",
         approval_pill_mine: "เอกสารที่ฉันส่ง",
@@ -908,6 +920,12 @@ const translations = {
         th_login_status: "สถานะเข้าสู่ระบบ",
         th_admin_role: "สิทธิ์",
         th_actions: "การดำเนินการ",
+        emp_add: "เพิ่มพนักงาน", emp_edit: "แก้ไข", emp_delete: "ลบ", th_emp_tags: "แท็ก",
+        emp_manage_help: "เพิ่ม แก้ไข ลบพนักงาน สร้างบัญชีเข้าสู่ระบบ และมอบสิทธิ์การจัดการ (ผู้ดูแลรอง/ผู้จัดการพนักงาน) สิทธิ์ผู้ดูแลสูงสุดจะไม่ถูกมอบให้",
+        prompt_emp_id: "กรอกรหัสพนักงาน", prompt_emp_name: "กรอกชื่อพนักงาน", prompt_emp_tags: "แท็ก (แผนก, คั่นด้วยจุลภาค, ไม่บังคับ)",
+        err_emp_id_required: "จำเป็นต้องมีรหัสพนักงาน", err_emp_name_required: "จำเป็นต้องมีชื่อ",
+        emp_added: "เพิ่มพนักงานแล้ว", emp_add_failed: "เพิ่มพนักงานไม่สำเร็จ: ", emp_updated: "อัปเดตพนักงานแล้ว", emp_update_failed: "อัปเดตพนักงานไม่สำเร็จ: ",
+        emp_confirm_delete: "ลบพนักงานนี้หรือไม่? บันทึกกิจกรรมอาจถูกลบด้วย", emp_delete_failed: "ลบพนักงานไม่สำเร็จ: ",
         btn_edit: "แก้ไข",
         btn_delete: "ลบ",
         btn_save: "บันทึก",
@@ -1216,7 +1234,7 @@ const translations = {
         approval_pill_pending: "ລໍຖ້າດຳເນີນການ",
         approval_pill_all: "ເອກະສານທັງໝົດ",
         approval_pill_templates: "ແມ່ແບບ",
-        approval_pill_accounts: "ບັນຊີພະນັກງານ",
+        approval_pill_accounts: "ຈັດການພະນັກງານ",
         approval_pill_settings: "ຕັ້ງຄ່າ",
         approval_pill_new: "ສ້າງເອກະສານໃໝ່",
         approval_pill_mine: "ເອກະສານທີ່ຂ້ອຍສົ່ງ",
@@ -1250,6 +1268,12 @@ const translations = {
         th_login_status: "ສະຖານະເຂົ້າສູ່ລະບົບ",
         th_admin_role: "ສິດ",
         th_actions: "ການດຳເນີນການ",
+        emp_add: "ເພີ່ມພະນັກງານ", emp_edit: "ແກ້ໄຂ", emp_delete: "ລຶບ", th_emp_tags: "ແທັກ",
+        emp_manage_help: "ເພີ່ມ, ແກ້ໄຂ, ລຶບພະນັກງານ, ສ້າງບັນຊີເຂົ້າສູ່ລະບົບ ແລະ ມອບສິດການຈັດການ (ຜູ້ດູແລຮອງ/ຜູ້ຈັດການພະນັກງານ). ສິດຜູ້ດູແລສູງສຸດຈະບໍ່ຖືກມອບໃຫ້.",
+        prompt_emp_id: "ປ້ອນລະຫັດພະນັກງານ", prompt_emp_name: "ປ້ອນຊື່ພະນັກງານ", prompt_emp_tags: "ແທັກ (ພະແນກ, ຄັ່ນດ້ວຍຈຸດ, ທາງເລືອກ)",
+        err_emp_id_required: "ຕ້ອງມີລະຫັດພະນັກງານ", err_emp_name_required: "ຕ້ອງມີຊື່",
+        emp_added: "ເພີ່ມພະນັກງານແລ້ວ", emp_add_failed: "ເພີ່ມພະນັກງານບໍ່ສຳເລັດ: ", emp_updated: "ອັບເດດພະນັກງານແລ້ວ", emp_update_failed: "ອັບເດດພະນັກງານບໍ່ສຳເລັດ: ",
+        emp_confirm_delete: "ລຶບພະນັກງານນີ້ບໍ? ບັນທຶກກິດຈະກຳອາດຖືກລຶບນຳ", emp_delete_failed: "ລຶບພະນັກງານບໍ່ສຳເລັດ: ",
         btn_edit: "ແກ້ໄຂ",
         btn_delete: "ລຶບ",
         btn_save: "ບັນທຶກ",
@@ -4997,33 +5021,50 @@ async function renderEmployeeAccounts(container) {
                 <option value="employee_manager" ${r.admin_role === "employee_manager" ? "selected" : ""}>${dict.role_employee_manager || "직원 관리자"}</option>
             </select>`;
 
+        const nameEsc = (r.employee_name || "").replace(/"/g, "&quot;");
+        const tagsEsc = (r.tags || "").replace(/"/g, "&quot;");
         return `
             <tr class="border-b border-white/5">
-                <td class="py-3 px-4 text-white font-medium">${r.employee_name || ""}</td>
-                <td class="py-3 px-4 font-mono text-slate-400">${r.employee_id}</td>
+                <td class="py-3 px-4 text-white font-medium">${escapeHtml(r.employee_name || "")}</td>
+                <td class="py-3 px-4 font-mono text-slate-400">${escapeHtml(r.employee_id)}</td>
                 ${companyCell}
-                <td class="py-3 px-4 font-mono text-slate-300">${r.login_id || "-"}</td>
+                <td class="py-3 px-4 text-slate-400">${escapeHtml(r.tags || "-")}</td>
+                <td class="py-3 px-4 font-mono text-slate-300">${escapeHtml(r.login_id || "-")}</td>
                 <td class="py-3 px-4">${statusBadge}</td>
                 <td class="py-3 px-4">${roleSelect}</td>
                 <td class="py-3 px-4">
-                    <div class="flex items-center gap-2">
-                        <button data-emp-account="${r.employee_id}" data-emp-name="${(r.employee_name || "").replace(/"/g, "&quot;")}"
-                            class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] rounded-lg font-semibold transition">
+                    <div class="flex items-center gap-1.5 flex-wrap">
+                        <button data-emp-edit="${r.employee_id}" data-emp-name="${nameEsc}" data-emp-tags="${tagsEsc}"
+                            class="px-2.5 py-1.5 bg-white/10 hover:bg-white/20 text-slate-200 text-[11px] rounded-lg font-semibold transition">
+                            ${dict.emp_edit || "정보 수정"}
+                        </button>
+                        <button data-emp-account="${r.employee_id}" data-emp-name="${nameEsc}"
+                            class="px-2.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] rounded-lg font-semibold transition">
                             ${enabled ? (dict.account_reset || "계정 재설정") : (dict.account_create || "계정 생성")}
                         </button>
                         ${enabled ? `<button data-emp-disable="${r.employee_id}"
-                            class="px-3 py-1.5 bg-rose-600/80 hover:bg-rose-600 text-white text-[11px] rounded-lg font-semibold transition">
+                            class="px-2.5 py-1.5 bg-amber-600/80 hover:bg-amber-600 text-white text-[11px] rounded-lg font-semibold transition">
                             ${dict.account_disable || "로그인 해제"}
                         </button>` : ""}
+                        <button data-emp-delete="${r.employee_id}" data-emp-name="${nameEsc}"
+                            class="px-2.5 py-1.5 bg-rose-600/80 hover:bg-rose-600 text-white text-[11px] rounded-lg font-semibold transition">
+                            ${dict.emp_delete || "삭제"}
+                        </button>
                     </div>
                 </td>
             </tr>`;
     }).join("");
 
+    const colspan = isSuperAdmin ? 8 : 7;
     container.innerHTML = `
-        <div class="mb-4 flex items-start gap-2 text-xs text-slate-400 bg-white/5 border border-cardBorder rounded-xl p-3">
-            <i data-lucide="info" class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5"></i>
-            <p>${dict.account_help || "직원 로그인 계정을 만들고, 일부 직원에게 관리 권한(서브 관리자/직원 관리자)을 부여할 수 있습니다. 최고 관리자(admin) 권한은 부여되지 않습니다."}</p>
+        <div class="flex items-center justify-between gap-2 mb-4">
+            <div class="flex items-start gap-2 text-xs text-slate-400 bg-white/5 border border-cardBorder rounded-xl p-3 flex-1">
+                <i data-lucide="info" class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5"></i>
+                <p>${dict.emp_manage_help || "직원을 추가·수정·삭제하고, 로그인 계정 생성 및 관리 권한(서브 관리자/직원 관리자)을 부여할 수 있습니다. 최고 관리자(admin) 권한은 부여되지 않습니다."}</p>
+            </div>
+            <button id="btnAddEmployee" class="flex items-center gap-1.5 px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-pink-600 hover:from-indigo-700 hover:to-pink-700 text-white text-xs rounded-xl font-bold shadow-lg transition whitespace-nowrap">
+                <i data-lucide="user-plus" class="w-3.5 h-3.5"></i><span>${dict.emp_add || "직원 추가"}</span>
+            </button>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-left text-xs border-collapse">
@@ -5032,13 +5073,14 @@ async function renderEmployeeAccounts(container) {
                         <th class="py-3 px-4 font-semibold">${dict.th_emp_name || "이름"}</th>
                         <th class="py-3 px-4 font-semibold">${dict.th_emp_id || "사번"}</th>
                         ${isSuperAdmin ? `<th class="py-3 px-4 font-semibold">${dict.th_company || "회사"}</th>` : ""}
+                        <th class="py-3 px-4 font-semibold">${dict.th_emp_tags || "태그"}</th>
                         <th class="py-3 px-4 font-semibold">${dict.th_login_id || "로그인 ID"}</th>
                         <th class="py-3 px-4 font-semibold">${dict.th_login_status || "로그인 상태"}</th>
                         <th class="py-3 px-4 font-semibold">${dict.th_admin_role || "관리 권한"}</th>
                         <th class="py-3 px-4 font-semibold">${dict.th_actions || "작업"}</th>
                     </tr>
                 </thead>
-                <tbody>${bodyRows || `<tr><td colspan="7" class="py-8 text-center text-slate-500">${dict.no_employees || "직원이 없습니다."}</td></tr>`}</tbody>
+                <tbody>${bodyRows || `<tr><td colspan="${colspan}" class="py-8 text-center text-slate-500">${dict.no_employees || "직원이 없습니다."}</td></tr>`}</tbody>
             </table>
         </div>`;
 
@@ -5048,6 +5090,63 @@ async function renderEmployeeAccounts(container) {
 
 function bindEmployeeAccountActions(container) {
     const dict = translations[currentLang] || translations.ko;
+
+    // 직원 추가
+    document.getElementById("btnAddEmployee")?.addEventListener("click", async () => {
+        const employee_id = prompt(dict.prompt_emp_id || "사번(직원 ID)을 입력하세요");
+        if (employee_id === null) return;
+        if (!employee_id.trim()) { alert(dict.err_emp_id_required || "사번은 필수입니다."); return; }
+        const employee_name = prompt(dict.prompt_emp_name || "직원 이름을 입력하세요");
+        if (employee_name === null) return;
+        if (!employee_name.trim()) { alert(dict.err_emp_name_required || "이름은 필수입니다."); return; }
+        const tags = prompt(dict.prompt_emp_tags || "태그(부서 등, 쉼표 구분, 선택)") || "";
+        try {
+            const resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees`, {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ employee_id: employee_id.trim(), employee_name: employee_name.trim(), tags: tags.trim() })
+            });
+            if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+            alert(dict.emp_added || "직원이 추가되었습니다.");
+            renderApprovalAdminContent();
+        } catch (err) { alert((dict.emp_add_failed || "직원 추가 실패: ") + err.message); }
+    });
+
+    // 직원 정보 수정 (이름/태그)
+    container.querySelectorAll("button[data-emp-edit]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+            const employeeId = btn.getAttribute("data-emp-edit");
+            const curName = btn.getAttribute("data-emp-name") || "";
+            const curTags = btn.getAttribute("data-emp-tags") || "";
+            const employee_name = prompt(dict.prompt_emp_name || "직원 이름을 입력하세요", curName);
+            if (employee_name === null) return;
+            if (!employee_name.trim()) { alert(dict.err_emp_name_required || "이름은 필수입니다."); return; }
+            const tags = prompt(dict.prompt_emp_tags || "태그(부서 등, 쉼표 구분, 선택)", curTags);
+            if (tags === null) return;
+            try {
+                const resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees/${encodeURIComponent(employeeId)}`, {
+                    method: "PUT", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ employee_name: employee_name.trim(), tags: tags.trim() })
+                });
+                if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+                alert(dict.emp_updated || "직원 정보가 수정되었습니다.");
+                renderApprovalAdminContent();
+            } catch (err) { alert((dict.emp_update_failed || "직원 수정 실패: ") + err.message); }
+        });
+    });
+
+    // 직원 삭제
+    container.querySelectorAll("button[data-emp-delete]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+            const employeeId = btn.getAttribute("data-emp-delete");
+            const empName = btn.getAttribute("data-emp-name") || employeeId;
+            if (!confirm((dict.emp_confirm_delete || "직원을 삭제하시겠습니까? 활동 로그도 함께 삭제될 수 있습니다.") + `\n[${empName}]`)) return;
+            try {
+                const resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees/${encodeURIComponent(employeeId)}`, { method: "DELETE" });
+                if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+                renderApprovalAdminContent();
+            } catch (err) { alert((dict.emp_delete_failed || "직원 삭제 실패: ") + err.message); }
+        });
+    });
 
     // 계정 생성/재설정
     container.querySelectorAll("button[data-emp-account]").forEach(btn => {

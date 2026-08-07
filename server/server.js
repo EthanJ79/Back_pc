@@ -2027,6 +2027,64 @@ app.put('/api/admin/employees/:employee_id/tags', authMiddleware, (req, res) => 
     });
 });
 
+// 직원 신규 등록 (관리자, 에이전트 없이 수동 추가)
+app.post('/api/admin/employees', authMiddleware, (req, res) => {
+    if (req.role === 'employee' || req.role === 'employee_manager') {
+        return res.status(403).json({ error: '직원 등록 권한이 없습니다.' });
+    }
+    const employee_id = (req.body.employee_id || '').trim();
+    const employee_name = (req.body.employee_name || '').trim();
+    const tags = (req.body.tags || '').trim();
+    const companyCode = req.companyCode === 'auton' ? (req.body.company_code || '').trim().toUpperCase() : req.companyCode;
+
+    if (!employee_id || !employee_name) return res.status(400).json({ error: '사번과 이름을 입력해 주세요.' });
+    if (!companyCode) return res.status(400).json({ error: '회사 코드가 필요합니다.' });
+
+    db.get("SELECT employee_id FROM employees WHERE employee_id = ?", [employee_id], (err, dup) => {
+        if (err) return res.status(500).json({ error: '조회 실패' });
+        if (dup) return res.status(400).json({ error: '이미 존재하는 사번입니다.' });
+        db.run(
+            "INSERT INTO employees (employee_id, employee_name, company_code, tags) VALUES (?, ?, ?, ?)",
+            [employee_id, employee_name, companyCode, tags],
+            function(insErr) {
+                if (insErr) return res.status(500).json({ error: '직원 등록 실패: ' + insErr.message });
+                logAdminAction(req, 'employee_create', `직원 등록 | 사번: ${employee_id} | 이름: ${employee_name}`);
+                return res.status(201).json({ success: true });
+            }
+        );
+    });
+});
+
+// 직원 정보 수정 (이름/태그)
+app.put('/api/admin/employees/:employee_id', authMiddleware, (req, res) => {
+    if (req.role === 'employee' || req.role === 'employee_manager') {
+        return res.status(403).json({ error: '직원 정보 수정 권한이 없습니다.' });
+    }
+    const { employee_id } = req.params;
+    const employee_name = (req.body.employee_name || '').trim();
+    const tags = req.body.tags !== undefined ? String(req.body.tags).trim() : null;
+    const companyCode = req.companyCode;
+
+    if (!employee_name) return res.status(400).json({ error: '이름을 입력해 주세요.' });
+
+    db.get("SELECT company_code FROM employees WHERE employee_id = ?", [employee_id], (err, emp) => {
+        if (err) return res.status(500).json({ error: '조회 실패' });
+        if (!emp) return res.status(404).json({ error: '존재하지 않는 사원입니다.' });
+        if (companyCode !== 'auton' && emp.company_code !== companyCode) return res.status(403).json({ error: '권한이 없습니다.' });
+
+        const sets = ["employee_name = ?"];
+        const params = [employee_name];
+        if (tags !== null) { sets.push("tags = ?"); params.push(tags); }
+        params.push(employee_id);
+
+        db.run(`UPDATE employees SET ${sets.join(', ')} WHERE employee_id = ?`, params, function(uErr) {
+            if (uErr) return res.status(500).json({ error: '직원 수정 실패: ' + uErr.message });
+            logAdminAction(req, 'employee_update', `직원 정보 수정 | 사번: ${employee_id} | 이름: ${employee_name}`);
+            return res.json({ success: true });
+        });
+    });
+});
+
 // ------------------------------------------------------------------
 // 전자결재: 직원 로그인/로그아웃 API
 // ------------------------------------------------------------------
