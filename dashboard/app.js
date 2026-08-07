@@ -186,6 +186,7 @@ const translations = {
         mode_employee: "직원 모드",
         menu_approval_admin: "전자결재 관리",
         menu_approval_user: "나의 결재",
+        navgrp_monitoring: "모니터링", navgrp_approval: "전자결재", navgrp_admin: "관리", menu_employee_mgmt: "직원 관리", emp_mgmt_desc: "직원 정보, 로그인 계정, 관리 권한을 한 곳에서 관리합니다.",
         approval_admin_title: "전자결재 관리",
         approval_admin_desc: "결재 문서, 양식(템플릿), 직원 로그인 계정, 번역 설정을 관리합니다.",
         approval_user_title: "나의 결재",
@@ -532,6 +533,7 @@ const translations = {
         mode_employee: "Employee Mode",
         menu_approval_admin: "Approval Admin",
         menu_approval_user: "My Approvals",
+        navgrp_monitoring: "Monitoring", navgrp_approval: "Approval", navgrp_admin: "Admin", menu_employee_mgmt: "Employees", emp_mgmt_desc: "Manage employee info, login accounts, and privileges in one place.",
         approval_admin_title: "Approval Administration",
         approval_admin_desc: "Manage approval documents, templates, employee login accounts, and translation settings.",
         approval_user_title: "My Approvals",
@@ -879,6 +881,7 @@ const translations = {
         mode_employee: "โหมดพนักงาน",
         menu_approval_admin: "จัดการอนุมัติ",
         menu_approval_user: "การอนุมัติของฉัน",
+        navgrp_monitoring: "การติดตาม", navgrp_approval: "การอนุมัติ", navgrp_admin: "จัดการ", menu_employee_mgmt: "จัดการพนักงาน", emp_mgmt_desc: "จัดการข้อมูลพนักงาน บัญชีเข้าสู่ระบบ และสิทธิ์ในที่เดียว",
         approval_admin_title: "การจัดการเอกสารอนุมัติ",
         approval_admin_desc: "จัดการเอกสารอนุมัติ แม่แบบ บัญชีเข้าสู่ระบบพนักงาน และการตั้งค่าการแปล",
         approval_user_title: "การอนุมัติของฉัน",
@@ -1227,6 +1230,7 @@ const translations = {
         mode_employee: "ໂໝດພະນັກງານ",
         menu_approval_admin: "ຈັດການການອະນຸມັດ",
         menu_approval_user: "ການອະນຸມັດຂອງຂ້ອຍ",
+        navgrp_monitoring: "ການຕິດຕາມ", navgrp_approval: "ການອະນຸມັດ", navgrp_admin: "ຈັດການ", menu_employee_mgmt: "ຈັດການພະນັກງານ", emp_mgmt_desc: "ຈັດການຂໍ້ມູນພະນັກງານ, ບັນຊີເຂົ້າສູ່ລະບົບ ແລະ ສິດ ໃນບ່ອນດຽວ.",
         approval_admin_title: "ການຈັດການເອກະສານອະນຸມັດ",
         approval_admin_desc: "ຈັດການເອກະສານອະນຸມັດ, ແມ່ແບບ, ບັນຊີເຂົ້າສູ່ລະບົບພະນັກງານ ແລະ ການຕັ້ງຄ່າການແປ.",
         approval_user_title: "ການອະນຸມັດຂອງຂ້ອຍ",
@@ -1562,10 +1566,52 @@ function updateTenantUI() {
                 if (target === "tab-super" && !isSuperAdmin) visible = false;
                 if (target === "tab-patterns" && role === "employee_manager") visible = false;
                 if (target === "tab-approval-admin" && role === "employee_manager") visible = false;
+                if (target === "tab-employee-mgmt" && role === "employee_manager") visible = false;
             }
             btn.classList.toggle("hidden", !visible);
         });
     }
+
+    updateNavGroups();
+}
+
+// ── 사이드바 그룹 아코디언 (유형별 토글) ──
+function getCollapsedGroups() {
+    try { return JSON.parse(localStorage.getItem("pguard_nav_collapsed") || "[]"); } catch (e) { return []; }
+}
+function setGroupCollapsed(group, collapsed) {
+    let arr = getCollapsedGroups().filter(g => g !== group);
+    if (collapsed) arr.push(group);
+    localStorage.setItem("pguard_nav_collapsed", JSON.stringify(arr));
+}
+function applyGroupCollapsedState(group) {
+    const items = document.querySelector(`[data-group-items="${group}"]`);
+    const header = document.querySelector(`[data-group-toggle="${group}"]`);
+    if (!items || !header) return;
+    const collapsed = getCollapsedGroups().includes(group);
+    items.classList.toggle("hidden", collapsed);
+    const chev = header.querySelector(".nav-chevron");
+    if (chev) chev.style.transform = collapsed ? "rotate(-90deg)" : "";
+}
+function bindNavGroups() {
+    document.querySelectorAll("[data-group-toggle]").forEach(header => {
+        if (header.dataset.bound === "1") return;
+        header.dataset.bound = "1";
+        header.addEventListener("click", () => {
+            const group = header.getAttribute("data-group-toggle");
+            setGroupCollapsed(group, !getCollapsedGroups().includes(group));
+            applyGroupCollapsedState(group);
+        });
+    });
+    document.querySelectorAll("[data-group-toggle]").forEach(h => applyGroupCollapsedState(h.getAttribute("data-group-toggle")));
+}
+// 그룹 내 표시 가능한 메뉴가 하나도 없으면 그룹 헤더까지 숨김
+function updateNavGroups() {
+    document.querySelectorAll(".nav-group").forEach(grp => {
+        const btns = grp.querySelectorAll("button[data-target]");
+        const anyVisible = Array.from(btns).some(b => !b.classList.contains("hidden"));
+        grp.classList.toggle("hidden", !anyVisible);
+    });
 }
 
 // ── 애플리케이션 모드 (관리자 모드 / 직원 모드) ──
@@ -1734,6 +1780,9 @@ document.addEventListener("DOMContentLoaded", () => {
             switchTab(target);
         });
     });
+
+    // 2.5 사이드바 그룹 아코디언 토글 바인딩
+    bindNavGroups();
 
     // 3. 차트 초기화 및 초기 데이터 로드
     initCharts();
@@ -2478,6 +2527,15 @@ function switchTab(targetTabId) {
         }
     });
 
+    // 3.5 활성 탭이 속한 그룹은 펼치고, 빈 그룹은 숨김
+    const activeBtn = document.querySelector(`#sidebarMenu button[data-target="${targetTabId}"]`);
+    const grpEl = activeBtn ? activeBtn.closest(".nav-group") : null;
+    if (grpEl) {
+        const g = grpEl.getAttribute("data-group");
+        if (getCollapsedGroups().includes(g)) { setGroupCollapsed(g, false); applyGroupCollapsedState(g); }
+    }
+    updateNavGroups();
+
     // 4. 아이콘 다시 렌더링 (클래스 동적 변경 시 필요)
     lucide.createIcons();
 
@@ -2530,6 +2588,10 @@ function switchTab(targetTabId) {
         headerTag.textContent = "MY APPROVALS";
         headerTitle.setAttribute("data-i18n", "approval_user_title");
         headerDesc.setAttribute("data-i18n", "approval_user_desc");
+    } else if (targetTabId === "tab-employee-mgmt") {
+        headerTag.textContent = "EMPLOYEE MGMT";
+        headerTitle.setAttribute("data-i18n", "menu_employee_mgmt");
+        headerDesc.setAttribute("data-i18n", "emp_mgmt_desc");
     }
 
     changeLanguage(currentLang); // 동적으로 할당된 data-i18n 바로 번역 적용
@@ -2627,6 +2689,8 @@ async function fetchCurrentTab() {
         await fetchApprovalAdminTab();
     } else if (activeTab === "tab-approval-user") {
         await fetchApprovalUserTab();
+    } else if (activeTab === "tab-employee-mgmt") {
+        fetchEmployeeMgmtTab();
     }
 }
 
@@ -4928,7 +4992,17 @@ async function loadManagerTags() {
 // ==================================================================
 // 전자결재 관리 탭 (관리자 모드) — 서브탭 + 직원 계정/권한 관리
 // ==================================================================
-let approvalAdminSubtab = "approval-admin-accounts";
+let approvalAdminSubtab = "approval-admin-pending";
+
+// 직원 관리 탭 (별도 메뉴) 렌더링
+function fetchEmployeeMgmtTab() {
+    const c = document.getElementById("employeeMgmtContent");
+    if (c) renderEmployeeAccounts(c);
+}
+function reloadEmployeeList() {
+    const c = document.getElementById("employeeMgmtContent");
+    if (c) renderEmployeeAccounts(c);
+}
 
 // 관리 권한 코드 → 표시 라벨
 function adminRoleLabel(role) {
@@ -4963,9 +5037,7 @@ async function fetchApprovalAdminTab() {
 function renderApprovalAdminContent() {
     const container = document.getElementById("approvalAdminContent");
     if (!container) return;
-    if (approvalAdminSubtab === "approval-admin-accounts") {
-        renderEmployeeAccounts(container);
-    } else if (approvalAdminSubtab === "approval-admin-templates") {
+    if (approvalAdminSubtab === "approval-admin-templates") {
         renderTemplatesSubtab(container);
     } else if (approvalAdminSubtab === "approval-admin-pending") {
         renderDocumentListView(container, "pending", { title: (translations[currentLang]||translations.ko).approval_pill_pending });
@@ -5107,7 +5179,7 @@ function bindEmployeeAccountActions(container) {
             });
             if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
             alert(dict.emp_added || "직원이 추가되었습니다.");
-            renderApprovalAdminContent();
+            reloadEmployeeList();
         } catch (err) { alert((dict.emp_add_failed || "직원 추가 실패: ") + err.message); }
     });
 
@@ -5129,7 +5201,7 @@ function bindEmployeeAccountActions(container) {
                 });
                 if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
                 alert(dict.emp_updated || "직원 정보가 수정되었습니다.");
-                renderApprovalAdminContent();
+                reloadEmployeeList();
             } catch (err) { alert((dict.emp_update_failed || "직원 수정 실패: ") + err.message); }
         });
     });
@@ -5143,7 +5215,7 @@ function bindEmployeeAccountActions(container) {
             try {
                 const resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees/${encodeURIComponent(employeeId)}`, { method: "DELETE" });
                 if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
-                renderApprovalAdminContent();
+                reloadEmployeeList();
             } catch (err) { alert((dict.emp_delete_failed || "직원 삭제 실패: ") + err.message); }
         });
     });
@@ -5171,7 +5243,7 @@ function bindEmployeeAccountActions(container) {
                     throw new Error(e.error || "실패");
                 }
                 alert(dict.account_saved || "직원 로그인 계정이 저장되었습니다.");
-                renderApprovalAdminContent();
+                reloadEmployeeList();
             } catch (err) {
                 alert((dict.account_save_failed || "계정 저장 실패: ") + err.message);
             }
@@ -5195,7 +5267,7 @@ function bindEmployeeAccountActions(container) {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ admin_role: "" })
                 });
-                renderApprovalAdminContent();
+                reloadEmployeeList();
             } catch (err) {
                 alert((dict.account_disable_failed || "로그인 해제 실패: ") + err.message);
             }
@@ -5222,7 +5294,7 @@ function bindEmployeeAccountActions(container) {
                 setTimeout(() => sel.classList.remove("ring-1", "ring-emerald-500"), 800);
             } catch (err) {
                 alert((dict.role_update_failed || "권한 변경 실패: ") + err.message);
-                renderApprovalAdminContent();
+                reloadEmployeeList();
             }
         });
     });
