@@ -182,6 +182,110 @@ const translations = {
         th_details: "작업 상세 내용",
         th_ip_address: "IP 주소",
         menu_patterns: "분류 패턴 관리",
+        mode_admin: "관리자 모드",
+        mode_employee: "직원 모드",
+        menu_approval_admin: "전자결재 관리",
+        menu_approval_user: "나의 결재",
+        approval_admin_title: "전자결재 관리",
+        approval_admin_desc: "결재 문서, 양식(템플릿), 직원 로그인 계정, 번역 설정을 관리합니다.",
+        approval_user_title: "나의 결재",
+        approval_user_desc: "결재 문서를 작성하고, 내가 올리거나 결재해야 할 문서를 확인합니다.",
+        approval_pill_pending: "대기 문서",
+        approval_pill_all: "전체 문서",
+        approval_pill_templates: "템플릿 관리",
+        approval_pill_accounts: "직원 계정",
+        approval_pill_settings: "결재 설정",
+        approval_pill_new: "새 결재 작성",
+        approval_pill_mine: "내가 올린 문서",
+        approval_pill_todo: "결재할 문서",
+        approval_pill_cc: "참조 문서",
+        approval_coming_soon: "전자결재 기능을 준비 중입니다. (Phase 2~ 구현 예정)",
+        role_normal_employee: "일반 직원",
+        role_sub_admin: "서브 관리자",
+        role_employee_manager: "직원 관리자",
+        account_active: "활성",
+        account_inactive: "비활성",
+        account_create: "계정 생성",
+        account_reset: "계정 재설정",
+        account_disable: "로그인 해제",
+        account_help: "직원 로그인 계정을 만들고, 일부 직원에게 관리 권한(서브 관리자/직원 관리자)을 부여할 수 있습니다. 최고 관리자(admin) 권한은 부여되지 않습니다.",
+        account_saved: "직원 로그인 계정이 저장되었습니다.",
+        account_save_failed: "계정 저장 실패: ",
+        account_disable_failed: "로그인 해제 실패: ",
+        role_update_failed: "권한 변경 실패: ",
+        confirm_disable: "이 직원의 로그인을 비활성화하시겠습니까? (부여된 관리 권한도 함께 해제됩니다)",
+        prompt_login_id: "로그인 ID를 입력하세요",
+        prompt_password: "비밀번호를 입력하세요 (4자 이상)",
+        err_login_id_required: "로그인 ID는 필수입니다.",
+        err_password_short: "비밀번호는 최소 4자 이상이어야 합니다.",
+        loading_text: "불러오는 중...",
+        no_employees: "직원이 없습니다.",
+        th_emp_name: "이름",
+        th_emp_id: "사번",
+        th_company: "회사",
+        th_login_id: "로그인 ID",
+        th_login_status: "로그인 상태",
+        th_admin_role: "관리 권한",
+        th_actions: "작업",
+        btn_edit: "수정",
+        btn_delete: "삭제",
+        btn_save: "저장",
+        btn_cancel: "취소",
+        tpl_new: "새 템플릿",
+        tpl_new_title: "새 템플릿",
+        tpl_edit_title: "템플릿 수정",
+        tpl_list_desc: "결재 양식(템플릿)을 만들고 관리합니다. 문서 작성 시 이 양식을 선택합니다.",
+        tpl_th_title: "양식명",
+        tpl_th_category: "분류",
+        tpl_th_fields: "입력 항목",
+        tpl_th_updated: "수정일",
+        tpl_fields_unit: "개 항목",
+        tpl_empty: "등록된 템플릿이 없습니다.",
+        tpl_fields_title: "입력 항목 (본문 필드)",
+        tpl_add_field: "항목 추가",
+        tpl_no_fields: "입력 항목이 없습니다. '항목 추가'로 필드를 만드세요.",
+        tpl_label_ko: "라벨(한국어)",
+        tpl_field_key: "키(영문 식별자, 선택)",
+        tpl_field_type: "타입",
+        tpl_options: "선택 옵션 (쉼표로 구분)",
+        tpl_line_approval: "기본 결재선 (순차)",
+        tpl_line_agreement: "기본 합의선 (병렬)",
+        tpl_line_cc: "기본 참조선",
+        tpl_line_empty: "지정 안 함",
+        tpl_no_participants: "추가 가능한 대상 없음",
+        tpl_saved: "템플릿이 저장되었습니다.",
+        tpl_save_failed: "템플릿 저장 실패: ",
+        tpl_delete_failed: "템플릿 삭제 실패: ",
+        tpl_confirm_delete: "이 템플릿을 삭제하시겠습니까?",
+        tpl_err_title: "양식명을 입력해 주세요.",
+        p_admin: "관리자",
+        p_employee: "직원",
+        cat_general: "일반", cat_leave: "휴가", cat_expense: "경비", cat_purchase: "구매",
+        cat_report: "보고", cat_hr: "인사", cat_it_request: "IT요청", cat_other: "기타",
+        ftype_text: "한 줄 텍스트", ftype_textarea: "여러 줄 텍스트", ftype_number: "숫자", ftype_date: "날짜", ftype_select: "선택",
+        st_draft: "임시저장", st_submitted: "제출됨", st_in_review: "결재중", st_approved: "승인완료", st_rejected: "반려", st_withdrawn: "회수",
+        pr_low: "낮음", pr_normal: "보통", pr_high: "높음", pr_urgent: "긴급",
+        ls_pending: "대기", ls_current: "진행중", ls_approved: "완료", ls_rejected: "반려", ls_skipped: "건너뜀",
+        viz_approval: "결재선 (순차)", viz_agreement: "합의선 (병렬)", viz_cc: "참조 (읽음)",
+        act_approve: "승인", act_reject: "반려", act_agree: "합의", act_withdraw: "회수", act_edit_draft: "이어서 작성", act_submit: "제출",
+        act_ap_created: "문서 생성", act_ap_submitted: "제출", act_ap_approved: "승인", act_ap_rejected: "반려", act_ap_agreed: "합의", act_ap_withdrawn: "회수", act_ap_read: "열람", act_ap_updated: "수정", act_ap_completed: "최종 승인 완료",
+        comment_optional: "의견 (선택)", reject_reason_ph: "반려 사유를 입력하세요", reject_reason_req: "반려 사유는 필수입니다.",
+        confirm_withdraw: "이 문서를 회수하시겠습니까?", confirm_submit: "이 문서를 제출하시겠습니까?",
+        doc_th_number: "문서번호", doc_th_title: "제목", doc_th_status: "상태", doc_th_drafter: "기안자", doc_th_date: "일시", doc_th_read: "열람",
+        doc_empty: "문서가 없습니다.", doc_search: "제목/문서번호 검색", all_status: "전체 상태", cc_read: "읽음", cc_unread: "안읽음",
+        doc_no_body: "본문 내용이 없습니다.", doc_body: "문서 본문", doc_reject_reason: "반려 사유", doc_timeline: "활동 이력",
+        doc_select_template: "템플릿 선택 (또는 자유 양식)", doc_form_template: "템플릿", doc_form_priority: "우선순위", doc_free_form: "자유 양식입니다. 템플릿을 선택하면 항목이 표시됩니다.",
+        doc_submit: "제출", doc_save_draft: "임시저장", doc_reset: "초기화", doc_submitted: "결재 문서가 제출되었습니다.", doc_drafted: "임시저장되었습니다.", doc_save_failed: "저장 실패: ",
+        doc_err_title: "제목을 입력해 주세요.", doc_err_line: "제출하려면 결재선 또는 합의선을 1명 이상 지정해야 합니다.", act_failed: "처리 실패: ",
+        approval_settings_soon: "결재 설정(번역 연동)은 Phase 6에서 제공됩니다.",
+        doc_attachments: "첨부파일", doc_add_file: "파일 추가", doc_no_files: "첨부된 파일이 없습니다.",
+        doc_file_hint: "파일당 최대 20MB · 문서/이미지/PDF", doc_file_pending: "저장 시 업로드",
+        doc_confirm_del_file: "이 첨부파일을 삭제하시겠습니까?", doc_download_fail: "다운로드 실패: ", doc_file_fail: "첨부 실패: ",
+        doc_export_excel: "Excel 내보내기",
+        set_lt_url: "LibreTranslate 서버 URL", set_test: "연결 테스트", set_lt_key: "API 키 (선택)", set_targets: "번역 대상 언어",
+        set_auto: "제출 시 자동 번역", set_auto_desc: "문서 제출과 동시에 자동으로 번역합니다.", set_prefix: "문서번호 접두사",
+        set_testing: "테스트 중...", set_ok: "연결 성공", set_saved: "결재 설정이 저장되었습니다.", set_save_failed: "설정 저장 실패: ",
+        trans_original: "원문", trans_run: "번역", trans_running: "번역 중...", trans_failed: "번역 실패: ",
         tab_patterns_title: "🧩 업무/비업무 자동 분류 패턴 관리",
         tab_patterns_desc: "특정 프로세스명, 도메인, 활성 타이틀의 키워드를 기반으로 업무/비업무 로그를 자동 분류하는 규칙을 구성합니다.",
         th_pattern_type: "패턴 유형",
@@ -418,6 +522,110 @@ const translations = {
         th_details: "Action Details",
         th_ip_address: "IP Address",
         menu_patterns: "Pattern Management",
+        mode_admin: "Admin Mode",
+        mode_employee: "Employee Mode",
+        menu_approval_admin: "Approval Admin",
+        menu_approval_user: "My Approvals",
+        approval_admin_title: "Approval Administration",
+        approval_admin_desc: "Manage approval documents, templates, employee login accounts, and translation settings.",
+        approval_user_title: "My Approvals",
+        approval_user_desc: "Create approval documents and track those you submitted or need to approve.",
+        approval_pill_pending: "Pending",
+        approval_pill_all: "All Documents",
+        approval_pill_templates: "Templates",
+        approval_pill_accounts: "Employee Accounts",
+        approval_pill_settings: "Settings",
+        approval_pill_new: "New Document",
+        approval_pill_mine: "My Submissions",
+        approval_pill_todo: "To Approve",
+        approval_pill_cc: "CC'd Documents",
+        approval_coming_soon: "Electronic approval is under construction. (Coming in Phase 2+)",
+        role_normal_employee: "Employee",
+        role_sub_admin: "Sub Admin",
+        role_employee_manager: "Employee Manager",
+        account_active: "Active",
+        account_inactive: "Inactive",
+        account_create: "Create Account",
+        account_reset: "Reset Account",
+        account_disable: "Disable Login",
+        account_help: "Create employee login accounts and grant management privileges (Sub Admin / Employee Manager) to selected employees. The top admin role is never granted.",
+        account_saved: "Employee login account saved.",
+        account_save_failed: "Failed to save account: ",
+        account_disable_failed: "Failed to disable login: ",
+        role_update_failed: "Failed to update role: ",
+        confirm_disable: "Disable this employee's login? (Any granted management privileges will also be revoked)",
+        prompt_login_id: "Enter login ID",
+        prompt_password: "Enter password (min 4 chars)",
+        err_login_id_required: "Login ID is required.",
+        err_password_short: "Password must be at least 4 characters.",
+        loading_text: "Loading...",
+        no_employees: "No employees.",
+        th_emp_name: "Name",
+        th_emp_id: "Emp. ID",
+        th_company: "Company",
+        th_login_id: "Login ID",
+        th_login_status: "Login Status",
+        th_admin_role: "Privilege",
+        th_actions: "Actions",
+        btn_edit: "Edit",
+        btn_delete: "Delete",
+        btn_save: "Save",
+        btn_cancel: "Cancel",
+        tpl_new: "New Template",
+        tpl_new_title: "New Template",
+        tpl_edit_title: "Edit Template",
+        tpl_list_desc: "Create and manage approval form templates. Users pick one when drafting a document.",
+        tpl_th_title: "Form Name",
+        tpl_th_category: "Category",
+        tpl_th_fields: "Fields",
+        tpl_th_updated: "Updated",
+        tpl_fields_unit: "fields",
+        tpl_empty: "No templates yet.",
+        tpl_fields_title: "Input Fields (Body)",
+        tpl_add_field: "Add Field",
+        tpl_no_fields: "No fields. Use 'Add Field' to create one.",
+        tpl_label_ko: "Label (Korean)",
+        tpl_field_key: "Key (identifier, optional)",
+        tpl_field_type: "Type",
+        tpl_options: "Options (comma-separated)",
+        tpl_line_approval: "Default Approval Line (sequential)",
+        tpl_line_agreement: "Default Agreement Line (parallel)",
+        tpl_line_cc: "Default CC Line",
+        tpl_line_empty: "Not set",
+        tpl_no_participants: "No available targets",
+        tpl_saved: "Template saved.",
+        tpl_save_failed: "Failed to save template: ",
+        tpl_delete_failed: "Failed to delete template: ",
+        tpl_confirm_delete: "Delete this template?",
+        tpl_err_title: "Please enter a form name.",
+        p_admin: "Admin",
+        p_employee: "Employee",
+        cat_general: "General", cat_leave: "Leave", cat_expense: "Expense", cat_purchase: "Purchase",
+        cat_report: "Report", cat_hr: "HR", cat_it_request: "IT Request", cat_other: "Other",
+        ftype_text: "Text", ftype_textarea: "Textarea", ftype_number: "Number", ftype_date: "Date", ftype_select: "Select",
+        st_draft: "Draft", st_submitted: "Submitted", st_in_review: "In Review", st_approved: "Approved", st_rejected: "Rejected", st_withdrawn: "Withdrawn",
+        pr_low: "Low", pr_normal: "Normal", pr_high: "High", pr_urgent: "Urgent",
+        ls_pending: "Pending", ls_current: "In Progress", ls_approved: "Done", ls_rejected: "Rejected", ls_skipped: "Skipped",
+        viz_approval: "Approval Line (sequential)", viz_agreement: "Agreement Line (parallel)", viz_cc: "CC (read)",
+        act_approve: "Approve", act_reject: "Reject", act_agree: "Agree", act_withdraw: "Withdraw", act_edit_draft: "Continue Editing", act_submit: "Submit",
+        act_ap_created: "Created", act_ap_submitted: "Submitted", act_ap_approved: "Approved", act_ap_rejected: "Rejected", act_ap_agreed: "Agreed", act_ap_withdrawn: "Withdrawn", act_ap_read: "Viewed", act_ap_updated: "Updated", act_ap_completed: "Final approval complete",
+        comment_optional: "Comment (optional)", reject_reason_ph: "Enter rejection reason", reject_reason_req: "Rejection reason is required.",
+        confirm_withdraw: "Withdraw this document?", confirm_submit: "Submit this document?",
+        doc_th_number: "Doc No.", doc_th_title: "Title", doc_th_status: "Status", doc_th_drafter: "Drafter", doc_th_date: "Date", doc_th_read: "Read",
+        doc_empty: "No documents.", doc_search: "Search title/doc no.", all_status: "All statuses", cc_read: "Read", cc_unread: "Unread",
+        doc_no_body: "No body content.", doc_body: "Document Body", doc_reject_reason: "Rejection Reason", doc_timeline: "Activity Log",
+        doc_select_template: "Select template (or free form)", doc_form_template: "Template", doc_form_priority: "Priority", doc_free_form: "Free form. Select a template to show fields.",
+        doc_submit: "Submit", doc_save_draft: "Save Draft", doc_reset: "Reset", doc_submitted: "Document submitted.", doc_drafted: "Saved as draft.", doc_save_failed: "Save failed: ",
+        doc_err_title: "Please enter a title.", doc_err_line: "To submit, add at least one approver or agreement participant.", act_failed: "Action failed: ",
+        approval_settings_soon: "Approval settings (translation) come in Phase 6.",
+        doc_attachments: "Attachments", doc_add_file: "Add File", doc_no_files: "No attachments.",
+        doc_file_hint: "Max 20MB per file · docs/images/PDF", doc_file_pending: "uploads on save",
+        doc_confirm_del_file: "Delete this attachment?", doc_download_fail: "Download failed: ", doc_file_fail: "Attach failed: ",
+        doc_export_excel: "Export Excel",
+        set_lt_url: "LibreTranslate Server URL", set_test: "Test", set_lt_key: "API Key (optional)", set_targets: "Target Languages",
+        set_auto: "Auto-translate on submit", set_auto_desc: "Translate automatically when a document is submitted.", set_prefix: "Doc Number Prefix",
+        set_testing: "Testing...", set_ok: "Connected", set_saved: "Approval settings saved.", set_save_failed: "Failed to save settings: ",
+        trans_original: "Original", trans_run: "Translate", trans_running: "Translating...", trans_failed: "Translation failed: ",
         tab_patterns_title: "🧩 Auto-Classification Patterns",
         tab_patterns_desc: "Configure classification rules to automatically divide logs into work or non-work based on processes, domains, or window titles.",
         th_pattern_type: "Pattern Type",
@@ -655,6 +863,110 @@ const translations = {
         th_details: "รายละเอียดการทำงาน",
         th_ip_address: "ที่อยู่ IP",
         menu_patterns: "การจัดการรูปแบบ",
+        mode_admin: "โหมดผู้ดูแล",
+        mode_employee: "โหมดพนักงาน",
+        menu_approval_admin: "จัดการอนุมัติ",
+        menu_approval_user: "การอนุมัติของฉัน",
+        approval_admin_title: "การจัดการเอกสารอนุมัติ",
+        approval_admin_desc: "จัดการเอกสารอนุมัติ แม่แบบ บัญชีเข้าสู่ระบบพนักงาน และการตั้งค่าการแปล",
+        approval_user_title: "การอนุมัติของฉัน",
+        approval_user_desc: "สร้างเอกสารอนุมัติและติดตามเอกสารที่คุณส่งหรือต้องอนุมัติ",
+        approval_pill_pending: "รอดำเนินการ",
+        approval_pill_all: "เอกสารทั้งหมด",
+        approval_pill_templates: "แม่แบบ",
+        approval_pill_accounts: "บัญชีพนักงาน",
+        approval_pill_settings: "ตั้งค่า",
+        approval_pill_new: "สร้างเอกสารใหม่",
+        approval_pill_mine: "เอกสารที่ฉันส่ง",
+        approval_pill_todo: "รออนุมัติ",
+        approval_pill_cc: "เอกสารอ้างอิง",
+        approval_coming_soon: "ระบบอนุมัติอิเล็กทรอนิกส์กำลังอยู่ระหว่างการพัฒนา (เร็วๆ นี้ใน Phase 2+)",
+        role_normal_employee: "พนักงาน",
+        role_sub_admin: "ผู้ดูแลรอง",
+        role_employee_manager: "ผู้จัดการพนักงาน",
+        account_active: "ใช้งาน",
+        account_inactive: "ปิดใช้งาน",
+        account_create: "สร้างบัญชี",
+        account_reset: "รีเซ็ตบัญชี",
+        account_disable: "ปิดการเข้าสู่ระบบ",
+        account_help: "สร้างบัญชีเข้าสู่ระบบของพนักงานและมอบสิทธิ์การจัดการ (ผู้ดูแลรอง / ผู้จัดการพนักงาน) ให้พนักงานที่เลือก สิทธิ์ผู้ดูแลสูงสุดจะไม่ถูกมอบให้",
+        account_saved: "บันทึกบัญชีเข้าสู่ระบบของพนักงานแล้ว",
+        account_save_failed: "บันทึกบัญชีไม่สำเร็จ: ",
+        account_disable_failed: "ปิดการเข้าสู่ระบบไม่สำเร็จ: ",
+        role_update_failed: "อัปเดตสิทธิ์ไม่สำเร็จ: ",
+        confirm_disable: "ปิดการเข้าสู่ระบบของพนักงานนี้หรือไม่? (สิทธิ์การจัดการที่มอบไว้จะถูกเพิกถอนด้วย)",
+        prompt_login_id: "กรอกรหัสเข้าสู่ระบบ",
+        prompt_password: "กรอกรหัสผ่าน (อย่างน้อย 4 ตัว)",
+        err_login_id_required: "จำเป็นต้องมีรหัสเข้าสู่ระบบ",
+        err_password_short: "รหัสผ่านต้องมีอย่างน้อย 4 ตัวอักษร",
+        loading_text: "กำลังโหลด...",
+        no_employees: "ไม่มีพนักงาน",
+        th_emp_name: "ชื่อ",
+        th_emp_id: "รหัสพนักงาน",
+        th_company: "บริษัท",
+        th_login_id: "รหัสเข้าสู่ระบบ",
+        th_login_status: "สถานะเข้าสู่ระบบ",
+        th_admin_role: "สิทธิ์",
+        th_actions: "การดำเนินการ",
+        btn_edit: "แก้ไข",
+        btn_delete: "ลบ",
+        btn_save: "บันทึก",
+        btn_cancel: "ยกเลิก",
+        tpl_new: "แม่แบบใหม่",
+        tpl_new_title: "แม่แบบใหม่",
+        tpl_edit_title: "แก้ไขแม่แบบ",
+        tpl_list_desc: "สร้างและจัดการแม่แบบแบบฟอร์มอนุมัติ ผู้ใช้เลือกแม่แบบเมื่อร่างเอกสาร",
+        tpl_th_title: "ชื่อแบบฟอร์ม",
+        tpl_th_category: "หมวดหมู่",
+        tpl_th_fields: "ช่องข้อมูล",
+        tpl_th_updated: "อัปเดต",
+        tpl_fields_unit: "ช่อง",
+        tpl_empty: "ยังไม่มีแม่แบบ",
+        tpl_fields_title: "ช่องกรอกข้อมูล (เนื้อหา)",
+        tpl_add_field: "เพิ่มช่อง",
+        tpl_no_fields: "ไม่มีช่องข้อมูล กด 'เพิ่มช่อง' เพื่อสร้าง",
+        tpl_label_ko: "ป้ายกำกับ (เกาหลี)",
+        tpl_field_key: "คีย์ (ตัวระบุ, ไม่บังคับ)",
+        tpl_field_type: "ประเภท",
+        tpl_options: "ตัวเลือก (คั่นด้วยจุลภาค)",
+        tpl_line_approval: "สายอนุมัติเริ่มต้น (ตามลำดับ)",
+        tpl_line_agreement: "สายเห็นชอบเริ่มต้น (ขนาน)",
+        tpl_line_cc: "สายอ้างอิงเริ่มต้น",
+        tpl_line_empty: "ไม่ได้กำหนด",
+        tpl_no_participants: "ไม่มีเป้าหมายที่เพิ่มได้",
+        tpl_saved: "บันทึกแม่แบบแล้ว",
+        tpl_save_failed: "บันทึกแม่แบบไม่สำเร็จ: ",
+        tpl_delete_failed: "ลบแม่แบบไม่สำเร็จ: ",
+        tpl_confirm_delete: "ลบแม่แบบนี้หรือไม่?",
+        tpl_err_title: "กรุณากรอกชื่อแบบฟอร์ม",
+        p_admin: "ผู้ดูแล",
+        p_employee: "พนักงาน",
+        cat_general: "ทั่วไป", cat_leave: "ลา", cat_expense: "ค่าใช้จ่าย", cat_purchase: "จัดซื้อ",
+        cat_report: "รายงาน", cat_hr: "บุคคล", cat_it_request: "คำขอไอที", cat_other: "อื่นๆ",
+        ftype_text: "ข้อความบรรทัดเดียว", ftype_textarea: "ข้อความหลายบรรทัด", ftype_number: "ตัวเลข", ftype_date: "วันที่", ftype_select: "ตัวเลือก",
+        st_draft: "ฉบับร่าง", st_submitted: "ส่งแล้ว", st_in_review: "กำลังอนุมัติ", st_approved: "อนุมัติแล้ว", st_rejected: "ปฏิเสธ", st_withdrawn: "ถอนคืน",
+        pr_low: "ต่ำ", pr_normal: "ปกติ", pr_high: "สูง", pr_urgent: "ด่วน",
+        ls_pending: "รอ", ls_current: "กำลังดำเนินการ", ls_approved: "เสร็จ", ls_rejected: "ปฏิเสธ", ls_skipped: "ข้าม",
+        viz_approval: "สายอนุมัติ (ตามลำดับ)", viz_agreement: "สายเห็นชอบ (ขนาน)", viz_cc: "อ้างอิง (อ่าน)",
+        act_approve: "อนุมัติ", act_reject: "ปฏิเสธ", act_agree: "เห็นชอบ", act_withdraw: "ถอนคืน", act_edit_draft: "แก้ไขต่อ", act_submit: "ส่ง",
+        act_ap_created: "สร้างเอกสาร", act_ap_submitted: "ส่ง", act_ap_approved: "อนุมัติ", act_ap_rejected: "ปฏิเสธ", act_ap_agreed: "เห็นชอบ", act_ap_withdrawn: "ถอนคืน", act_ap_read: "เปิดอ่าน", act_ap_updated: "แก้ไข", act_ap_completed: "อนุมัติขั้นสุดท้ายเสร็จ",
+        comment_optional: "ความเห็น (ไม่บังคับ)", reject_reason_ph: "กรอกเหตุผลการปฏิเสธ", reject_reason_req: "ต้องระบุเหตุผลการปฏิเสธ",
+        confirm_withdraw: "ถอนคืนเอกสารนี้หรือไม่?", confirm_submit: "ส่งเอกสารนี้หรือไม่?",
+        doc_th_number: "เลขที่", doc_th_title: "หัวข้อ", doc_th_status: "สถานะ", doc_th_drafter: "ผู้ร่าง", doc_th_date: "วันที่", doc_th_read: "อ่าน",
+        doc_empty: "ไม่มีเอกสาร", doc_search: "ค้นหาหัวข้อ/เลขที่", all_status: "ทุกสถานะ", cc_read: "อ่านแล้ว", cc_unread: "ยังไม่อ่าน",
+        doc_no_body: "ไม่มีเนื้อหา", doc_body: "เนื้อหาเอกสาร", doc_reject_reason: "เหตุผลการปฏิเสธ", doc_timeline: "ประวัติกิจกรรม",
+        doc_select_template: "เลือกแม่แบบ (หรือฟอร์มอิสระ)", doc_form_template: "แม่แบบ", doc_form_priority: "ความสำคัญ", doc_free_form: "ฟอร์มอิสระ เลือกแม่แบบเพื่อแสดงช่องข้อมูล",
+        doc_submit: "ส่ง", doc_save_draft: "บันทึกร่าง", doc_reset: "รีเซ็ต", doc_submitted: "ส่งเอกสารแล้ว", doc_drafted: "บันทึกเป็นร่างแล้ว", doc_save_failed: "บันทึกไม่สำเร็จ: ",
+        doc_err_title: "กรุณากรอกหัวข้อ", doc_err_line: "ต้องเพิ่มผู้อนุมัติหรือผู้เห็นชอบอย่างน้อย 1 คนเพื่อส่ง", act_failed: "ดำเนินการไม่สำเร็จ: ",
+        approval_settings_soon: "การตั้งค่าอนุมัติ (การแปล) จะมาใน Phase 6",
+        doc_attachments: "ไฟล์แนบ", doc_add_file: "เพิ่มไฟล์", doc_no_files: "ไม่มีไฟล์แนบ",
+        doc_file_hint: "สูงสุด 20MB ต่อไฟล์ · เอกสาร/รูปภาพ/PDF", doc_file_pending: "อัปโหลดเมื่อบันทึก",
+        doc_confirm_del_file: "ลบไฟล์แนบนี้หรือไม่?", doc_download_fail: "ดาวน์โหลดไม่สำเร็จ: ", doc_file_fail: "แนบไฟล์ไม่สำเร็จ: ",
+        doc_export_excel: "ส่งออก Excel",
+        set_lt_url: "URL เซิร์ฟเวอร์ LibreTranslate", set_test: "ทดสอบการเชื่อมต่อ", set_lt_key: "API Key (ไม่บังคับ)", set_targets: "ภาษาปลายทาง",
+        set_auto: "แปลอัตโนมัติเมื่อส่ง", set_auto_desc: "แปลโดยอัตโนมัติเมื่อส่งเอกสาร", set_prefix: "คำนำหน้าเลขที่เอกสาร",
+        set_testing: "กำลังทดสอบ...", set_ok: "เชื่อมต่อสำเร็จ", set_saved: "บันทึกการตั้งค่าแล้ว", set_save_failed: "บันทึกการตั้งค่าไม่สำเร็จ: ",
+        trans_original: "ต้นฉบับ", trans_run: "แปล", trans_running: "กำลังแปล...", trans_failed: "แปลไม่สำเร็จ: ",
         tab_patterns_title: "🧩 การจัดการรูปแบบการจัดหมวดหมู่อัตโนมัติ",
         tab_patterns_desc: "กำหนดกฎเพื่อแยกบันทึกเป็นเรื่องงานหรือนอกงานโดยอัตโนมัติตามชื่อกระบวนการ โดเมน หรือชื่อหน้าต่าง",
         th_pattern_type: "ประเภทรูปแบบ",
@@ -893,6 +1205,110 @@ const translations = {
         th_details: "ລາຍລະອຽດການເຮັດວຽກ",
         th_ip_address: "ທີ່ຢູ່ IP",
         menu_patterns: "ການຈັດການຮູບແບບ",
+        mode_admin: "ໂໝດຜູ້ດູແລ",
+        mode_employee: "ໂໝດພະນັກງານ",
+        menu_approval_admin: "ຈັດການການອະນຸມັດ",
+        menu_approval_user: "ການອະນຸມັດຂອງຂ້ອຍ",
+        approval_admin_title: "ການຈັດການເອກະສານອະນຸມັດ",
+        approval_admin_desc: "ຈັດການເອກະສານອະນຸມັດ, ແມ່ແບບ, ບັນຊີເຂົ້າສູ່ລະບົບພະນັກງານ ແລະ ການຕັ້ງຄ່າການແປ.",
+        approval_user_title: "ການອະນຸມັດຂອງຂ້ອຍ",
+        approval_user_desc: "ສ້າງເອກະສານອະນຸມັດ ແລະ ຕິດຕາມເອກະສານທີ່ທ່ານສົ່ງ ຫຼື ຕ້ອງອະນຸມັດ.",
+        approval_pill_pending: "ລໍຖ້າດຳເນີນການ",
+        approval_pill_all: "ເອກະສານທັງໝົດ",
+        approval_pill_templates: "ແມ່ແບບ",
+        approval_pill_accounts: "ບັນຊີພະນັກງານ",
+        approval_pill_settings: "ຕັ້ງຄ່າ",
+        approval_pill_new: "ສ້າງເອກະສານໃໝ່",
+        approval_pill_mine: "ເອກະສານທີ່ຂ້ອຍສົ່ງ",
+        approval_pill_todo: "ລໍຖ້າອະນຸມັດ",
+        approval_pill_cc: "ເອກະສານອ້າງອີງ",
+        approval_coming_soon: "ລະບົບອະນຸມັດອິເລັກໂທຣນິກກຳລັງພັດທະນາ (ຈະມາໃນ Phase 2+)",
+        role_normal_employee: "ພະນັກງານ",
+        role_sub_admin: "ຜູ້ດູແລຮອງ",
+        role_employee_manager: "ຜູ້ຈັດການພະນັກງານ",
+        account_active: "ໃຊ້ງານ",
+        account_inactive: "ປິດໃຊ້ງານ",
+        account_create: "ສ້າງບັນຊີ",
+        account_reset: "ຣີເຊັດບັນຊີ",
+        account_disable: "ປິດການເຂົ້າສູ່ລະບົບ",
+        account_help: "ສ້າງບັນຊີເຂົ້າສູ່ລະບົບຂອງພະນັກງານ ແລະ ມອບສິດການຈັດການ (ຜູ້ດູແລຮອງ / ຜູ້ຈັດການພະນັກງານ) ໃຫ້ພະນັກງານທີ່ເລືອກ. ສິດຜູ້ດູແລສູງສຸດຈະບໍ່ຖືກມອບໃຫ້.",
+        account_saved: "ບັນທຶກບັນຊີເຂົ້າສູ່ລະບົບຂອງພະນັກງານແລ້ວ.",
+        account_save_failed: "ບັນທຶກບັນຊີບໍ່ສຳເລັດ: ",
+        account_disable_failed: "ປິດການເຂົ້າສູ່ລະບົບບໍ່ສຳເລັດ: ",
+        role_update_failed: "ອັບເດດສິດບໍ່ສຳເລັດ: ",
+        confirm_disable: "ປິດການເຂົ້າສູ່ລະບົບຂອງພະນັກງານນີ້ບໍ? (ສິດການຈັດການທີ່ມອບໄວ້ຈະຖືກຍົກເລີກນຳ)",
+        prompt_login_id: "ປ້ອນ ID ເຂົ້າສູ່ລະບົບ",
+        prompt_password: "ປ້ອນລະຫັດຜ່ານ (ຢ່າງໜ້ອຍ 4 ຕົວ)",
+        err_login_id_required: "ຕ້ອງມີ ID ເຂົ້າສູ່ລະບົບ.",
+        err_password_short: "ລະຫັດຜ່ານຕ້ອງມີຢ່າງໜ້ອຍ 4 ຕົວອັກສอນ.",
+        loading_text: "ກຳລັງໂຫລດ...",
+        no_employees: "ບໍ່ມີພະນັກງານ.",
+        th_emp_name: "ຊື່",
+        th_emp_id: "ລະຫັດພະນັກງານ",
+        th_company: "ບໍລິສັດ",
+        th_login_id: "ID ເຂົ້າສູ່ລະບົບ",
+        th_login_status: "ສະຖານະເຂົ້າສູ່ລະບົບ",
+        th_admin_role: "ສິດ",
+        th_actions: "ການດຳເນີນການ",
+        btn_edit: "ແກ້ໄຂ",
+        btn_delete: "ລຶບ",
+        btn_save: "ບັນທຶກ",
+        btn_cancel: "ຍົກເລີກ",
+        tpl_new: "ແມ່ແບບໃໝ່",
+        tpl_new_title: "ແມ່ແບບໃໝ່",
+        tpl_edit_title: "ແກ້ໄຂແມ່ແບບ",
+        tpl_list_desc: "ສ້າງ ແລະ ຈັດການແມ່ແບບຟອມອະນຸມັດ. ຜູ້ໃຊ້ເລືອກແມ່ແບບເມື່ອຮ່າງເອກະສານ.",
+        tpl_th_title: "ຊື່ຟອມ",
+        tpl_th_category: "ໝວດ",
+        tpl_th_fields: "ຊ່ອງຂໍ້ມູນ",
+        tpl_th_updated: "ອັບເດດ",
+        tpl_fields_unit: "ຊ່ອງ",
+        tpl_empty: "ຍັງບໍ່ມີແມ່ແບບ.",
+        tpl_fields_title: "ຊ່ອງປ້ອນຂໍ້ມູນ (ເນື້ອໃນ)",
+        tpl_add_field: "ເພີ່ມຊ່ອງ",
+        tpl_no_fields: "ບໍ່ມີຊ່ອງຂໍ້ມູນ. ກົດ 'ເພີ່ມຊ່ອງ' ເພື່ອສ້າງ.",
+        tpl_label_ko: "ປ້າຍກຳກັບ (ເກົາຫລີ)",
+        tpl_field_key: "ຄີ (ຕົວລະບຸ, ທາງເລືອກ)",
+        tpl_field_type: "ປະເພດ",
+        tpl_options: "ຕົວເລືອກ (ຄັ່ນດ້ວຍຈຸດ)",
+        tpl_line_approval: "ສາຍອະນຸມັດເລີ່ມຕົ້ນ (ຕາມລຳດັບ)",
+        tpl_line_agreement: "ສາຍເຫັນດີເລີ່ມຕົ້ນ (ຂະໜານ)",
+        tpl_line_cc: "ສາຍອ້າງອີງເລີ່ມຕົ້ນ",
+        tpl_line_empty: "ບໍ່ໄດ້ກຳນົດ",
+        tpl_no_participants: "ບໍ່ມີເປົ້າໝາຍທີ່ເພີ່ມໄດ້",
+        tpl_saved: "ບັນທຶກແມ່ແບບແລ້ວ.",
+        tpl_save_failed: "ບັນທຶກແມ່ແບບບໍ່ສຳເລັດ: ",
+        tpl_delete_failed: "ລຶບແມ່ແບບບໍ່ສຳເລັດ: ",
+        tpl_confirm_delete: "ລຶບແມ່ແບບນີ້ບໍ?",
+        tpl_err_title: "ກະລຸນາປ້ອນຊື່ຟອມ.",
+        p_admin: "ຜູ້ດູແລ",
+        p_employee: "ພະນັກງານ",
+        cat_general: "ທົ່ວໄປ", cat_leave: "ລາພັກ", cat_expense: "ຄ່າໃຊ້ຈ່າຍ", cat_purchase: "ຈັດຊື້",
+        cat_report: "ລາຍງານ", cat_hr: "ບຸກຄະລາກອນ", cat_it_request: "ຄຳຂໍ IT", cat_other: "ອື່ນໆ",
+        ftype_text: "ຂໍ້ຄວາມແຖວດຽວ", ftype_textarea: "ຂໍ້ຄວາມຫລາຍແຖວ", ftype_number: "ຕົວເລກ", ftype_date: "ວັນທີ", ftype_select: "ຕົວເລືອກ",
+        st_draft: "ຮ່າງ", st_submitted: "ສົ່ງແລ້ວ", st_in_review: "ກຳລັງອະນຸມັດ", st_approved: "ອະນຸມັດແລ້ວ", st_rejected: "ປະຕິເສດ", st_withdrawn: "ຖອນຄືນ",
+        pr_low: "ຕ່ຳ", pr_normal: "ປົກກະຕິ", pr_high: "ສູງ", pr_urgent: "ດ່ວນ",
+        ls_pending: "ລໍຖ້າ", ls_current: "ກຳລັງດຳເນີນ", ls_approved: "ສຳເລັດ", ls_rejected: "ປະຕິເສດ", ls_skipped: "ຂ້າມ",
+        viz_approval: "ສາຍອະນຸມັດ (ຕາມລຳດັບ)", viz_agreement: "ສາຍເຫັນດີ (ຂະໜານ)", viz_cc: "ອ້າງອີງ (ອ່ານ)",
+        act_approve: "ອະນຸມັດ", act_reject: "ປະຕິເສດ", act_agree: "ເຫັນດີ", act_withdraw: "ຖອນຄືນ", act_edit_draft: "ແກ້ໄຂຕໍ່", act_submit: "ສົ່ງ",
+        act_ap_created: "ສ້າງເອກະສານ", act_ap_submitted: "ສົ່ງ", act_ap_approved: "ອະນຸມັດ", act_ap_rejected: "ປະຕິເສດ", act_ap_agreed: "ເຫັນດີ", act_ap_withdrawn: "ຖອນຄືນ", act_ap_read: "ເປີດອ່ານ", act_ap_updated: "ແກ້ໄຂ", act_ap_completed: "ອະນຸມັດຂັ້ນສຸດທ້າຍສຳເລັດ",
+        comment_optional: "ຄຳເຫັນ (ທາງເລືອກ)", reject_reason_ph: "ປ້ອນເຫດຜົນການປະຕິເສດ", reject_reason_req: "ຕ້ອງລະບຸເຫດຜົນການປະຕິເສດ",
+        confirm_withdraw: "ຖອນຄືນເອກະສານນີ້ບໍ?", confirm_submit: "ສົ່ງເອກະສານນີ້ບໍ?",
+        doc_th_number: "ເລກທີ", doc_th_title: "ຫົວຂໍ້", doc_th_status: "ສະຖານະ", doc_th_drafter: "ຜູ້ຮ່າງ", doc_th_date: "ວັນທີ", doc_th_read: "ອ່ານ",
+        doc_empty: "ບໍ່ມີເອກະສານ", doc_search: "ຄົ້ນຫາຫົວຂໍ້/ເລກທີ", all_status: "ທຸກສະຖານະ", cc_read: "ອ່ານແລ້ວ", cc_unread: "ຍັງບໍ່ອ່ານ",
+        doc_no_body: "ບໍ່ມີເນື້ອໃນ", doc_body: "ເນື້ອໃນເອກະສານ", doc_reject_reason: "ເຫດຜົນການປະຕິເສດ", doc_timeline: "ປະຫວັດກິດຈະກຳ",
+        doc_select_template: "ເລືອກແມ່ແບບ (ຫຼື ຟອມອິດສະຫຼະ)", doc_form_template: "ແມ່ແບບ", doc_form_priority: "ຄວາມສຳຄັນ", doc_free_form: "ຟອມອິດສະຫຼະ ເລືອກແມ່ແບບເພື່ອສະແດງຊ່ອງຂໍ້ມູນ",
+        doc_submit: "ສົ່ງ", doc_save_draft: "ບັນທຶກຮ່າງ", doc_reset: "ຣີເຊັດ", doc_submitted: "ສົ່ງເອກະສານແລ້ວ", doc_drafted: "ບັນທຶກເປັນຮ່າງແລ້ວ", doc_save_failed: "ບັນທຶກບໍ່ສຳເລັດ: ",
+        doc_err_title: "ກະລຸນາປ້ອນຫົວຂໍ້", doc_err_line: "ຕ້ອງເພີ່ມຜູ້ອະນຸມັດ ຫຼື ຜູ້ເຫັນດີຢ່າງໜ້ອຍ 1 ຄົນເພື່ອສົ່ງ", act_failed: "ດຳເນີນການບໍ່ສຳເລັດ: ",
+        approval_settings_soon: "ການຕັ້ງຄ່າອະນຸມັດ (ການແປ) ຈະມາໃນ Phase 6",
+        doc_attachments: "ໄຟລ໌ແນບ", doc_add_file: "ເພີ່ມໄຟລ໌", doc_no_files: "ບໍ່ມີໄຟລ໌ແນບ",
+        doc_file_hint: "ສູງສຸດ 20MB ຕໍ່ໄຟລ໌ · ເອກະສານ/ຮູບ/PDF", doc_file_pending: "ອັບໂຫລດເມື່ອບັນທຶກ",
+        doc_confirm_del_file: "ລຶບໄຟລ໌ແນບນີ້ບໍ?", doc_download_fail: "ດາວໂຫລດບໍ່ສຳເລັດ: ", doc_file_fail: "ແນບໄຟລ໌ບໍ່ສຳເລັດ: ",
+        doc_export_excel: "ສົ່ງອອກ Excel",
+        set_lt_url: "URL ເຊີບເວີ LibreTranslate", set_test: "ທົດສອບການເຊື່ອມຕໍ່", set_lt_key: "API Key (ທາງເລືອກ)", set_targets: "ພາສາປາຍທາງ",
+        set_auto: "ແປອັດຕະໂນມັດເມື່ອສົ່ງ", set_auto_desc: "ແປໂດຍອັດຕະໂນມັດເມື່ອສົ່ງເອກະສານ", set_prefix: "ຄຳນຳໜ້າເລກທີເອກະສານ",
+        set_testing: "ກຳລັງທົດສອບ...", set_ok: "ເຊື່ອມຕໍ່ສຳເລັດ", set_saved: "ບັນທຶກການຕັ້ງຄ່າແລ້ວ", set_save_failed: "ບັນທຶກການຕັ້ງຄ່າບໍ່ສຳເລັດ: ",
+        trans_original: "ຕົ້ນສະບັບ", trans_run: "ແປ", trans_running: "ກຳລັງແປ...", trans_failed: "ແປບໍ່ສຳເລັດ: ",
         tab_patterns_title: "🧩 ການຈັດການຮູບແບບການຈັດໝວດໝູ່ອັດຕະໂນມັດ",
         tab_patterns_desc: "ກຳນົດກົດເກນເພື່ອແຍກບັນທຶກເປັນວຽກ ຫຼື ນອກວຽກໂດຍອັດຕະໂນມັດ ໂດຍອີງຕາມຊື່ຂະບວນການ, ໂດເມນ ຫຼື ຊື່ໜ້າຕ່າງ.",
         th_pattern_type: "ປະເພດຮູບແບບ",
@@ -965,7 +1381,28 @@ function updateTenantUI() {
     const companyCode = localStorage.getItem("pguard_company_code") || "";
     const isSuperAdmin = companyCode === "auton";
     const role = localStorage.getItem("pguard_admin_role") || "admin";
-    
+    const isEmployee = role === "employee";
+    const mode = getAppMode();
+
+    // 모드 전환기: 관리자(비직원)에게만 표시
+    const modeSwitcher = document.getElementById("modeSwitcher");
+    if (modeSwitcher) {
+        modeSwitcher.classList.toggle("hidden", isEmployee);
+        const adminBtn = document.getElementById("modeAdminBtn");
+        const empBtn = document.getElementById("modeEmployeeBtn");
+        if (adminBtn && empBtn) {
+            const activeCls = ["bg-indigo-600", "text-white"];
+            const idleCls = ["text-slate-400", "hover:text-white"];
+            if (mode === "employee") {
+                empBtn.classList.add(...activeCls); empBtn.classList.remove(...idleCls);
+                adminBtn.classList.remove(...activeCls); adminBtn.classList.add(...idleCls);
+            } else {
+                adminBtn.classList.add(...activeCls); adminBtn.classList.remove(...idleCls);
+                empBtn.classList.remove(...activeCls); empBtn.classList.add(...idleCls);
+            }
+        }
+    }
+
     // Update company badge in header
     const companyBadge = document.getElementById("companyBadge");
     if (companyBadge) {
@@ -1081,6 +1518,54 @@ function updateTenantUI() {
                 else if (currentLang === 'lo') securityDesc.textContent = translations.lo.settings_security_desc;
             }
         }
+    }
+
+    // ── 모드 + 역할 기반 사이드바 메뉴 가시성 ──
+    // 각 사이드바 버튼을 현재 모드/역할에 맞춰 표시/숨김 처리
+    const sidebarMenu = document.getElementById("sidebarMenu");
+    if (sidebarMenu) {
+        sidebarMenu.querySelectorAll("button[data-target]").forEach(btn => {
+            const target = btn.getAttribute("data-target");
+            const isEmployeeTab = EMPLOYEE_MODE_TABS.includes(target);
+            let visible;
+
+            if (mode === "employee") {
+                // 직원 모드: 직원 전용 탭만 표시
+                visible = isEmployeeTab;
+            } else {
+                // 관리자 모드: 직원 전용 탭을 제외한 관리자 탭 표시 + 역할별 제한 적용
+                visible = !isEmployeeTab;
+                if (target === "tab-super" && !isSuperAdmin) visible = false;
+                if (target === "tab-patterns" && role === "employee_manager") visible = false;
+                if (target === "tab-approval-admin" && role === "employee_manager") visible = false;
+            }
+            btn.classList.toggle("hidden", !visible);
+        });
+    }
+}
+
+// ── 애플리케이션 모드 (관리자 모드 / 직원 모드) ──
+// 직원 모드 전용 탭 목록 (그 외 모든 탭은 관리자 모드 전용)
+const EMPLOYEE_MODE_TABS = ['tab-approval-user'];
+
+// 현재 활성 모드 반환. 직원(role=employee)은 항상 employee 모드로 고정.
+function getAppMode() {
+    const role = localStorage.getItem("pguard_admin_role") || "admin";
+    if (role === "employee") return "employee";
+    return localStorage.getItem("pguard_app_mode") || "admin";
+}
+
+// 관리자가 관리자 모드 ↔ 직원 모드를 전환
+function switchAppMode(mode) {
+    const role = localStorage.getItem("pguard_admin_role") || "admin";
+    if (role === "employee") mode = "employee"; // 직원은 전환 불가
+    localStorage.setItem("pguard_app_mode", mode);
+    updateTenantUI();
+    // 모드에 맞는 기본 탭으로 이동
+    if (mode === "employee") {
+        switchTab("tab-approval-user");
+    } else {
+        switchTab("tab-overview");
     }
 }
 
@@ -1228,7 +1713,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. 차트 초기화 및 초기 데이터 로드
     initCharts();
-    fetchCurrentTab();
+    updateTenantUI();
+    // 로그인 상태이고 직원 모드면 '나의 결재' 탭으로 시작
+    if (localStorage.getItem("pguard_token") && getAppMode() === "employee") {
+        switchTab("tab-approval-user");
+    } else {
+        fetchCurrentTab();
+    }
     populateEmployeeDropdowns();
 
     // 10초 실시간 폴링 가동
@@ -1591,37 +2082,68 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             const id = document.getElementById("loginUsername").value;
             const password = document.getElementById("loginPassword").value;
-            const company_code = document.getElementById("loginCompanyCode").value.trim();
+            // 단일 회사 운영: 회사 코드는 선택 입력 (아이디로 자동 판별)
+            const company_code = document.getElementById("loginCompanyCode")?.value.trim() || "";
             const errorDiv = document.getElementById("loginError");
             const errorMsg = document.getElementById("loginErrorMsg");
 
             errorDiv.classList.add("hidden");
 
             try {
-                const response = await fetch(`${API_BASE_URL}/admin/login`, {
+                // 통합 로그인: 먼저 관리자 로그인 시도, 실패하면 직원 로그인으로 폴백
+                let data = null;
+                let lastError = "로그인 실패";
+
+                const adminResp = await fetch(`${API_BASE_URL}/admin/login`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ id, password, company_code })
                 });
 
-                if (!response.ok) {
-                    const errData = await response.json();
-                    throw new Error(errData.error || "로그인 실패");
+                if (adminResp.ok) {
+                    data = await adminResp.json();
+                } else {
+                    const adminErr = await adminResp.json().catch(() => ({}));
+                    lastError = adminErr.error || lastError;
+
+                    // 직원 로그인 폴백
+                    const empResp = await fetch(`${API_BASE_URL}/employee/login`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ login_id: id, password, company_code })
+                    });
+                    if (empResp.ok) {
+                        data = await empResp.json();
+                    } else {
+                        const empErr = await empResp.json().catch(() => ({}));
+                        // 관리자/직원 어느 쪽으로도 로그인 불가
+                        lastError = empErr.error || lastError;
+                    }
                 }
 
-                const data = await response.json();
-                if (data.success && data.token) {
-                    localStorage.setItem("pguard_token", data.token);
-                    localStorage.setItem("pguard_company_code", data.company_code);
-                    localStorage.setItem("pguard_admin_role", data.role || "admin");
-                    document.getElementById("loginUsername").value = "";
-                    document.getElementById("loginPassword").value = "";
-                    document.getElementById("loginCompanyCode").value = "";
-                    
-                    hideLoginOverlay();
-                    
-                    // 로그인 직후 UI 갱신 및 데이터 새로 로딩
-                    updateTenantUI();
+                if (!data || !data.success || !data.token) {
+                    throw new Error(lastError);
+                }
+
+                localStorage.setItem("pguard_token", data.token);
+                localStorage.setItem("pguard_company_code", data.company_code);
+                localStorage.setItem("pguard_admin_role", data.role || "admin");
+                if (data.employee_id) localStorage.setItem("pguard_employee_id", data.employee_id);
+                if (data.employee_name) localStorage.setItem("pguard_employee_name", data.employee_name);
+                // 로그인 시 기본 모드: 직원은 employee, 관리자는 admin
+                localStorage.setItem("pguard_app_mode", data.role === "employee" ? "employee" : "admin");
+
+                document.getElementById("loginUsername").value = "";
+                document.getElementById("loginPassword").value = "";
+                document.getElementById("loginCompanyCode").value = "";
+
+                hideLoginOverlay();
+
+                updateTenantUI();
+                // 모드에 맞는 기본 탭으로 이동 후 데이터 로딩
+                if (getAppMode() === "employee") {
+                    switchTab("tab-approval-user");
+                } else {
                     fetchCurrentTab();
                 }
             } catch (err) {
@@ -1856,9 +2378,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const dict = translations[currentLang] || translations["ko"];
             if (confirm(dict.logout_confirm)) {
                 const token = localStorage.getItem("pguard_token");
+                const isEmployee = (localStorage.getItem("pguard_admin_role") || "admin") === "employee";
                 if (token) {
                     try {
-                        await fetch(`${API_BASE_URL}/admin/logout`, {
+                        await fetch(`${API_BASE_URL}/${isEmployee ? "employee" : "admin"}/logout`, {
                             method: "POST",
                             headers: { "Authorization": `Bearer ${token}` }
                         });
@@ -1868,6 +2391,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 localStorage.removeItem("pguard_token");
                 localStorage.removeItem("pguard_company_code");
+                localStorage.removeItem("pguard_admin_role");
+                localStorage.removeItem("pguard_app_mode");
+                localStorage.removeItem("pguard_employee_id");
+                localStorage.removeItem("pguard_employee_name");
                 showLoginOverlay();
                 updateTenantUI();
                 switchTab("tab-overview");
@@ -1890,26 +2417,34 @@ function switchTab(targetTabId) {
     const activeTabContent = document.getElementById(targetTabId);
     if (activeTabContent) activeTabContent.classList.remove("hidden");
 
-    // 3. 사이드바 버튼 클래스 하이라이팅 제어
+    // 3. 사이드바 버튼 클래스 하이라이팅 제어 (모드/역할 가시성 포함)
     const isSuperAdmin = localStorage.getItem("pguard_company_code") === "auton";
+    const role = localStorage.getItem("pguard_admin_role") || "admin";
+    const mode = getAppMode();
     const sidebarButtons = document.querySelectorAll("#sidebarMenu button[data-target]");
     sidebarButtons.forEach(btn => {
         const target = btn.getAttribute("data-target");
-        
-        // Super Admin이 아닌 경우 Super Admin 탭 버튼 숨김 유지
-        if (target === "tab-super" && !isSuperAdmin) {
-            btn.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300 hidden";
-            const icon = btn.querySelector("i");
-            if (icon) icon.className = "w-5 h-5";
-            return;
+        const isEmployeeTab = EMPLOYEE_MODE_TABS.includes(target);
+
+        // 현재 모드/역할에서 이 버튼이 보여야 하는지 판단
+        let visible;
+        if (mode === "employee") {
+            visible = isEmployeeTab;
+        } else {
+            visible = !isEmployeeTab;
+            if (target === "tab-super" && !isSuperAdmin) visible = false;
+            if (target === "tab-patterns" && role === "employee_manager") visible = false;
+            if (target === "tab-approval-admin" && role === "employee_manager") visible = false;
         }
 
+        const hiddenSuffix = visible ? "" : " hidden";
+
         if (target === targetTabId) {
-            btn.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-indigo-600/20 border border-indigo-500/30 text-white font-medium transition duration-300";
+            btn.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-indigo-600/20 border border-indigo-500/30 text-white font-medium transition duration-300" + hiddenSuffix;
             const icon = btn.querySelector("i");
             if (icon) icon.className = "w-5 h-5 text-indigo-400";
         } else {
-            btn.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300";
+            btn.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300" + hiddenSuffix;
             const icon = btn.querySelector("i");
             if (icon) icon.className = "w-5 h-5";
         }
@@ -1959,6 +2494,14 @@ function switchTab(targetTabId) {
         headerTag.textContent = "CLASSIFICATION PATTERNS";
         headerTitle.setAttribute("data-i18n", "menu_patterns");
         headerDesc.setAttribute("data-i18n", "tab_patterns_desc");
+    } else if (targetTabId === "tab-approval-admin") {
+        headerTag.textContent = "APPROVAL ADMIN";
+        headerTitle.setAttribute("data-i18n", "approval_admin_title");
+        headerDesc.setAttribute("data-i18n", "approval_admin_desc");
+    } else if (targetTabId === "tab-approval-user") {
+        headerTag.textContent = "MY APPROVALS";
+        headerTitle.setAttribute("data-i18n", "approval_user_title");
+        headerDesc.setAttribute("data-i18n", "approval_user_desc");
     }
 
     changeLanguage(currentLang); // 동적으로 할당된 data-i18n 바로 번역 적용
@@ -2033,6 +2576,7 @@ function changeLanguage(lang) {
 // ------------------------------------------------------------------
 async function fetchCurrentTab() {
     updateTenantUI();
+    if (typeof refreshPendingBadge === "function") refreshPendingBadge();
     if (activeTab === "tab-overview") {
         await fetchDashboardData();
     } else if (activeTab === "tab-employees") {
@@ -2051,6 +2595,10 @@ async function fetchCurrentTab() {
         await fetchAuditTab();
     } else if (activeTab === "tab-patterns") {
         await fetchPatternsTab();
+    } else if (activeTab === "tab-approval-admin") {
+        await fetchApprovalAdminTab();
+    } else if (activeTab === "tab-approval-user") {
+        await fetchApprovalUserTab();
     }
 }
 
@@ -4348,3 +4896,1725 @@ async function loadManagerTags() {
         console.error("Failed to load manager tags:", err);
     }
 }
+
+// ==================================================================
+// 전자결재 관리 탭 (관리자 모드) — 서브탭 + 직원 계정/권한 관리
+// ==================================================================
+let approvalAdminSubtab = "approval-admin-accounts";
+
+// 관리 권한 코드 → 표시 라벨
+function adminRoleLabel(role) {
+    const dict = translations[currentLang] || translations.ko;
+    if (role === "sub_admin") return dict.role_sub_admin || "서브 관리자";
+    if (role === "employee_manager") return dict.role_employee_manager || "직원 관리자";
+    return dict.role_normal_employee || "일반 직원";
+}
+
+// 서브탭 pill 클릭 바인딩 (1회)
+function bindApprovalAdminPills() {
+    const pillWrap = document.getElementById("approvalAdminPills");
+    if (!pillWrap || pillWrap.dataset.bound === "1") return;
+    pillWrap.dataset.bound = "1";
+    pillWrap.querySelectorAll("button[data-subtab]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            approvalAdminSubtab = btn.getAttribute("data-subtab");
+            pillWrap.querySelectorAll("button[data-subtab]").forEach(b => {
+                b.className = "px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 text-slate-400 hover:text-white transition";
+            });
+            btn.className = "px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 text-white transition";
+            renderApprovalAdminContent();
+        });
+    });
+}
+
+async function fetchApprovalAdminTab() {
+    bindApprovalAdminPills();
+    renderApprovalAdminContent();
+}
+
+function renderApprovalAdminContent() {
+    const container = document.getElementById("approvalAdminContent");
+    if (!container) return;
+    if (approvalAdminSubtab === "approval-admin-accounts") {
+        renderEmployeeAccounts(container);
+    } else if (approvalAdminSubtab === "approval-admin-templates") {
+        renderTemplatesSubtab(container);
+    } else if (approvalAdminSubtab === "approval-admin-pending") {
+        renderDocumentListView(container, "pending", { title: (translations[currentLang]||translations.ko).approval_pill_pending });
+    } else if (approvalAdminSubtab === "approval-admin-all") {
+        renderDocumentListView(container, "all", { title: (translations[currentLang]||translations.ko).approval_pill_all, filters: true });
+    } else if (approvalAdminSubtab === "approval-admin-settings") {
+        renderApprovalSettings(container);
+    } else {
+        const dict = translations[currentLang] || translations.ko;
+        container.className = "text-sm text-slate-400 py-12 text-center";
+        container.innerHTML = `<i data-lucide="hammer" class="w-8 h-8 mx-auto mb-3 text-slate-600"></i><p>${dict.approval_coming_soon}</p>`;
+        lucide.createIcons();
+    }
+}
+
+// 직원 계정/권한 목록 렌더링
+async function renderEmployeeAccounts(container) {
+    const dict = translations[currentLang] || translations.ko;
+    container.className = "";
+    container.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm">${dict.loading_text || "불러오는 중..."}</div>`;
+
+    let rows;
+    try {
+        const resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees/accounts`);
+        if (!resp.ok) {
+            const e = await resp.json().catch(() => ({}));
+            throw new Error(e.error || "목록 조회 실패");
+        }
+        rows = await resp.json();
+    } catch (err) {
+        container.innerHTML = `<div class="text-center py-8 text-rose-400 text-sm">${err.message}</div>`;
+        return;
+    }
+
+    const isSuperAdmin = localStorage.getItem("pguard_company_code") === "auton";
+
+    const bodyRows = (rows || []).map(r => {
+        const enabled = !!r.is_login_enabled && !!r.login_id;
+        const statusBadge = enabled
+            ? `<span class="px-2 py-0.5 bg-emerald-600/20 text-emerald-300 text-[10px] rounded-full">${dict.account_active || "활성"}</span>`
+            : `<span class="px-2 py-0.5 bg-slate-600/20 text-slate-400 text-[10px] rounded-full">${dict.account_inactive || "비활성"}</span>`;
+        const roleBadgeCls = r.admin_role === "sub_admin" ? "bg-indigo-600/20 text-indigo-300"
+            : r.admin_role === "employee_manager" ? "bg-amber-600/20 text-amber-300"
+            : "bg-slate-600/20 text-slate-400";
+        const companyCell = isSuperAdmin ? `<td class="py-3 px-4 font-mono text-slate-400">${r.company_code || ""}</td>` : "";
+
+        // 권한 select (활성 계정에만 부여 가능)
+        const roleSelect = `
+            <select data-emp-role="${r.employee_id}" ${enabled ? "" : "disabled"}
+                class="bg-slate-900 border border-cardBorder text-slate-200 text-xs rounded-lg px-2 py-1.5 focus:outline-none cursor-pointer disabled:opacity-40">
+                <option value="" ${!r.admin_role ? "selected" : ""}>${dict.role_normal_employee || "일반 직원"}</option>
+                <option value="sub_admin" ${r.admin_role === "sub_admin" ? "selected" : ""}>${dict.role_sub_admin || "서브 관리자"}</option>
+                <option value="employee_manager" ${r.admin_role === "employee_manager" ? "selected" : ""}>${dict.role_employee_manager || "직원 관리자"}</option>
+            </select>`;
+
+        return `
+            <tr class="border-b border-white/5">
+                <td class="py-3 px-4 text-white font-medium">${r.employee_name || ""}</td>
+                <td class="py-3 px-4 font-mono text-slate-400">${r.employee_id}</td>
+                ${companyCell}
+                <td class="py-3 px-4 font-mono text-slate-300">${r.login_id || "-"}</td>
+                <td class="py-3 px-4">${statusBadge}</td>
+                <td class="py-3 px-4">${roleSelect}</td>
+                <td class="py-3 px-4">
+                    <div class="flex items-center gap-2">
+                        <button data-emp-account="${r.employee_id}" data-emp-name="${(r.employee_name || "").replace(/"/g, "&quot;")}"
+                            class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] rounded-lg font-semibold transition">
+                            ${enabled ? (dict.account_reset || "계정 재설정") : (dict.account_create || "계정 생성")}
+                        </button>
+                        ${enabled ? `<button data-emp-disable="${r.employee_id}"
+                            class="px-3 py-1.5 bg-rose-600/80 hover:bg-rose-600 text-white text-[11px] rounded-lg font-semibold transition">
+                            ${dict.account_disable || "로그인 해제"}
+                        </button>` : ""}
+                    </div>
+                </td>
+            </tr>`;
+    }).join("");
+
+    container.innerHTML = `
+        <div class="mb-4 flex items-start gap-2 text-xs text-slate-400 bg-white/5 border border-cardBorder rounded-xl p-3">
+            <i data-lucide="info" class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5"></i>
+            <p>${dict.account_help || "직원 로그인 계정을 만들고, 일부 직원에게 관리 권한(서브 관리자/직원 관리자)을 부여할 수 있습니다. 최고 관리자(admin) 권한은 부여되지 않습니다."}</p>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                    <tr class="text-slate-400 border-b border-cardBorder bg-white/5">
+                        <th class="py-3 px-4 font-semibold">${dict.th_emp_name || "이름"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.th_emp_id || "사번"}</th>
+                        ${isSuperAdmin ? `<th class="py-3 px-4 font-semibold">${dict.th_company || "회사"}</th>` : ""}
+                        <th class="py-3 px-4 font-semibold">${dict.th_login_id || "로그인 ID"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.th_login_status || "로그인 상태"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.th_admin_role || "관리 권한"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.th_actions || "작업"}</th>
+                    </tr>
+                </thead>
+                <tbody>${bodyRows || `<tr><td colspan="7" class="py-8 text-center text-slate-500">${dict.no_employees || "직원이 없습니다."}</td></tr>`}</tbody>
+            </table>
+        </div>`;
+
+    lucide.createIcons();
+    bindEmployeeAccountActions(container);
+}
+
+function bindEmployeeAccountActions(container) {
+    const dict = translations[currentLang] || translations.ko;
+
+    // 계정 생성/재설정
+    container.querySelectorAll("button[data-emp-account]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+            const employeeId = btn.getAttribute("data-emp-account");
+            const empName = btn.getAttribute("data-emp-name") || employeeId;
+            const loginId = prompt(`[${empName}] ${dict.prompt_login_id || "로그인 ID를 입력하세요"}`, employeeId);
+            if (loginId === null) return;
+            if (!loginId.trim()) { alert(dict.err_login_id_required || "로그인 ID는 필수입니다."); return; }
+            const password = prompt(`[${empName}] ${dict.prompt_password || "비밀번호를 입력하세요 (4자 이상)"}`);
+            if (password === null) return;
+            if (password.length < 4) { alert(dict.err_password_short || "비밀번호는 최소 4자 이상이어야 합니다."); return; }
+
+            try {
+                const resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees/${encodeURIComponent(employeeId)}/account`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ login_id: loginId.trim(), password })
+                });
+                if (!resp.ok) {
+                    const e = await resp.json().catch(() => ({}));
+                    throw new Error(e.error || "실패");
+                }
+                alert(dict.account_saved || "직원 로그인 계정이 저장되었습니다.");
+                renderApprovalAdminContent();
+            } catch (err) {
+                alert((dict.account_save_failed || "계정 저장 실패: ") + err.message);
+            }
+        });
+    });
+
+    // 로그인 해제
+    container.querySelectorAll("button[data-emp-disable]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+            const employeeId = btn.getAttribute("data-emp-disable");
+            if (!confirm(dict.confirm_disable || "이 직원의 로그인을 비활성화하시겠습니까? (부여된 관리 권한도 함께 해제됩니다)")) return;
+            try {
+                const resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees/${encodeURIComponent(employeeId)}/account`, { method: "DELETE" });
+                if (!resp.ok) {
+                    const e = await resp.json().catch(() => ({}));
+                    throw new Error(e.error || "실패");
+                }
+                // 로그인 해제 시 관리 권한도 해제
+                await authenticatedFetch(`${API_BASE_URL}/admin/employees/${encodeURIComponent(employeeId)}/admin-role`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ admin_role: "" })
+                });
+                renderApprovalAdminContent();
+            } catch (err) {
+                alert((dict.account_disable_failed || "로그인 해제 실패: ") + err.message);
+            }
+        });
+    });
+
+    // 관리 권한 부여/변경
+    container.querySelectorAll("select[data-emp-role]").forEach(sel => {
+        sel.addEventListener("change", async () => {
+            const employeeId = sel.getAttribute("data-emp-role");
+            const newRole = sel.value;
+            try {
+                const resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees/${encodeURIComponent(employeeId)}/admin-role`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ admin_role: newRole })
+                });
+                if (!resp.ok) {
+                    const e = await resp.json().catch(() => ({}));
+                    throw new Error(e.error || "실패");
+                }
+                const label = adminRoleLabel(newRole);
+                sel.classList.add("ring-1", "ring-emerald-500");
+                setTimeout(() => sel.classList.remove("ring-1", "ring-emerald-500"), 800);
+            } catch (err) {
+                alert((dict.role_update_failed || "권한 변경 실패: ") + err.message);
+                renderApprovalAdminContent();
+            }
+        });
+    });
+}
+
+// ==================================================================
+// 전자결재 Phase 2: 템플릿 관리 UI (동적 필드 빌더)
+// ==================================================================
+let approvalTemplates = [];
+let participantsCache = [];
+let templateEditor = null; // null=목록보기, {id, title, category, fields[], approval[], agreement[], cc[]}
+
+const FIELD_TYPES = ["text", "textarea", "number", "date", "select"];
+const TEMPLATE_CATEGORIES = ["general", "leave", "expense", "purchase", "report", "hr", "it_request", "other"];
+
+function escapeHtml(s) {
+    return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
+function categoryLabel(cat) {
+    const dict = translations[currentLang] || translations.ko;
+    return (dict["cat_" + cat]) || cat;
+}
+function fieldTypeLabel(t) {
+    const dict = translations[currentLang] || translations.ko;
+    return (dict["ftype_" + t]) || t;
+}
+
+async function renderTemplatesSubtab(container) {
+    if (templateEditor) {
+        renderTemplateEditor(container);
+    } else {
+        await renderTemplateList(container);
+    }
+}
+
+async function fetchParticipantsOnce(force) {
+    if (participantsCache.length && !force) return participantsCache;
+    try {
+        const resp = await authenticatedFetch(`${API_BASE_URL}/approval/participants`);
+        if (resp.ok) participantsCache = await resp.json();
+    } catch (e) { participantsCache = []; }
+    return participantsCache;
+}
+
+async function renderTemplateList(container) {
+    const dict = translations[currentLang] || translations.ko;
+    container.className = "";
+    container.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm">${dict.loading_text || "불러오는 중..."}</div>`;
+
+    try {
+        const resp = await authenticatedFetch(`${API_BASE_URL}/approval/templates`);
+        if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+        approvalTemplates = await resp.json();
+    } catch (err) {
+        container.innerHTML = `<div class="text-center py-8 text-rose-400 text-sm">${escapeHtml(err.message)}</div>`;
+        return;
+    }
+
+    const rows = (approvalTemplates || []).map(t => {
+        let fieldCount = 0;
+        try { fieldCount = JSON.parse(t.body_schema || "[]").length; } catch (e) {}
+        return `
+            <tr class="border-b border-white/5">
+                <td class="py-3 px-4 text-white font-medium">${escapeHtml(t.title)}</td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 bg-indigo-600/20 text-indigo-300 text-[10px] rounded-full">${escapeHtml(categoryLabel(t.category))}</span></td>
+                <td class="py-3 px-4 text-slate-400">${fieldCount} ${dict.tpl_fields_unit || "개 항목"}</td>
+                <td class="py-3 px-4 text-slate-500 font-mono text-[11px]">${(t.updated_at || "").slice(0, 16)}</td>
+                <td class="py-3 px-4">
+                    <div class="flex items-center gap-2">
+                        <button data-tpl-edit="${t.id}" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] rounded-lg font-semibold transition">${dict.btn_edit || "수정"}</button>
+                        <button data-tpl-del="${t.id}" class="px-3 py-1.5 bg-rose-600/80 hover:bg-rose-600 text-white text-[11px] rounded-lg font-semibold transition">${dict.btn_delete || "삭제"}</button>
+                    </div>
+                </td>
+            </tr>`;
+    }).join("");
+
+    container.innerHTML = `
+        <div class="flex items-center justify-between mb-4">
+            <p class="text-xs text-slate-400">${dict.tpl_list_desc || "결재 양식(템플릿)을 만들고 관리합니다. 문서 작성 시 이 양식을 선택합니다."}</p>
+            <button id="btnNewTemplate" class="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-indigo-600 to-pink-600 hover:from-indigo-700 hover:to-pink-700 text-white text-xs rounded-xl font-bold shadow-lg transition">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i><span>${dict.tpl_new || "새 템플릿"}</span>
+            </button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                    <tr class="text-slate-400 border-b border-cardBorder bg-white/5">
+                        <th class="py-3 px-4 font-semibold">${dict.tpl_th_title || "양식명"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.tpl_th_category || "분류"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.tpl_th_fields || "입력 항목"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.tpl_th_updated || "수정일"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.th_actions || "작업"}</th>
+                    </tr>
+                </thead>
+                <tbody>${rows || `<tr><td colspan="5" class="py-8 text-center text-slate-500">${dict.tpl_empty || "등록된 템플릿이 없습니다."}</td></tr>`}</tbody>
+            </table>
+        </div>`;
+
+    lucide.createIcons();
+
+    document.getElementById("btnNewTemplate")?.addEventListener("click", () => openTemplateEditor(null));
+    container.querySelectorAll("button[data-tpl-edit]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const t = approvalTemplates.find(x => String(x.id) === btn.getAttribute("data-tpl-edit"));
+            openTemplateEditor(t);
+        });
+    });
+    container.querySelectorAll("button[data-tpl-del]").forEach(btn => {
+        btn.addEventListener("click", () => deleteTemplate(btn.getAttribute("data-tpl-del")));
+    });
+}
+
+function openTemplateEditor(tpl) {
+    const dict = translations[currentLang] || translations.ko;
+    if (tpl) {
+        let fields = [], approval = [], agreement = [], cc = [];
+        try { fields = JSON.parse(tpl.body_schema || "[]"); } catch (e) {}
+        try { approval = JSON.parse(tpl.default_approval_line || "[]"); } catch (e) {}
+        try { agreement = JSON.parse(tpl.default_agreement_line || "[]"); } catch (e) {}
+        try { cc = JSON.parse(tpl.default_cc_line || "[]"); } catch (e) {}
+        templateEditor = { id: tpl.id, title: tpl.title, category: tpl.category, fields, approval, agreement, cc };
+    } else {
+        templateEditor = { id: null, title: "", category: "general", fields: [], approval: [], agreement: [], cc: [] };
+    }
+    fetchParticipantsOnce().then(() => renderApprovalAdminContent());
+}
+
+function closeTemplateEditor() {
+    templateEditor = null;
+    renderApprovalAdminContent();
+}
+
+function renderTemplateEditor(container) {
+    const dict = translations[currentLang] || translations.ko;
+    const ed = templateEditor;
+    container.className = "";
+
+    const catOptions = TEMPLATE_CATEGORIES.map(c =>
+        `<option value="${c}" ${ed.category === c ? "selected" : ""}>${escapeHtml(categoryLabel(c))}</option>`).join("");
+
+    container.innerHTML = `
+        <div class="flex items-center gap-3 mb-6">
+            <button id="btnTplBack" class="p-2 hover:bg-white/10 rounded-xl text-slate-400 hover:text-white transition"><i data-lucide="arrow-left" class="w-5 h-5"></i></button>
+            <h5 class="font-outfit text-lg font-bold text-white">${ed.id ? (dict.tpl_edit_title || "템플릿 수정") : (dict.tpl_new_title || "새 템플릿")}</h5>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5">${dict.tpl_th_title || "양식명"}</label>
+                <input type="text" id="tplTitle" value="${escapeHtml(ed.title)}" class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5">${dict.tpl_th_category || "분류"}</label>
+                <select id="tplCategory" class="w-full bg-slate-900 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 cursor-pointer">${catOptions}</select>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <div class="flex items-center justify-between mb-3">
+                <h6 class="text-sm font-bold text-white">${dict.tpl_fields_title || "입력 항목 (본문 필드)"}</h6>
+                <button id="btnAddField" class="flex items-center gap-1 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] rounded-lg font-semibold transition">
+                    <i data-lucide="plus" class="w-3 h-3"></i><span>${dict.tpl_add_field || "항목 추가"}</span>
+                </button>
+            </div>
+            <div id="tplFieldsWrap" class="space-y-3"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+            ${renderLinePickerHtml("approval", dict.tpl_line_approval || "기본 결재선 (순차)", dict)}
+            ${renderLinePickerHtml("agreement", dict.tpl_line_agreement || "기본 합의선 (병렬)", dict)}
+            ${renderLinePickerHtml("cc", dict.tpl_line_cc || "기본 참조선", dict)}
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button id="btnSaveTpl" class="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-pink-600 hover:from-indigo-700 hover:to-pink-700 text-white rounded-xl font-bold shadow-lg transition">
+                <i data-lucide="save" class="w-4 h-4"></i><span>${dict.btn_save || "저장"}</span>
+            </button>
+            <button id="btnCancelTpl" class="px-6 py-2.5 bg-white/5 hover:bg-white/10 text-slate-300 rounded-xl font-semibold transition">${dict.btn_cancel || "취소"}</button>
+        </div>`;
+
+    renderTemplateFields();
+    renderAllLinePickers();
+    lucide.createIcons();
+
+    document.getElementById("btnTplBack")?.addEventListener("click", closeTemplateEditor);
+    document.getElementById("btnCancelTpl")?.addEventListener("click", closeTemplateEditor);
+    document.getElementById("btnAddField")?.addEventListener("click", () => {
+        ed.fields.push({ key: "", label: { ko: "", en: "", th: "", lo: "" }, type: "text", options: [] });
+        renderTemplateFields();
+    });
+    document.getElementById("btnSaveTpl")?.addEventListener("click", saveTemplate);
+}
+
+function renderTemplateFields() {
+    const dict = translations[currentLang] || translations.ko;
+    const wrap = document.getElementById("tplFieldsWrap");
+    if (!wrap) return;
+    const ed = templateEditor;
+
+    if (!ed.fields.length) {
+        wrap.innerHTML = `<div class="text-xs text-slate-500 py-4 text-center border border-dashed border-cardBorder rounded-xl">${dict.tpl_no_fields || "입력 항목이 없습니다. '항목 추가'로 필드를 만드세요."}</div>`;
+        return;
+    }
+
+    wrap.innerHTML = ed.fields.map((f, i) => {
+        const typeOpts = FIELD_TYPES.map(t => `<option value="${t}" ${f.type === t ? "selected" : ""}>${escapeHtml(fieldTypeLabel(t))}</option>`).join("");
+        const optionsRow = f.type === "select" ? `
+            <div class="mt-2">
+                <label class="block text-[10px] text-slate-500 mb-1">${dict.tpl_options || "선택 옵션 (쉼표로 구분)"}</label>
+                <input type="text" data-field-options="${i}" value="${escapeHtml((f.options || []).join(", "))}" class="w-full bg-white/5 border border-cardBorder rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+            </div>` : "";
+        return `
+            <div class="bg-white/5 border border-cardBorder rounded-xl p-3">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[11px] font-bold text-indigo-300">#${i + 1}</span>
+                    <div class="flex items-center gap-1">
+                        <button data-field-up="${i}" class="p-1 hover:bg-white/10 rounded text-slate-400" title="위로"><i data-lucide="chevron-up" class="w-3.5 h-3.5"></i></button>
+                        <button data-field-down="${i}" class="p-1 hover:bg-white/10 rounded text-slate-400" title="아래로"><i data-lucide="chevron-down" class="w-3.5 h-3.5"></i></button>
+                        <button data-field-del="${i}" class="p-1 hover:bg-rose-500/20 rounded text-rose-400" title="삭제"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    <div><label class="block text-[10px] text-slate-500 mb-1">${dict.tpl_label_ko || "라벨(한국어)"}</label>
+                        <input type="text" data-field-label-ko="${i}" value="${escapeHtml(f.label?.ko || "")}" class="w-full bg-white/5 border border-cardBorder rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"></div>
+                    <div><label class="block text-[10px] text-slate-500 mb-1">EN</label>
+                        <input type="text" data-field-label-en="${i}" value="${escapeHtml(f.label?.en || "")}" class="w-full bg-white/5 border border-cardBorder rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"></div>
+                    <div><label class="block text-[10px] text-slate-500 mb-1">TH</label>
+                        <input type="text" data-field-label-th="${i}" value="${escapeHtml(f.label?.th || "")}" class="w-full bg-white/5 border border-cardBorder rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"></div>
+                    <div><label class="block text-[10px] text-slate-500 mb-1">LO</label>
+                        <input type="text" data-field-label-lo="${i}" value="${escapeHtml(f.label?.lo || "")}" class="w-full bg-white/5 border border-cardBorder rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                    <div><label class="block text-[10px] text-slate-500 mb-1">${dict.tpl_field_key || "키(영문 식별자, 선택)"}</label>
+                        <input type="text" data-field-key="${i}" value="${escapeHtml(f.key || "")}" placeholder="auto" class="w-full bg-white/5 border border-cardBorder rounded-lg px-2.5 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-indigo-500"></div>
+                    <div><label class="block text-[10px] text-slate-500 mb-1">${dict.tpl_field_type || "타입"}</label>
+                        <select data-field-type="${i}" class="w-full bg-slate-900 border border-cardBorder rounded-lg px-2.5 py-1.5 text-xs text-white cursor-pointer focus:outline-none focus:border-indigo-500">${typeOpts}</select></div>
+                </div>
+                ${optionsRow}
+            </div>`;
+    }).join("");
+
+    lucide.createIcons();
+    bindFieldEditors();
+}
+
+function bindFieldEditors() {
+    const ed = templateEditor;
+    const wrap = document.getElementById("tplFieldsWrap");
+    if (!wrap) return;
+
+    const setVal = (attr, cb) => {
+        wrap.querySelectorAll(`[${attr}]`).forEach(el => {
+            const i = parseInt(el.getAttribute(attr), 10);
+            el.addEventListener("input", () => cb(i, el.value));
+            el.addEventListener("change", () => cb(i, el.value));
+        });
+    };
+    setVal("data-field-label-ko", (i, v) => { ed.fields[i].label = ed.fields[i].label || {}; ed.fields[i].label.ko = v; });
+    setVal("data-field-label-en", (i, v) => { ed.fields[i].label = ed.fields[i].label || {}; ed.fields[i].label.en = v; });
+    setVal("data-field-label-th", (i, v) => { ed.fields[i].label = ed.fields[i].label || {}; ed.fields[i].label.th = v; });
+    setVal("data-field-label-lo", (i, v) => { ed.fields[i].label = ed.fields[i].label || {}; ed.fields[i].label.lo = v; });
+    setVal("data-field-key", (i, v) => { ed.fields[i].key = v; });
+    setVal("data-field-options", (i, v) => { ed.fields[i].options = v.split(",").map(s => s.trim()).filter(Boolean); });
+
+    wrap.querySelectorAll("[data-field-type]").forEach(el => {
+        el.addEventListener("change", () => {
+            const i = parseInt(el.getAttribute("data-field-type"), 10);
+            ed.fields[i].type = el.value;
+            renderTemplateFields(); // select 옵션 표시 갱신
+        });
+    });
+    wrap.querySelectorAll("[data-field-del]").forEach(el => {
+        el.addEventListener("click", () => { ed.fields.splice(parseInt(el.getAttribute("data-field-del"), 10), 1); renderTemplateFields(); });
+    });
+    wrap.querySelectorAll("[data-field-up]").forEach(el => {
+        el.addEventListener("click", () => {
+            const i = parseInt(el.getAttribute("data-field-up"), 10);
+            if (i > 0) { [ed.fields[i - 1], ed.fields[i]] = [ed.fields[i], ed.fields[i - 1]]; renderTemplateFields(); }
+        });
+    });
+    wrap.querySelectorAll("[data-field-down]").forEach(el => {
+        el.addEventListener("click", () => {
+            const i = parseInt(el.getAttribute("data-field-down"), 10);
+            if (i < ed.fields.length - 1) { [ed.fields[i + 1], ed.fields[i]] = [ed.fields[i], ed.fields[i + 1]]; renderTemplateFields(); }
+        });
+    });
+}
+
+function renderLinePickerHtml(kind, title, dict) {
+    return `
+        <div class="bg-white/5 border border-cardBorder rounded-xl p-3">
+            <h6 class="text-xs font-bold text-white mb-2">${escapeHtml(title)}</h6>
+            <div class="flex gap-1.5 mb-2">
+                <select data-line-select="${kind}" class="flex-1 bg-slate-900 border border-cardBorder rounded-lg px-2 py-1.5 text-[11px] text-white cursor-pointer focus:outline-none"></select>
+                <button data-line-add="${kind}" class="px-2.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] rounded-lg font-semibold transition">+</button>
+            </div>
+            <div data-line-list="${kind}" class="space-y-1.5"></div>
+        </div>`;
+}
+
+function renderAllLinePickers() {
+    ["approval", "agreement", "cc"].forEach(renderLinePicker);
+}
+
+function renderLinePicker(kind) {
+    const dict = translations[currentLang] || translations.ko;
+    const ed = templateEditor;
+    const list = ed[kind] || [];
+    const sel = document.querySelector(`[data-line-select="${kind}"]`);
+    const listWrap = document.querySelector(`[data-line-list="${kind}"]`);
+    if (!sel || !listWrap) return;
+
+    // 선택 드롭다운: 참여자 목록 (이미 추가된 것 제외)
+    const chosen = new Set(list.map(x => x.id));
+    const opts = participantsCache.filter(p => !chosen.has(p.id)).map(p =>
+        `<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)} (${p.type === "admin" ? (dict.p_admin || "관리자") : (dict.p_employee || "직원")})</option>`).join("");
+    sel.innerHTML = opts || `<option value="">${dict.tpl_no_participants || "추가 가능한 대상 없음"}</option>`;
+
+    const ordered = kind === "approval";
+    listWrap.innerHTML = list.length ? list.map((item, i) => {
+        const p = participantsCache.find(x => x.id === item.id);
+        const name = p ? p.name : item.id;
+        const orderBadge = ordered ? `<span class="text-[10px] font-bold text-indigo-300 mr-1">${i + 1}.</span>` : "";
+        const moveBtns = ordered ? `
+            <button data-line-up="${kind}:${i}" class="p-0.5 hover:bg-white/10 rounded text-slate-400"><i data-lucide="chevron-up" class="w-3 h-3"></i></button>
+            <button data-line-down="${kind}:${i}" class="p-0.5 hover:bg-white/10 rounded text-slate-400"><i data-lucide="chevron-down" class="w-3 h-3"></i></button>` : "";
+        return `
+            <div class="flex items-center justify-between bg-white/5 rounded-lg px-2 py-1.5">
+                <span class="text-[11px] text-slate-200">${orderBadge}${escapeHtml(name)}</span>
+                <div class="flex items-center gap-0.5">${moveBtns}
+                    <button data-line-del="${kind}:${i}" class="p-0.5 hover:bg-rose-500/20 rounded text-rose-400"><i data-lucide="x" class="w-3 h-3"></i></button>
+                </div>
+            </div>`;
+    }).join("") : `<div class="text-[10px] text-slate-500 text-center py-1">${dict.tpl_line_empty || "지정 안 함"}</div>`;
+
+    lucide.createIcons();
+
+    // 바인딩
+    const addBtn = document.querySelector(`[data-line-add="${kind}"]`);
+    if (addBtn && !addBtn.dataset.bound) {
+        addBtn.dataset.bound = "1";
+        addBtn.addEventListener("click", () => {
+            const selEl = document.querySelector(`[data-line-select="${kind}"]`);
+            const val = selEl?.value;
+            if (!val) return;
+            const p = participantsCache.find(x => x.id === val);
+            ed[kind].push({ id: val, type: p ? p.type : "admin", name: p ? p.name : val });
+            renderLinePicker(kind);
+        });
+    }
+    listWrap.querySelectorAll("[data-line-del]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const [k, idx] = btn.getAttribute("data-line-del").split(":");
+            ed[k].splice(parseInt(idx, 10), 1); renderLinePicker(k);
+        });
+    });
+    listWrap.querySelectorAll("[data-line-up]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const [k, idxs] = btn.getAttribute("data-line-up").split(":"); const i = parseInt(idxs, 10);
+            if (i > 0) { [ed[k][i - 1], ed[k][i]] = [ed[k][i], ed[k][i - 1]]; renderLinePicker(k); }
+        });
+    });
+    listWrap.querySelectorAll("[data-line-down]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const [k, idxs] = btn.getAttribute("data-line-down").split(":"); const i = parseInt(idxs, 10);
+            if (i < ed[k].length - 1) { [ed[k][i + 1], ed[k][i]] = [ed[k][i], ed[k][i + 1]]; renderLinePicker(k); }
+        });
+    });
+}
+
+async function saveTemplate() {
+    const dict = translations[currentLang] || translations.ko;
+    const ed = templateEditor;
+    const title = document.getElementById("tplTitle")?.value.trim() || "";
+    const category = document.getElementById("tplCategory")?.value || "general";
+
+    if (!title) { alert(dict.tpl_err_title || "양식명을 입력해 주세요."); return; }
+
+    // 필드 key 자동 생성 및 검증
+    const usedKeys = new Set();
+    const fields = ed.fields.map((f, i) => {
+        let key = (f.key || "").trim();
+        if (!key) key = "field_" + (i + 1);
+        key = key.replace(/[^a-zA-Z0-9_]/g, "_");
+        while (usedKeys.has(key)) key = key + "_";
+        usedKeys.add(key);
+        const label = f.label || {};
+        if (!label.ko && !label.en) label.ko = key;
+        const field = { key, label, type: FIELD_TYPES.includes(f.type) ? f.type : "text" };
+        if (field.type === "select") field.options = f.options || [];
+        return field;
+    });
+
+    const payload = {
+        title, category,
+        body_schema: fields,
+        default_approval_line: ed.approval,
+        default_agreement_line: ed.agreement,
+        default_cc_line: ed.cc
+    };
+
+    try {
+        const url = ed.id ? `${API_BASE_URL}/approval/templates/${ed.id}` : `${API_BASE_URL}/approval/templates`;
+        const method = ed.id ? "PUT" : "POST";
+        const resp = await authenticatedFetch(url, {
+            method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload)
+        });
+        if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "저장 실패"); }
+        alert(dict.tpl_saved || "템플릿이 저장되었습니다.");
+        templateEditor = null;
+        renderApprovalAdminContent();
+    } catch (err) {
+        alert((dict.tpl_save_failed || "템플릿 저장 실패: ") + err.message);
+    }
+}
+
+async function deleteTemplate(id) {
+    const dict = translations[currentLang] || translations.ko;
+    if (!confirm(dict.tpl_confirm_delete || "이 템플릿을 삭제하시겠습니까?")) return;
+    try {
+        const resp = await authenticatedFetch(`${API_BASE_URL}/approval/templates/${id}`, { method: "DELETE" });
+        if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "삭제 실패"); }
+        renderApprovalAdminContent();
+    } catch (err) {
+        alert((dict.tpl_delete_failed || "템플릿 삭제 실패: ") + err.message);
+    }
+}
+
+// ==================================================================
+// 전자결재 Phase 4: 문서 목록 / 상세 모달 / 작성 폼 (프론트엔드)
+// ==================================================================
+let approvalUserSubtab = "approval-user-new";
+let currentDetailDocId = null;
+
+// ── 상태/우선순위 배지 ──
+function docStatusBadge(status) {
+    const dict = translations[currentLang] || translations.ko;
+    const map = {
+        draft: ["bg-slate-600/20 text-slate-300", dict.st_draft || "임시저장"],
+        submitted: ["bg-blue-600/20 text-blue-300", dict.st_submitted || "제출됨"],
+        in_review: ["bg-amber-600/20 text-amber-300", dict.st_in_review || "결재중"],
+        approved: ["bg-emerald-600/20 text-emerald-300", dict.st_approved || "승인완료"],
+        rejected: ["bg-rose-600/20 text-rose-300", dict.st_rejected || "반려"],
+        withdrawn: ["bg-purple-600/20 text-purple-300", dict.st_withdrawn || "회수"]
+    };
+    const pair = map[status] || ["bg-slate-600/20 text-slate-300", status];
+    return `<span class="px-2 py-0.5 ${pair[0]} text-[10px] rounded-full font-semibold">${escapeHtml(pair[1])}</span>`;
+}
+function docPriorityBadge(priority) {
+    const dict = translations[currentLang] || translations.ko;
+    if (priority === "normal" || !priority) return "";
+    const map = {
+        low: ["bg-slate-600/20 text-slate-400", dict.pr_low || "낮음"],
+        high: ["bg-orange-600/20 text-orange-300", dict.pr_high || "높음"],
+        urgent: ["bg-rose-600/30 text-rose-300", dict.pr_urgent || "긴급"]
+    };
+    const m = map[priority]; if (!m) return "";
+    return `<span class="px-2 py-0.5 ${m[0]} text-[10px] rounded-full font-semibold">${escapeHtml(m[1])}</span>`;
+}
+
+// ── 나의 결재 탭 ──
+function bindApprovalUserPills() {
+    const wrap = document.getElementById("approvalUserPills");
+    if (!wrap || wrap.dataset.bound === "1") return;
+    wrap.dataset.bound = "1";
+    wrap.querySelectorAll("button[data-subtab]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            approvalUserSubtab = btn.getAttribute("data-subtab");
+            wrap.querySelectorAll("button[data-subtab]").forEach(b => {
+                b.className = "px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 text-slate-400 hover:text-white transition";
+            });
+            btn.className = "px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 text-white transition";
+            renderApprovalUserContent();
+        });
+    });
+}
+
+async function fetchApprovalUserTab() {
+    bindApprovalUserPills();
+    renderApprovalUserContent();
+    refreshPendingBadge();
+}
+
+function renderApprovalUserContent() {
+    const container = document.getElementById("approvalUserContent");
+    if (!container) return;
+    const dict = translations[currentLang] || translations.ko;
+    if (approvalUserSubtab === "approval-user-new") {
+        renderNewDocumentForm(container);
+    } else if (approvalUserSubtab === "approval-user-mine") {
+        renderDocumentListView(container, "mine", { title: dict.approval_pill_mine });
+    } else if (approvalUserSubtab === "approval-user-todo") {
+        renderDocumentListView(container, "pending", { title: dict.approval_pill_todo });
+    } else if (approvalUserSubtab === "approval-user-cc") {
+        renderDocumentListView(container, "cc", { title: dict.approval_pill_cc, showRead: true });
+    }
+}
+
+// ── 문서 목록 뷰 (mode: pending|mine|cc|all) ──
+async function renderDocumentListView(container, mode, opts) {
+    opts = opts || {};
+    const dict = translations[currentLang] || translations.ko;
+    container.className = "";
+    container.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm">${dict.loading_text || "불러오는 중..."}</div>`;
+
+    const endpointMap = {
+        pending: "/approval/pending",
+        mine: "/approval/my-docs",
+        cc: "/approval/cc-docs",
+        all: "/approval/documents"
+    };
+    let url = API_BASE_URL + endpointMap[mode];
+    if (mode === "all") {
+        const qs = [];
+        const st = document.getElementById("docFilterStatus")?.value;
+        const search = document.getElementById("docFilterSearch")?.value;
+        if (st) qs.push("status=" + encodeURIComponent(st));
+        if (search) qs.push("search=" + encodeURIComponent(search));
+        if (qs.length) url += "?" + qs.join("&");
+    }
+
+    let rows;
+    try {
+        const resp = await authenticatedFetch(url);
+        if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+        rows = await resp.json();
+    } catch (err) {
+        container.innerHTML = `<div class="text-center py-8 text-rose-400 text-sm">${escapeHtml(err.message)}</div>`;
+        return;
+    }
+
+    const filterBar = opts.filters ? `
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+            <select id="docFilterStatus" class="bg-slate-900 border border-cardBorder text-slate-200 text-xs rounded-xl px-3 py-2 cursor-pointer focus:outline-none">
+                <option value="">${dict.all_status || "전체 상태"}</option>
+                <option value="draft">${dict.st_draft || "임시저장"}</option>
+                <option value="in_review">${dict.st_in_review || "결재중"}</option>
+                <option value="approved">${dict.st_approved || "승인완료"}</option>
+                <option value="rejected">${dict.st_rejected || "반려"}</option>
+                <option value="withdrawn">${dict.st_withdrawn || "회수"}</option>
+            </select>
+            <input type="text" id="docFilterSearch" placeholder="${dict.doc_search || "제목/문서번호 검색"}" class="bg-white/5 border border-cardBorder rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
+            <button id="docFilterApply" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs rounded-xl font-bold transition">${dict.btn_apply || "적용"}</button>
+            <button id="docExportExcel" class="flex items-center gap-1.5 px-4 py-2 bg-emerald-600/80 hover:bg-emerald-600 text-white text-xs rounded-xl font-bold transition ml-auto"><i data-lucide="file-down" class="w-3.5 h-3.5"></i>${dict.doc_export_excel || "Excel 내보내기"}</button>
+        </div>` : "";
+
+    const bodyRows = (rows || []).map(d => {
+        const readCell = opts.showRead
+            ? `<td class="py-3 px-4">${d.read_at ? `<span class="text-emerald-400 text-[10px]">● ${dict.cc_read || "읽음"}</span>` : `<span class="text-slate-500 text-[10px]">○ ${dict.cc_unread || "안읽음"}</span>`}</td>`
+            : "";
+        return `
+            <tr class="border-b border-white/5 hover:bg-white/5 cursor-pointer" data-doc-open="${d.id}">
+                <td class="py-3 px-4 font-mono text-indigo-300 text-[11px]">${escapeHtml(d.doc_number)}</td>
+                <td class="py-3 px-4 text-white font-medium">${escapeHtml(d.title)} ${docPriorityBadge(d.priority)}</td>
+                <td class="py-3 px-4 text-slate-400">${escapeHtml(categoryLabel(d.category))}</td>
+                <td class="py-3 px-4">${docStatusBadge(d.status)}</td>
+                <td class="py-3 px-4 text-slate-300">${escapeHtml(d.submitted_by_name || d.submitted_by || "")}</td>
+                <td class="py-3 px-4 text-slate-500 font-mono text-[11px]">${(d.submitted_at || d.created_at || "").slice(0, 16)}</td>
+                ${readCell}
+            </tr>`;
+    }).join("");
+
+    const colspan = opts.showRead ? 7 : 6;
+    container.innerHTML = `
+        ${filterBar}
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                    <tr class="text-slate-400 border-b border-cardBorder bg-white/5">
+                        <th class="py-3 px-4 font-semibold">${dict.doc_th_number || "문서번호"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.doc_th_title || "제목"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.tpl_th_category || "분류"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.doc_th_status || "상태"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.doc_th_drafter || "기안자"}</th>
+                        <th class="py-3 px-4 font-semibold">${dict.doc_th_date || "일시"}</th>
+                        ${opts.showRead ? `<th class="py-3 px-4 font-semibold">${dict.doc_th_read || "열람"}</th>` : ""}
+                    </tr>
+                </thead>
+                <tbody>${bodyRows || `<tr><td colspan="${colspan}" class="py-8 text-center text-slate-500">${dict.doc_empty || "문서가 없습니다."}</td></tr>`}</tbody>
+            </table>
+        </div>`;
+
+    lucide.createIcons();
+    container.querySelectorAll("[data-doc-open]").forEach(tr => {
+        tr.addEventListener("click", () => openDocumentDetail(tr.getAttribute("data-doc-open")));
+    });
+    document.getElementById("docFilterApply")?.addEventListener("click", () => renderDocumentListView(container, mode, opts));
+    document.getElementById("docFilterSearch")?.addEventListener("keydown", (e) => { if (e.key === "Enter") renderDocumentListView(container, mode, opts); });
+    document.getElementById("docExportExcel")?.addEventListener("click", () => exportApprovalDocsToExcel(rows || []));
+}
+
+// 결재 문서 Excel 내보내기
+function exportApprovalDocsToExcel(rows) {
+    const dict = translations[currentLang] || translations.ko;
+    if (typeof XLSX === "undefined") { alert("Excel 라이브러리를 불러올 수 없습니다."); return; }
+    const statusLabel = (st) => {
+        const m = { draft: dict.st_draft, submitted: dict.st_submitted, in_review: dict.st_in_review, approved: dict.st_approved, rejected: dict.st_rejected, withdrawn: dict.st_withdrawn };
+        return m[st] || st;
+    };
+    const header = [dict.doc_th_number || "문서번호", dict.doc_th_title || "제목", dict.tpl_th_category || "분류", dict.doc_th_status || "상태", dict.doc_th_drafter || "기안자", dict.doc_th_date || "일시"];
+    const aoa = [header].concat((rows || []).map(d => [
+        d.doc_number, d.title, categoryLabel(d.category), statusLabel(d.status),
+        d.submitted_by_name || d.submitted_by || "", (d.submitted_at || d.created_at || "").slice(0, 16)
+    ]));
+    const ws = XLSX.utils.aoa_to_sheet(aoa);
+    ws["!cols"] = [{ wch: 18 }, { wch: 30 }, { wch: 10 }, { wch: 12 }, { wch: 14 }, { wch: 18 }];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Approvals");
+    const today = new Date().toISOString().slice(0, 10);
+    XLSX.writeFile(wb, `PGuard_전자결재_${today}.xlsx`);
+}
+
+// ── 문서 상세 모달 ──
+function localizedFieldLabel(label) {
+    if (!label) return "";
+    if (typeof label === "string") return label;
+    return label[currentLang] || label.ko || label.en || Object.values(label)[0] || "";
+}
+
+async function openDocumentDetail(id) {
+    if (currentDetailDocId !== id) detailTransLang = null;
+    currentDetailDocId = id;
+    const dict = translations[currentLang] || translations.ko;
+    const modal = document.getElementById("approvalDetailModal");
+    const content = document.getElementById("approvalDetailContent");
+    modal.classList.remove("hidden");
+    content.innerHTML = `<div class="text-center py-12 text-slate-500 text-sm">${dict.loading_text || "불러오는 중..."}</div>`;
+
+    let data;
+    try {
+        const resp = await authenticatedFetch(`${API_BASE_URL}/approval/documents/${id}`);
+        if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+        data = await resp.json();
+    } catch (err) {
+        content.innerHTML = `<div class="text-center py-12 text-rose-400 text-sm">${escapeHtml(err.message)}</div>`;
+        return;
+    }
+    renderDocumentDetail(data);
+    refreshPendingBadge();
+}
+
+function closeDocumentDetail() {
+    document.getElementById("approvalDetailModal").classList.add("hidden");
+    currentDetailDocId = null;
+}
+
+function renderDocumentDetail(data) {
+    const dict = translations[currentLang] || translations.ko;
+    const content = document.getElementById("approvalDetailContent");
+    const doc = data.document;
+    const lines = data.lines || [];
+    const viewer = data.viewer;
+
+    // 본문 렌더 (body_schema 라벨 + body_data 값, 번역 병기 지원)
+    let schema = [], bodyData = {}, translated = null;
+    try { schema = JSON.parse(doc.body_schema || "[]"); } catch (e) {}
+    try { bodyData = JSON.parse(doc.body_data || "{}"); } catch (e) {}
+    try { translated = doc.body_data_translated ? JSON.parse(doc.body_data_translated) : null; } catch (e) {}
+    const source = doc.original_language || "ko";
+    const availableLangs = translated ? Object.keys(translated._status || {}).filter(l => translated._status[l] === "ok") : [];
+
+    const buildBodyHtml = (transLang) => {
+        if (!schema.length) return `<div class="text-xs text-slate-500 py-2">${dict.doc_no_body || "본문 내용이 없습니다."}</div>`;
+        return schema.map(f => {
+            const val = bodyData[f.key];
+            const tVal = (transLang && translated && translated[transLang]) ? translated[transLang][f.key] : null;
+            return `<div class="py-2 border-b border-white/5 flex gap-4">
+                <span class="text-xs text-slate-400 w-32 shrink-0">${escapeHtml(localizedFieldLabel(f.label))}</span>
+                <span class="text-sm text-white whitespace-pre-wrap flex-1">${escapeHtml(val != null && val !== "" ? val : "-")}${tVal ? `<br><span class="text-[12px] text-indigo-300">↳ ${escapeHtml(tVal)}</span>` : ""}</span>
+            </div>`;
+        }).join("");
+    };
+    const bodyHtml = buildBodyHtml(detailTransLang);
+
+    // 번역 컨트롤 (원문 + 번역 가능 언어 드롭다운, 번역 실행 버튼)
+    const canTranslate = (doc.submitted_by === viewer.id && doc.submitted_by_type === viewer.type) || viewer.type === "admin";
+    const langOptions = `<option value="">${dict.trans_original || "원문"}</option>` +
+        availableLangs.map(l => `<option value="${l}" ${detailTransLang === l ? "selected" : ""}>${l.toUpperCase()}</option>`).join("");
+    const transControls = `
+        <div class="flex items-center gap-2">
+            ${availableLangs.length ? `<select id="detailTransSel" class="bg-slate-900 border border-cardBorder text-slate-200 text-[11px] rounded-lg px-2 py-1 cursor-pointer focus:outline-none">${langOptions}</select>` : ""}
+            ${canTranslate ? `<button id="btnTranslateDoc" class="flex items-center gap-1 px-2.5 py-1 bg-indigo-600/80 hover:bg-indigo-600 text-white text-[10px] rounded-lg font-semibold transition"><i data-lucide="languages" class="w-3 h-3"></i>${dict.trans_run || "번역"}</button>` : ""}
+        </div>`;
+
+    // 첨부파일
+    const attachments = data.attachments || [];
+    const canManageAttach = (doc.submitted_by === viewer.id && doc.submitted_by_type === viewer.type && ["draft", "submitted", "in_review"].includes(doc.status));
+    const attachRows = attachments.map(a => `
+        <div class="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+            <button data-att-download="${a.id}" data-att-name="${escapeHtml(a.original_name)}" class="flex items-center gap-2 min-w-0 text-left hover:text-indigo-300 transition">
+                <i data-lucide="${fileIconFor(a.mime_type)}" class="w-3.5 h-3.5 text-indigo-400 shrink-0"></i>
+                <span class="text-[11px] text-slate-200 truncate">${escapeHtml(a.original_name)}</span>
+                <span class="text-[10px] text-slate-500 shrink-0">${formatFileSize(a.file_size)}</span>
+                <i data-lucide="download" class="w-3 h-3 text-slate-500 shrink-0"></i>
+            </button>
+            ${canManageAttach ? `<button data-att-detail-del="${a.id}" class="p-1 hover:bg-rose-500/20 rounded text-rose-400 shrink-0"><i data-lucide="trash-2" class="w-3 h-3"></i></button>` : ""}
+        </div>`).join("");
+    const attachHtml = (attachments.length || canManageAttach) ? `
+        <div class="bg-white/5 border border-cardBorder rounded-xl p-4 mb-5">
+            <div class="flex items-center justify-between mb-2">
+                <div class="text-[11px] font-bold text-slate-400">${dict.doc_attachments || "첨부파일"}</div>
+                ${canManageAttach ? `<label class="flex items-center gap-1 px-2.5 py-1 bg-indigo-600 hover:bg-indigo-700 text-white text-[10px] rounded-lg font-semibold transition cursor-pointer"><i data-lucide="paperclip" class="w-3 h-3"></i>${dict.doc_add_file || "파일 추가"}<input type="file" id="detailFileInput" multiple class="hidden"></label>` : ""}
+            </div>
+            <div class="space-y-1.5">${attachRows || `<div class="text-[11px] text-slate-500 text-center py-1">${dict.doc_no_files || "첨부된 파일이 없습니다."}</div>`}</div>
+        </div>` : "";
+
+    // 결재선 시각화
+    const approvalLines = lines.filter(l => l.line_type === "approval").sort((a, b) => a.step_order - b.step_order);
+    const agreementLines = lines.filter(l => l.line_type === "agreement");
+    const ccLines = lines.filter(l => l.line_type === "cc");
+
+    const lineStateBadge = (st) => {
+        const m = {
+            pending: ["bg-slate-600/20 text-slate-400", dict.ls_pending || "대기"],
+            current: ["bg-amber-600/20 text-amber-300", dict.ls_current || "진행중"],
+            approved: ["bg-emerald-600/20 text-emerald-300", dict.ls_approved || "완료"],
+            rejected: ["bg-rose-600/20 text-rose-300", dict.ls_rejected || "반려"],
+            skipped: ["bg-slate-700/20 text-slate-500", dict.ls_skipped || "건너뜀"]
+        };
+        const p = m[st] || m.pending;
+        return `<span class="px-2 py-0.5 ${p[0]} text-[10px] rounded-full">${p[1]}</span>`;
+    };
+    const lineRow = (l) => `
+        <div class="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+            <div class="flex items-center gap-2">
+                <span class="text-xs text-white font-medium">${escapeHtml(l.approver_name || l.approver_id)}</span>
+                ${l.read_at ? `<i data-lucide="eye" class="w-3 h-3 text-emerald-400" title="${(l.read_at||'').slice(0,16)}"></i>` : ""}
+            </div>
+            <div class="flex items-center gap-2">
+                ${l.comment ? `<span class="text-[10px] text-slate-400 italic max-w-[160px] truncate" title="${escapeHtml(l.comment)}">"${escapeHtml(l.comment)}"</span>` : ""}
+                ${lineStateBadge(l.status)}
+            </div>
+        </div>`;
+
+    const approvalViz = approvalLines.length ? `
+        <div class="mb-3">
+            <div class="text-[11px] font-bold text-slate-400 mb-1.5">${dict.viz_approval || "결재선 (순차)"}</div>
+            <div class="space-y-1.5">${approvalLines.map((l, i) => `<div class="flex items-center gap-2"><span class="text-[10px] font-bold text-indigo-300 w-4">${i + 1}</span>${lineRow(l)}</div>`).join("")}</div>
+        </div>` : "";
+    const agreementViz = agreementLines.length ? `
+        <div class="mb-3">
+            <div class="text-[11px] font-bold text-slate-400 mb-1.5">${dict.viz_agreement || "합의선 (병렬)"}</div>
+            <div class="space-y-1.5">${agreementLines.map(lineRow).join("")}</div>
+        </div>` : "";
+    const ccViz = ccLines.length ? `
+        <div class="mb-3">
+            <div class="text-[11px] font-bold text-slate-400 mb-1.5">${dict.viz_cc || "참조 (읽음)"}</div>
+            <div class="space-y-1.5">${ccLines.map(lineRow).join("")}</div>
+        </div>` : "";
+
+    // 활동 타임라인
+    const actionLabel = (a) => (dict["act_ap_" + a]) || a;
+    const timeline = (data.activity_log || []).map(log => `
+        <div class="flex items-start gap-2 text-[11px]">
+            <span class="text-slate-500 font-mono shrink-0">${(log.created_at || "").slice(5, 16)}</span>
+            <span class="text-slate-300">${escapeHtml(log.actor_id)} · ${escapeHtml(actionLabel(log.action))}${log.details ? " — " + escapeHtml(log.details) : ""}</span>
+        </div>`).join("");
+
+    // 액션 버튼 컨텍스트
+    const myApprovalCurrent = approvalLines.find(l => l.approver_id === viewer.id && l.approver_type === viewer.type && l.status === "current");
+    const myAgreementCurrent = agreementLines.find(l => l.approver_id === viewer.id && l.approver_type === viewer.type && l.status === "current");
+    const isDrafter = doc.submitted_by === viewer.id && doc.submitted_by_type === viewer.type;
+    const canWithdraw = isDrafter && ["submitted", "in_review"].includes(doc.status);
+    const canEditDraft = isDrafter && doc.status === "draft";
+
+    let actionBtns = "";
+    if (myApprovalCurrent) {
+        actionBtns += `<button data-doc-act="approve" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs rounded-xl font-bold transition">${dict.act_approve || "승인"}</button>`;
+        actionBtns += `<button data-doc-act="reject" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs rounded-xl font-bold transition">${dict.act_reject || "반려"}</button>`;
+    }
+    if (myAgreementCurrent) {
+        actionBtns += `<button data-doc-act="agree" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs rounded-xl font-bold transition">${dict.act_agree || "합의"}</button>`;
+        actionBtns += `<button data-doc-act="reject" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs rounded-xl font-bold transition">${dict.act_reject || "반려"}</button>`;
+    }
+    if (canWithdraw) {
+        actionBtns += `<button data-doc-act="withdraw" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs rounded-xl font-bold transition">${dict.act_withdraw || "회수"}</button>`;
+    }
+    if (canEditDraft) {
+        actionBtns += `<button data-doc-act="edit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs rounded-xl font-bold transition">${dict.act_edit_draft || "이어서 작성"}</button>`;
+        actionBtns += `<button data-doc-act="submit" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs rounded-xl font-bold transition">${dict.act_submit || "제출"}</button>`;
+    }
+
+    content.innerHTML = `
+        <div class="flex items-start justify-between mb-4">
+            <div>
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="font-mono text-indigo-300 text-xs">${escapeHtml(doc.doc_number)}</span>
+                    ${docStatusBadge(doc.status)} ${docPriorityBadge(doc.priority)}
+                </div>
+                <h3 class="font-outfit text-xl font-bold text-white">${escapeHtml(doc.title)}</h3>
+                <p class="text-xs text-slate-400 mt-1">${dict.doc_th_drafter || "기안자"}: ${escapeHtml(doc.submitted_by_name || doc.submitted_by)} · ${(doc.submitted_at || doc.created_at || "").slice(0, 16)}</p>
+            </div>
+            <button id="btnCloseDetail" class="p-2 hover:bg-white/10 rounded-xl text-slate-400 hover:text-white transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+
+        ${doc.rejection_reason ? `<div class="mb-4 text-xs text-rose-300 bg-rose-500/10 border border-rose-500/20 rounded-xl px-3 py-2"><b>${dict.doc_reject_reason || "반려 사유"}:</b> ${escapeHtml(doc.rejection_reason)}</div>` : ""}
+
+        <div class="bg-white/5 border border-cardBorder rounded-xl p-4 mb-5">
+            <div class="flex items-center justify-between mb-2">
+                <div class="text-[11px] font-bold text-slate-400">${dict.doc_body || "문서 본문"}</div>
+                ${transControls}
+            </div>
+            <div id="detailBodyContent">${bodyHtml}</div>
+        </div>
+
+        ${attachHtml}
+
+        <div class="mb-5">${approvalViz}${agreementViz}${ccViz}</div>
+
+        ${timeline ? `<details class="mb-5"><summary class="text-[11px] font-bold text-slate-400 cursor-pointer">${dict.doc_timeline || "활동 이력"}</summary><div class="space-y-1 mt-2 pl-2">${timeline}</div></details>` : ""}
+
+        ${actionBtns ? `<div class="flex flex-wrap gap-2 pt-4 border-t border-white/5">${actionBtns}</div>` : ""}
+    `;
+
+    lucide.createIcons();
+    document.getElementById("btnCloseDetail")?.addEventListener("click", closeDocumentDetail);
+    content.querySelectorAll("[data-doc-act]").forEach(btn => {
+        btn.addEventListener("click", () => handleDocAction(btn.getAttribute("data-doc-act"), doc));
+    });
+
+    // 번역 언어 병기 드롭다운
+    document.getElementById("detailTransSel")?.addEventListener("change", (e) => {
+        detailTransLang = e.target.value || null;
+        const bodyEl = document.getElementById("detailBodyContent");
+        if (bodyEl) { bodyEl.innerHTML = buildBodyHtml(detailTransLang); lucide.createIcons(); }
+    });
+    // 번역 실행
+    document.getElementById("btnTranslateDoc")?.addEventListener("click", async () => {
+        const btn = document.getElementById("btnTranslateDoc");
+        const orig = btn.innerHTML;
+        btn.disabled = true; btn.innerHTML = dict.trans_running || "번역 중...";
+        try {
+            const r = await authenticatedFetch(`${API_BASE_URL}/approval/translate`, {
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: doc.id })
+            });
+            const j = await r.json();
+            if (!r.ok) throw new Error(j.error || "실패");
+            detailTransLang = null;
+            openDocumentDetail(doc.id); // 재조회하여 번역 반영
+        } catch (err) {
+            btn.disabled = false; btn.innerHTML = orig;
+            alert((dict.trans_failed || "번역 실패: ") + err.message);
+        }
+    });
+
+    // 첨부 다운로드
+    content.querySelectorAll("[data-att-download]").forEach(btn => {
+        btn.addEventListener("click", () => downloadAttachment(btn.getAttribute("data-att-download"), btn.getAttribute("data-att-name")));
+    });
+    // 첨부 삭제 (상세 모달)
+    content.querySelectorAll("[data-att-detail-del]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+            if (!confirm(dict.doc_confirm_del_file || "이 첨부파일을 삭제하시겠습니까?")) return;
+            try { await deleteAttachmentApi(btn.getAttribute("data-att-detail-del")); openDocumentDetail(doc.id); }
+            catch (err) { alert(err.message); }
+        });
+    });
+    // 첨부 추가 (상세 모달, 기안자)
+    document.getElementById("detailFileInput")?.addEventListener("change", async (e) => {
+        const files = Array.from(e.target.files || []);
+        for (const f of files) {
+            const fd = new FormData(); fd.append("file", f);
+            try {
+                const up = await authenticatedFetch(`${API_BASE_URL}/approval/documents/${doc.id}/attachments`, { method: "POST", body: fd });
+                if (!up.ok) { const er = await up.json().catch(() => ({})); throw new Error(er.error || "실패"); }
+            } catch (err) { alert((dict.doc_file_fail || "첨부 실패: ") + f.name + " — " + err.message); }
+        }
+        openDocumentDetail(doc.id);
+    });
+}
+
+// ── 결재 액션 처리 ──
+function openActionModal(titleText, placeholder, required) {
+    return new Promise((resolve) => {
+        const modal = document.getElementById("approvalActionModal");
+        const titleEl = document.getElementById("approvalActionTitle");
+        const commentEl = document.getElementById("approvalActionComment");
+        const errEl = document.getElementById("approvalActionError");
+        const confirmBtn = document.getElementById("approvalActionConfirm");
+        const cancelBtn = document.getElementById("approvalActionCancel");
+        titleEl.textContent = titleText;
+        commentEl.value = "";
+        commentEl.placeholder = placeholder || "";
+        errEl.classList.add("hidden");
+        modal.classList.remove("hidden");
+
+        const cleanup = () => {
+            modal.classList.add("hidden");
+            confirmBtn.removeEventListener("click", onConfirm);
+            cancelBtn.removeEventListener("click", onCancel);
+        };
+        const onConfirm = () => {
+            const v = commentEl.value.trim();
+            if (required && !v) { errEl.textContent = required; errEl.classList.remove("hidden"); return; }
+            cleanup(); resolve(v);
+        };
+        const onCancel = () => { cleanup(); resolve(null); };
+        confirmBtn.addEventListener("click", onConfirm);
+        cancelBtn.addEventListener("click", onCancel);
+    });
+}
+
+async function handleDocAction(action, doc) {
+    const dict = translations[currentLang] || translations.ko;
+    const id = doc.id;
+
+    if (action === "edit") {
+        // 초안 이어서 작성: 폼으로 이동
+        closeDocumentDetail();
+        approvalUserSubtab = "approval-user-new";
+        renderApprovalUserContent();
+        setTimeout(() => loadDraftIntoForm(doc), 100);
+        return;
+    }
+
+    let body = {};
+    if (action === "approve") {
+        const c = await openActionModal(dict.act_approve || "승인", dict.comment_optional || "의견 (선택)", null);
+        if (c === null) return; body.comment = c;
+    } else if (action === "agree") {
+        const c = await openActionModal(dict.act_agree || "합의", dict.comment_optional || "의견 (선택)", null);
+        if (c === null) return; body.comment = c;
+    } else if (action === "reject") {
+        const c = await openActionModal(dict.act_reject || "반려", dict.reject_reason_ph || "반려 사유를 입력하세요", dict.reject_reason_req || "반려 사유는 필수입니다.");
+        if (c === null) return; body.comment = c;
+    } else if (action === "withdraw") {
+        if (!confirm(dict.confirm_withdraw || "이 문서를 회수하시겠습니까?")) return;
+    } else if (action === "submit") {
+        if (!confirm(dict.confirm_submit || "이 문서를 제출하시겠습니까?")) return;
+    }
+
+    const actionPath = { approve: "approve", agree: "agree", reject: "reject", withdraw: "withdraw", submit: "submit" }[action];
+    if (docActionInFlight) return;
+    docActionInFlight = true;
+    document.querySelectorAll("#approvalDetailContent [data-doc-act]").forEach(b => b.disabled = true);
+    try {
+        const resp = await authenticatedFetch(`${API_BASE_URL}/approval/documents/${id}/${actionPath}`, {
+            method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body)
+        });
+        if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+        closeDocumentDetail();
+        fetchCurrentTab();
+        refreshPendingBadge();
+    } catch (err) {
+        alert((dict.act_failed || "처리 실패: ") + err.message);
+        document.querySelectorAll("#approvalDetailContent [data-doc-act]").forEach(b => b.disabled = false);
+    } finally {
+        docActionInFlight = false;
+    }
+}
+
+// ── 새 결재 작성 폼 ──
+let docForm = null; // {template_id, title, category, priority, fields[], data{}, approval[], agreement[], cc[], draftId}
+
+async function renderNewDocumentForm(container) {
+    const dict = translations[currentLang] || translations.ko;
+    container.className = "";
+    container.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm">${dict.loading_text || "불러오는 중..."}</div>`;
+
+    // 템플릿 목록 + 참여자 로드
+    let templates = [];
+    try {
+        const r = await authenticatedFetch(`${API_BASE_URL}/approval/templates`);
+        if (r.ok) templates = await r.json();
+    } catch (e) {}
+    await fetchParticipantsOnce();
+
+    if (!docForm) {
+        docForm = { template_id: "", title: "", category: "general", priority: "normal", fields: [], data: {}, approval: [], agreement: [], cc: [], draftId: null, pendingFiles: [], existingAttachments: [] };
+    }
+    if (!docForm.pendingFiles) docForm.pendingFiles = [];
+    if (!docForm.existingAttachments) docForm.existingAttachments = [];
+
+    const tplOptions = `<option value="">${dict.doc_select_template || "템플릿 선택 (또는 자유 양식)"}</option>` +
+        templates.map(t => `<option value="${t.id}" ${String(docForm.template_id) === String(t.id) ? "selected" : ""}>${escapeHtml(t.title)}</option>`).join("");
+
+    container.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5">${dict.doc_form_template || "템플릿"}</label>
+                <select id="docTemplateSel" class="w-full bg-slate-900 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white cursor-pointer focus:outline-none focus:border-indigo-500">${tplOptions}</select>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5">${dict.doc_form_priority || "우선순위"}</label>
+                <select id="docPrioritySel" class="w-full bg-slate-900 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white cursor-pointer focus:outline-none focus:border-indigo-500">
+                    <option value="low" ${docForm.priority==="low"?"selected":""}>${dict.pr_low || "낮음"}</option>
+                    <option value="normal" ${docForm.priority==="normal"?"selected":""}>${dict.pr_normal || "보통"}</option>
+                    <option value="high" ${docForm.priority==="high"?"selected":""}>${dict.pr_high || "높음"}</option>
+                    <option value="urgent" ${docForm.priority==="urgent"?"selected":""}>${dict.pr_urgent || "긴급"}</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5">${dict.doc_th_title || "제목"}</label>
+                <input type="text" id="docTitleInput" value="${escapeHtml(docForm.title)}" class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+            </div>
+        </div>
+
+        <div id="docDynamicFields" class="bg-white/5 border border-cardBorder rounded-xl p-4 mb-5"></div>
+
+        <div class="bg-white/5 border border-cardBorder rounded-xl p-4 mb-5">
+            <div class="flex items-center justify-between mb-3">
+                <h6 class="text-sm font-bold text-white">${dict.doc_attachments || "첨부파일"}</h6>
+                <label class="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] rounded-lg font-semibold transition cursor-pointer">
+                    <i data-lucide="paperclip" class="w-3 h-3"></i><span>${dict.doc_add_file || "파일 추가"}</span>
+                    <input type="file" id="docFileInput" multiple class="hidden">
+                </label>
+            </div>
+            <div id="docAttachList" class="space-y-1.5"></div>
+            <p class="text-[10px] text-slate-500 mt-2">${dict.doc_file_hint || "파일당 최대 20MB · 문서/이미지/PDF"}</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
+            ${renderDocLinePickerHtml("approval", dict.tpl_line_approval || "결재선 (순차)")}
+            ${renderDocLinePickerHtml("agreement", dict.tpl_line_agreement || "합의선 (병렬)")}
+            ${renderDocLinePickerHtml("cc", dict.tpl_line_cc || "참조선")}
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button id="btnDocSubmit" class="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-pink-600 hover:from-indigo-700 hover:to-pink-700 text-white rounded-xl font-bold shadow-lg transition">
+                <i data-lucide="send" class="w-4 h-4"></i><span>${dict.doc_submit || "제출"}</span>
+            </button>
+            <button id="btnDocDraft" class="px-6 py-2.5 bg-white/5 hover:bg-white/10 text-slate-300 rounded-xl font-semibold transition">${dict.doc_save_draft || "임시저장"}</button>
+            <button id="btnDocReset" class="px-6 py-2.5 text-slate-400 hover:text-white rounded-xl font-semibold transition">${dict.doc_reset || "초기화"}</button>
+        </div>`;
+
+    renderDocDynamicFields(templates);
+    renderAllDocLinePickers();
+    renderDocFormAttachments();
+    lucide.createIcons();
+
+    document.getElementById("docFileInput")?.addEventListener("change", (e) => {
+        const files = Array.from(e.target.files || []);
+        docForm.pendingFiles.push(...files);
+        e.target.value = "";
+        renderDocFormAttachments();
+    });
+
+    document.getElementById("docTemplateSel").addEventListener("change", (e) => {
+        docForm.template_id = e.target.value;
+        const tpl = templates.find(t => String(t.id) === String(e.target.value));
+        if (tpl) {
+            try { docForm.fields = JSON.parse(tpl.body_schema || "[]"); } catch (x) { docForm.fields = []; }
+            docForm.category = tpl.category || "general";
+            if (!docForm.title) docForm.title = tpl.title;
+            try { docForm.approval = JSON.parse(tpl.default_approval_line || "[]"); } catch (x) {}
+            try { docForm.agreement = JSON.parse(tpl.default_agreement_line || "[]"); } catch (x) {}
+            try { docForm.cc = JSON.parse(tpl.default_cc_line || "[]"); } catch (x) {}
+        } else {
+            docForm.fields = [];
+        }
+        docForm.data = {};
+        renderNewDocumentForm(container);
+    });
+    document.getElementById("docTitleInput").addEventListener("input", (e) => { docForm.title = e.target.value; });
+    document.getElementById("docPrioritySel").addEventListener("change", (e) => { docForm.priority = e.target.value; });
+    document.getElementById("btnDocSubmit").addEventListener("click", () => saveDocument("submit"));
+    document.getElementById("btnDocDraft").addEventListener("click", () => saveDocument("draft"));
+    document.getElementById("btnDocReset").addEventListener("click", () => { docForm = null; renderNewDocumentForm(container); });
+}
+
+function renderDocDynamicFields(templates) {
+    const dict = translations[currentLang] || translations.ko;
+    const wrap = document.getElementById("docDynamicFields");
+    if (!wrap) return;
+    if (!docForm.fields.length) {
+        wrap.innerHTML = `<div class="text-xs text-slate-500 text-center py-2">${dict.doc_free_form || "자유 양식입니다. 템플릿을 선택하면 항목이 표시됩니다."}</div>`;
+        return;
+    }
+    wrap.innerHTML = docForm.fields.map((f, i) => {
+        const label = escapeHtml(localizedFieldLabel(f.label));
+        const val = docForm.data[f.key] != null ? docForm.data[f.key] : "";
+        let input;
+        if (f.type === "textarea") {
+            input = `<textarea data-doc-field="${escapeHtml(f.key)}" rows="3" class="w-full bg-white/5 border border-cardBorder rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 resize-none">${escapeHtml(val)}</textarea>`;
+        } else if (f.type === "select") {
+            const opts = (f.options || []).map(o => `<option value="${escapeHtml(o)}" ${val===o?"selected":""}>${escapeHtml(o)}</option>`).join("");
+            input = `<select data-doc-field="${escapeHtml(f.key)}" class="w-full bg-slate-900 border border-cardBorder rounded-lg px-3 py-2 text-sm text-white cursor-pointer focus:outline-none focus:border-indigo-500"><option value="">-</option>${opts}</select>`;
+        } else if (f.type === "date") {
+            input = `<input type="date" data-doc-field="${escapeHtml(f.key)}" value="${escapeHtml(val)}" class="w-full bg-white/5 border border-cardBorder rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">`;
+        } else if (f.type === "number") {
+            input = `<input type="number" data-doc-field="${escapeHtml(f.key)}" value="${escapeHtml(val)}" class="w-full bg-white/5 border border-cardBorder rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">`;
+        } else {
+            input = `<input type="text" data-doc-field="${escapeHtml(f.key)}" value="${escapeHtml(val)}" class="w-full bg-white/5 border border-cardBorder rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">`;
+        }
+        return `<div class="${i>0?'mt-3':''}"><label class="block text-xs font-semibold text-slate-400 mb-1.5">${label}</label>${input}</div>`;
+    }).join("");
+
+    wrap.querySelectorAll("[data-doc-field]").forEach(el => {
+        const key = el.getAttribute("data-doc-field");
+        const handler = () => { docForm.data[key] = el.value; };
+        el.addEventListener("input", handler);
+        el.addEventListener("change", handler);
+    });
+}
+
+// ── 문서 폼 결재선 피커 (docForm 상태 기반) ──
+function renderDocLinePickerHtml(kind, title) {
+    return `
+        <div class="bg-white/5 border border-cardBorder rounded-xl p-3">
+            <h6 class="text-xs font-bold text-white mb-2">${escapeHtml(title)}</h6>
+            <div class="flex gap-1.5 mb-2">
+                <select data-docline-select="${kind}" class="flex-1 bg-slate-900 border border-cardBorder rounded-lg px-2 py-1.5 text-[11px] text-white cursor-pointer focus:outline-none"></select>
+                <button data-docline-add="${kind}" class="px-2.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] rounded-lg font-semibold transition">+</button>
+            </div>
+            <div data-docline-list="${kind}" class="space-y-1.5"></div>
+        </div>`;
+}
+function renderAllDocLinePickers() { ["approval", "agreement", "cc"].forEach(renderDocLinePicker); }
+
+function renderDocLinePicker(kind) {
+    const dict = translations[currentLang] || translations.ko;
+    const list = docForm[kind] || [];
+    const sel = document.querySelector(`[data-docline-select="${kind}"]`);
+    const listWrap = document.querySelector(`[data-docline-list="${kind}"]`);
+    if (!sel || !listWrap) return;
+
+    const chosen = new Set(list.map(x => x.id));
+    const opts = participantsCache.filter(p => !chosen.has(p.id)).map(p =>
+        `<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)} (${p.type === "admin" ? (dict.p_admin || "관리자") : (dict.p_employee || "직원")})</option>`).join("");
+    sel.innerHTML = opts || `<option value="">${dict.tpl_no_participants || "추가 가능한 대상 없음"}</option>`;
+
+    const ordered = kind === "approval";
+    listWrap.innerHTML = list.length ? list.map((item, i) => {
+        const p = participantsCache.find(x => x.id === item.id);
+        const name = p ? p.name : (item.name || item.id);
+        const orderBadge = ordered ? `<span class="text-[10px] font-bold text-indigo-300 mr-1">${i + 1}.</span>` : "";
+        const moveBtns = ordered ? `
+            <button data-docline-up="${kind}:${i}" class="p-0.5 hover:bg-white/10 rounded text-slate-400"><i data-lucide="chevron-up" class="w-3 h-3"></i></button>
+            <button data-docline-down="${kind}:${i}" class="p-0.5 hover:bg-white/10 rounded text-slate-400"><i data-lucide="chevron-down" class="w-3 h-3"></i></button>` : "";
+        return `
+            <div class="flex items-center justify-between bg-white/5 rounded-lg px-2 py-1.5">
+                <span class="text-[11px] text-slate-200">${orderBadge}${escapeHtml(name)}</span>
+                <div class="flex items-center gap-0.5">${moveBtns}
+                    <button data-docline-del="${kind}:${i}" class="p-0.5 hover:bg-rose-500/20 rounded text-rose-400"><i data-lucide="x" class="w-3 h-3"></i></button>
+                </div>
+            </div>`;
+    }).join("") : `<div class="text-[10px] text-slate-500 text-center py-1">${dict.tpl_line_empty || "지정 안 함"}</div>`;
+
+    lucide.createIcons();
+
+    const addBtn = document.querySelector(`[data-docline-add="${kind}"]`);
+    if (addBtn && !addBtn.dataset.bound) {
+        addBtn.dataset.bound = "1";
+        addBtn.addEventListener("click", () => {
+            const selEl = document.querySelector(`[data-docline-select="${kind}"]`);
+            const val = selEl?.value;
+            if (!val) return;
+            const p = participantsCache.find(x => x.id === val);
+            docForm[kind].push({ id: val, type: p ? p.type : "admin", name: p ? p.name : val });
+            renderDocLinePicker(kind);
+        });
+    }
+    listWrap.querySelectorAll("[data-docline-del]").forEach(btn => {
+        btn.addEventListener("click", () => { const [k, idx] = btn.getAttribute("data-docline-del").split(":"); docForm[k].splice(parseInt(idx, 10), 1); renderDocLinePicker(k); });
+    });
+    listWrap.querySelectorAll("[data-docline-up]").forEach(btn => {
+        btn.addEventListener("click", () => { const [k, s] = btn.getAttribute("data-docline-up").split(":"); const i = parseInt(s, 10); if (i > 0) { [docForm[k][i-1], docForm[k][i]] = [docForm[k][i], docForm[k][i-1]]; renderDocLinePicker(k); } });
+    });
+    listWrap.querySelectorAll("[data-docline-down]").forEach(btn => {
+        btn.addEventListener("click", () => { const [k, s] = btn.getAttribute("data-docline-down").split(":"); const i = parseInt(s, 10); if (i < docForm[k].length - 1) { [docForm[k][i+1], docForm[k][i]] = [docForm[k][i], docForm[k][i+1]]; renderDocLinePicker(k); } });
+    });
+}
+
+function loadDraftIntoForm(doc) {
+    let fields = [], data = {}, approval = [], agreement = [], cc = [];
+    try { fields = JSON.parse(doc.body_schema || "[]"); } catch (e) {}
+    try { data = JSON.parse(doc.body_data || "{}"); } catch (e) {}
+    docForm = {
+        template_id: doc.template_id || "", title: doc.title, category: doc.category,
+        priority: doc.priority || "normal", fields, data, approval, agreement, cc, draftId: doc.id,
+        pendingFiles: [], existingAttachments: []
+    };
+    // 초안의 기존 결재선 + 첨부 로드
+    authenticatedFetch(`${API_BASE_URL}/approval/documents/${doc.id}`).then(r => r.json()).then(d => {
+        (d.lines || []).forEach(l => {
+            const entry = { id: l.approver_id, type: l.approver_type, name: l.approver_name };
+            if (l.line_type === "approval") docForm.approval.push(entry);
+            else if (l.line_type === "agreement") docForm.agreement.push(entry);
+            else if (l.line_type === "cc") docForm.cc.push(entry);
+        });
+        docForm.existingAttachments = d.attachments || [];
+        const container = document.getElementById("approvalUserContent");
+        if (container) renderNewDocumentForm(container);
+    });
+}
+
+let docActionInFlight = false;
+
+async function saveDocument(action) {
+    const dict = translations[currentLang] || translations.ko;
+    if (docActionInFlight) return;
+    if (!docForm.title || !docForm.title.trim()) { alert(dict.doc_err_title || "제목을 입력해 주세요."); return; }
+    if (action === "submit" && docForm.approval.length === 0 && docForm.agreement.length === 0) {
+        alert(dict.doc_err_line || "제출하려면 결재선 또는 합의선을 1명 이상 지정해야 합니다."); return;
+    }
+
+    const payload = {
+        template_id: docForm.template_id || null,
+        title: docForm.title.trim(),
+        category: docForm.category || "general",
+        priority: docForm.priority || "normal",
+        body_schema: docForm.fields,
+        body_data: docForm.data,
+        approval_line: docForm.approval,
+        agreement_line: docForm.agreement,
+        cc_line: docForm.cc,
+        action
+    };
+
+    const pendingFiles = docForm.pendingFiles || [];
+
+    docActionInFlight = true;
+    const btnS = document.getElementById("btnDocSubmit"), btnD = document.getElementById("btnDocDraft");
+    if (btnS) btnS.disabled = true; if (btnD) btnD.disabled = true;
+    try {
+        let resp;
+        let docId = docForm.draftId;
+        if (docForm.draftId) {
+            // 기존 초안 수정 (첨부 업로드 후 제출)
+            resp = await authenticatedFetch(`${API_BASE_URL}/approval/documents/${docForm.draftId}`, {
+                method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload)
+            });
+            if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+        } else {
+            // 신규 생성 시 첨부가 있으면 우선 draft 로 만들어 id 확보 후 업로드, 이후 제출
+            const createPayload = pendingFiles.length > 0 ? { ...payload, action: "draft" } : payload;
+            resp = await authenticatedFetch(`${API_BASE_URL}/approval/documents`, {
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(createPayload)
+            });
+            if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+            const created = await resp.json();
+            docId = created.id;
+        }
+
+        // 첨부파일 업로드
+        for (const f of pendingFiles) {
+            const fd = new FormData();
+            fd.append("file", f);
+            const upResp = await authenticatedFetch(`${API_BASE_URL}/approval/documents/${docId}/attachments`, { method: "POST", body: fd });
+            if (!upResp.ok) {
+                const e = await upResp.json().catch(() => ({}));
+                alert((dict.doc_file_fail || "첨부 실패: ") + (f.name || "") + " — " + (e.error || ""));
+            }
+        }
+
+        // 제출 처리 (첨부 업로드 후)
+        if (action === "submit") {
+            const subResp = await authenticatedFetch(`${API_BASE_URL}/approval/documents/${docId}/submit`, { method: "POST" });
+            if (!subResp.ok) { const e = await subResp.json().catch(() => ({})); throw new Error(e.error || "제출 실패"); }
+        }
+
+        alert(action === "submit" ? (dict.doc_submitted || "결재 문서가 제출되었습니다.") : (dict.doc_drafted || "임시저장되었습니다."));
+        docForm = null;
+        approvalUserSubtab = action === "submit" ? "approval-user-mine" : "approval-user-mine";
+        // pill 활성 표시 갱신
+        const wrap = document.getElementById("approvalUserPills");
+        if (wrap) {
+            wrap.querySelectorAll("button[data-subtab]").forEach(b => b.className = "px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 text-slate-400 hover:text-white transition");
+            const active = wrap.querySelector('button[data-subtab="approval-user-mine"]');
+            if (active) active.className = "px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 text-white transition";
+        }
+        renderApprovalUserContent();
+        refreshPendingBadge();
+    } catch (err) {
+        alert((dict.doc_save_failed || "저장 실패: ") + err.message);
+        if (btnS) btnS.disabled = false; if (btnD) btnD.disabled = false;
+    } finally {
+        docActionInFlight = false;
+    }
+}
+
+// ── 대기 건수 배지 ──
+async function refreshPendingBadge() {
+    const badge = document.getElementById("approvalPendingBadge");
+    if (!badge) return;
+    if (!localStorage.getItem("pguard_token")) { badge.classList.add("hidden"); return; }
+    try {
+        const resp = await authenticatedFetch(`${API_BASE_URL}/approval/stats`);
+        if (!resp.ok) { badge.classList.add("hidden"); return; }
+        const s = await resp.json();
+        const n = s.pending || 0;
+        if (n > 0) { badge.textContent = n; badge.classList.remove("hidden"); }
+        else badge.classList.add("hidden");
+    } catch (e) { badge.classList.add("hidden"); }
+}
+
+// 문서 상세 모달: 배경 클릭 / ESC 로 닫기
+(function bindApprovalModalDismiss() {
+    const modal = document.getElementById("approvalDetailModal");
+    if (modal) {
+        modal.addEventListener("click", (e) => { if (e.target === modal) closeDocumentDetail(); });
+    }
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            const dm = document.getElementById("approvalDetailModal");
+            if (dm && !dm.classList.contains("hidden")) closeDocumentDetail();
+        }
+    });
+})();
+
+// ── 첨부파일 공통 헬퍼 ──
+function formatFileSize(bytes) {
+    if (bytes == null) return "";
+    if (bytes < 1024) return bytes + " B";
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+    return (bytes / 1024 / 1024).toFixed(1) + " MB";
+}
+function fileIconFor(mime) {
+    if (!mime) return "file";
+    if (mime.startsWith("image/")) return "image";
+    if (mime === "application/pdf") return "file-text";
+    if (mime.includes("sheet") || mime.includes("excel") || mime === "text/csv") return "table";
+    if (mime.includes("word") || mime === "text/plain") return "file-text";
+    if (mime.includes("zip")) return "file-archive";
+    return "file";
+}
+
+async function downloadAttachment(attId, filename) {
+    const dict = translations[currentLang] || translations.ko;
+    try {
+        const resp = await authenticatedFetch(`${API_BASE_URL}/approval/attachments/${attId}/download`);
+        if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+        const blob = await resp.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = filename || "download";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (err) {
+        alert((dict.doc_download_fail || "다운로드 실패: ") + err.message);
+    }
+}
+
+async function deleteAttachmentApi(attId) {
+    const resp = await authenticatedFetch(`${API_BASE_URL}/approval/attachments/${attId}`, { method: "DELETE" });
+    if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "삭제 실패"); }
+}
+
+// ── 새 결재 폼: 첨부 목록 렌더 (미업로드 pending + 기존 저장분) ──
+function renderDocFormAttachments() {
+    const dict = translations[currentLang] || translations.ko;
+    const wrap = document.getElementById("docAttachList");
+    if (!wrap) return;
+    const pending = docForm.pendingFiles || [];
+    const existing = docForm.existingAttachments || [];
+
+    if (!pending.length && !existing.length) {
+        wrap.innerHTML = `<div class="text-[11px] text-slate-500 text-center py-1">${dict.doc_no_files || "첨부된 파일이 없습니다."}</div>`;
+        return;
+    }
+    const existingRows = existing.map(a => `
+        <div class="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+            <div class="flex items-center gap-2 min-w-0">
+                <i data-lucide="${fileIconFor(a.mime_type)}" class="w-3.5 h-3.5 text-indigo-400 shrink-0"></i>
+                <span class="text-[11px] text-slate-200 truncate">${escapeHtml(a.original_name)}</span>
+                <span class="text-[10px] text-slate-500 shrink-0">${formatFileSize(a.file_size)}</span>
+            </div>
+            <button data-att-del="${a.id}" class="p-1 hover:bg-rose-500/20 rounded text-rose-400 shrink-0"><i data-lucide="x" class="w-3 h-3"></i></button>
+        </div>`).join("");
+    const pendingRows = pending.map((f, i) => `
+        <div class="flex items-center justify-between bg-indigo-600/10 rounded-lg px-3 py-2">
+            <div class="flex items-center gap-2 min-w-0">
+                <i data-lucide="upload" class="w-3.5 h-3.5 text-amber-400 shrink-0"></i>
+                <span class="text-[11px] text-slate-200 truncate">${escapeHtml(f.name)}</span>
+                <span class="text-[10px] text-slate-500 shrink-0">${formatFileSize(f.size)} · ${dict.doc_file_pending || "저장 시 업로드"}</span>
+            </div>
+            <button data-att-pending-del="${i}" class="p-1 hover:bg-rose-500/20 rounded text-rose-400 shrink-0"><i data-lucide="x" class="w-3 h-3"></i></button>
+        </div>`).join("");
+
+    wrap.innerHTML = existingRows + pendingRows;
+    lucide.createIcons();
+
+    wrap.querySelectorAll("[data-att-pending-del]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            docForm.pendingFiles.splice(parseInt(btn.getAttribute("data-att-pending-del"), 10), 1);
+            renderDocFormAttachments();
+        });
+    });
+    wrap.querySelectorAll("[data-att-del]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+            if (!confirm(dict.doc_confirm_del_file || "이 첨부파일을 삭제하시겠습니까?")) return;
+            try {
+                await deleteAttachmentApi(btn.getAttribute("data-att-del"));
+                docForm.existingAttachments = docForm.existingAttachments.filter(a => String(a.id) !== btn.getAttribute("data-att-del"));
+                renderDocFormAttachments();
+            } catch (err) { alert(err.message); }
+        });
+    });
+}
+
+// ==================================================================
+// 전자결재 Phase 6: 번역 설정 UI + 상세 병기 표시
+// ==================================================================
+async function renderApprovalSettings(container) {
+    const dict = translations[currentLang] || translations.ko;
+    container.className = "";
+    container.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm">${dict.loading_text || "불러오는 중..."}</div>`;
+
+    let s = {};
+    try {
+        const r = await authenticatedFetch(`${API_BASE_URL}/approval/settings`);
+        if (r.ok) s = await r.json();
+    } catch (e) {}
+
+    const langChecks = ["en", "th", "lo", "ko"].map(l => {
+        const checked = (s.translate_target_languages || "en,th,lo").split(",").map(x => x.trim()).includes(l);
+        return `<label class="flex items-center gap-1.5 text-xs text-slate-300"><input type="checkbox" data-tl-lang="${l}" ${checked ? "checked" : ""} class="accent-indigo-600"> ${l.toUpperCase()}</label>`;
+    }).join("");
+
+    container.innerHTML = `
+        <div class="max-w-xl space-y-5">
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5">${dict.set_lt_url || "LibreTranslate 서버 URL"}</label>
+                <div class="flex gap-2">
+                    <input type="text" id="setLtUrl" value="${escapeHtml(s.libretranslate_url || "")}" placeholder="http://localhost:5000" class="flex-1 bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-indigo-500">
+                    <button id="btnTestLt" class="px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-cardBorder text-slate-200 text-xs rounded-xl font-semibold transition whitespace-nowrap">${dict.set_test || "연결 테스트"}</button>
+                </div>
+                <div id="ltTestResult" class="text-[11px] mt-1.5"></div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5">${dict.set_lt_key || "API 키 (선택)"}</label>
+                <input type="text" id="setLtKey" value="${escapeHtml(s.libretranslate_api_key || "")}" placeholder="(선택)" class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-indigo-500">
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5">${dict.set_targets || "번역 대상 언어"}</label>
+                <div class="flex gap-4 bg-white/5 border border-cardBorder rounded-xl px-4 py-3">${langChecks}</div>
+            </div>
+
+            <div class="flex items-center justify-between bg-white/5 border border-cardBorder rounded-xl px-4 py-3">
+                <div>
+                    <div class="text-sm text-white font-medium">${dict.set_auto || "제출 시 자동 번역"}</div>
+                    <div class="text-[11px] text-slate-500">${dict.set_auto_desc || "문서 제출과 동시에 자동으로 번역합니다."}</div>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="setAutoTranslate" ${s.auto_translate_enabled === "true" ? "checked" : ""} class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-600 peer-checked:bg-indigo-600 rounded-full peer transition after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition peer-checked:after:translate-x-5"></div>
+                </label>
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5">${dict.set_prefix || "문서번호 접두사"}</label>
+                <input type="text" id="setPrefix" value="${escapeHtml(s.doc_number_prefix || "APPR")}" class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-indigo-500">
+            </div>
+
+            <button id="btnSaveApprovalSettings" class="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-pink-600 hover:from-indigo-700 hover:to-pink-700 text-white rounded-xl font-bold shadow-lg transition">
+                <i data-lucide="save" class="w-4 h-4"></i><span>${dict.btn_save || "저장"}</span>
+            </button>
+        </div>`;
+
+    lucide.createIcons();
+
+    document.getElementById("btnTestLt").addEventListener("click", async () => {
+        const url = document.getElementById("setLtUrl").value.trim();
+        const resEl = document.getElementById("ltTestResult");
+        resEl.className = "text-[11px] mt-1.5 text-slate-400";
+        resEl.textContent = dict.set_testing || "테스트 중...";
+        try {
+            const r = await authenticatedFetch(`${API_BASE_URL}/approval/translate/test`, {
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url })
+            });
+            const j = await r.json();
+            if (!r.ok) throw new Error(j.error || "실패");
+            resEl.className = "text-[11px] mt-1.5 text-emerald-400";
+            resEl.textContent = `✓ ${dict.set_ok || "연결 성공"} — ${(j.languages || []).join(", ")}`;
+        } catch (err) {
+            resEl.className = "text-[11px] mt-1.5 text-rose-400";
+            resEl.textContent = "✗ " + err.message;
+        }
+    });
+
+    document.getElementById("btnSaveApprovalSettings").addEventListener("click", async () => {
+        const targets = Array.from(document.querySelectorAll("[data-tl-lang]:checked")).map(c => c.getAttribute("data-tl-lang")).join(",");
+        const payload = {
+            libretranslate_url: document.getElementById("setLtUrl").value.trim(),
+            libretranslate_api_key: document.getElementById("setLtKey").value.trim(),
+            translate_target_languages: targets,
+            auto_translate_enabled: document.getElementById("setAutoTranslate").checked ? "true" : "false",
+            doc_number_prefix: document.getElementById("setPrefix").value.trim() || "APPR"
+        };
+        try {
+            const r = await authenticatedFetch(`${API_BASE_URL}/approval/settings`, {
+                method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload)
+            });
+            if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+            alert(dict.set_saved || "결재 설정이 저장되었습니다.");
+        } catch (err) {
+            alert((dict.set_save_failed || "설정 저장 실패: ") + err.message);
+        }
+    });
+}
+
+// 상세 모달: 번역 병기 표시용 언어 선택 상태
+let detailTransLang = null;
