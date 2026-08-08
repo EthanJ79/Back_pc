@@ -1431,11 +1431,11 @@ function updateTenantUI() {
         }
     }
 
-    // Update company badge in header
+    // Update company badge in header (단일 회사 운영: 회사 코드 미표시, 통합관리자만 배지 노출)
     const companyBadge = document.getElementById("companyBadge");
     if (companyBadge) {
-        if (companyCode) {
-            companyBadge.textContent = isSuperAdmin ? "SUPER ADMIN" : `COMPANY: ${companyCode}`;
+        if (isSuperAdmin) {
+            companyBadge.textContent = "SUPER ADMIN";
             companyBadge.classList.remove("hidden");
         } else {
             companyBadge.classList.add("hidden");
@@ -1513,7 +1513,8 @@ function updateTenantUI() {
         const securityTitle = document.querySelector("#securitySettingsPanel h4");
         const securityDesc = document.querySelector("#securitySettingsPanel p");
         
-        if (role !== "admin") {
+        if (!isSuperAdmin) {
+            // 단일 회사 운영: 회사 코드 입력란 숨김 (통합관리자만 노출)
             if (settingCompanyCodeContainer) settingCompanyCodeContainer.classList.add("hidden");
             if (securityTitle) {
                 securityTitle.setAttribute("data-i18n", "settings_security_title_self");
@@ -2236,7 +2237,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (securitySettingsForm) {
         securitySettingsForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-            const companyCode = document.getElementById("settingCompanyCode").value.trim();
+            // 단일 회사 운영: 입력란이 숨겨진 경우 로그인된 회사 코드를 자동 사용
+            const companyCode = (document.getElementById("settingCompanyCode").value.trim())
+                || (localStorage.getItem("pguard_company_code") || "").trim();
             const newPassword = document.getElementById("settingNewPassword").value.trim();
 
             if (!companyCode) {
