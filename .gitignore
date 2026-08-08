@@ -1,2 +1,4 @@
 server/uploads/
 *.log
+server/downloads/*
+!server/downloads/README.md

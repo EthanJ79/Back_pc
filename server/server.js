@@ -41,6 +41,8 @@ app.use((req, res, next) => {
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, '../dashboard')));
+// 에이전트 설치 파일 배포 (server/downloads/ 에 빌드 산출물 배치)
+app.use('/download', express.static(path.join(__dirname, 'downloads')));
 
 // SQLite Database 초기화
 const dbPath = path.join(__dirname, 'database.sqlite');

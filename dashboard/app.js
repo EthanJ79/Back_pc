@@ -1560,7 +1560,7 @@ function updateTenantUI() {
 
             if (mode === "employee") {
                 // 직원 모드: 직원 전용 탭만 표시
-                visible = isEmployeeTab;
+                visible = isEmployeeTab || BOTH_MODE_TABS.includes(target);
             } else {
                 // 관리자 모드: 직원 전용 탭을 제외한 관리자 탭 표시 + 역할별 제한 적용
                 visible = !isEmployeeTab;
@@ -1619,6 +1619,8 @@ function updateNavGroups() {
 // ── 애플리케이션 모드 (관리자 모드 / 직원 모드) ──
 // 직원 모드 전용 탭 목록 (그 외 모든 탭은 관리자 모드 전용)
 const EMPLOYEE_MODE_TABS = ['tab-approval-user'];
+// 두 모드 모두에서 보이는 공통 탭 (관리자·직원 공용)
+const BOTH_MODE_TABS = ['tab-download'];
 
 // 현재 활성 모드 반환. 직원(role=employee)은 항상 employee 모드로 고정.
 function getAppMode() {

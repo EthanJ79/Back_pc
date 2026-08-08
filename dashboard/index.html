@@ -368,10 +368,6 @@
                             <i data-lucide="settings" class="w-5 h-5"></i>
                             <span data-i18n="menu_settings">대시보드 설정</span>
                         </button>
-                        <button data-target="tab-download" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300">
-                            <i data-lucide="download-cloud" class="w-5 h-5"></i>
-                            <span data-i18n="menu_download">에이전트 다운로드</span>
-                        </button>
                         <button id="btn-super" data-target="tab-super" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300 hidden">
                             <i data-lucide="building-2" class="w-5 h-5"></i>
                             <span data-i18n="menu_super">회사 및 권한 관리</span>
@@ -382,6 +378,13 @@
                         </button>
                     </div>
                 </div>
+
+                <!-- 공통 메뉴 (관리자·직원 모두 표시) -->
+                <button data-target="tab-download" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition duration-300 mt-2">
+                    <i data-lucide="download-cloud" class="w-5 h-5"></i>
+                    <span data-i18n="menu_download">에이전트 다운로드</span>
+                </button>
+
                 <button id="btnLogout" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-rose-500/10 text-slate-400 hover:text-rose-400 transition duration-300 mt-8">
                     <i data-lucide="log-out" class="w-5 h-5"></i>
                     <span data-i18n="menu_logout">로그아웃</span>
@@ -1297,8 +1300,8 @@
                             <div class="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"></div>
                             <i data-lucide="monitor" class="w-16 h-16 text-slate-300 group-hover:text-indigo-400 transition duration-300 mb-4"></i>
                             <h4 class="font-outfit text-xl font-bold text-white mb-2">Windows (PC)</h4>
-                            <p class="text-xs text-slate-400 mb-6 flex-1" data-i18n="download_win_desc">Windows 10/11 이상 환경을 지원합니다. 더블 클릭하여 설치 없이 즉시 실행할 수 있습니다.</p>
-                            <a href="/download/PGuardAgent.exe" download="PGuardAgent.exe" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition duration-300 shadow-lg shadow-indigo-600/20">
+                            <p class="text-xs text-slate-400 mb-6 flex-1" data-i18n="download_win_desc">Windows 10/11 이상 환경을 지원합니다. 압축을 풀고 PGuardAgent를 실행하면 트레이(작업표시줄 알림영역)에서 동작합니다.</p>
+                            <a href="/download/PGuardAgent-Windows.zip" download class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition duration-300 shadow-lg shadow-indigo-600/20">
                                 <i data-lucide="download" class="w-4 h-4"></i>
                                 <span data-i18n="btn_download_win">Windows용 다운로드</span>
                             </a>
@@ -1309,8 +1312,8 @@
                             <div class="absolute inset-0 bg-gradient-to-b from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"></div>
                             <i data-lucide="apple" class="w-16 h-16 text-slate-300 group-hover:text-pink-400 transition duration-300 mb-4"></i>
                             <h4 class="font-outfit text-xl font-bold text-white mb-2">macOS (Apple)</h4>
-                            <p class="text-xs text-slate-400 mb-6 flex-1" data-i18n="download_mac_desc">macOS 환경을 지원합니다. 다운로드 후 실행하면 자동으로 설치 및 데몬이 등록됩니다.</p>
-                            <a href="/download/install_mac.command" download="install_mac.command" class="w-full py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition duration-300 shadow-lg shadow-pink-600/20">
+                            <p class="text-xs text-slate-400 mb-6 flex-1" data-i18n="download_mac_desc">macOS 환경을 지원합니다. 압축을 풀고 PGuardAgent.app을 실행하면 메뉴바에서 동작합니다.</p>
+                            <a href="/download/PGuardAgent-macOS.zip" download class="w-full py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition duration-300 shadow-lg shadow-pink-600/20">
                                 <i data-lucide="download" class="w-4 h-4"></i>
                                 <span data-i18n="btn_download_mac">Mac용 다운로드</span>
                             </a>
