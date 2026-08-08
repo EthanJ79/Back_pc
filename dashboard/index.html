@@ -1492,6 +1492,37 @@
         </div>
     </div>
 
+    <!-- ===== 직원 등록/수정 모달 ===== -->
+    <div id="employeeFormModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm hidden p-4">
+        <div class="w-full max-w-md glass-panel rounded-3xl p-6 border border-white/10 shadow-2xl">
+            <div class="flex items-center justify-between mb-5">
+                <h3 id="empFormTitle" class="font-outfit text-lg font-bold text-white" data-i18n="emp_add">직원 추가</h3>
+                <button id="empFormClose" class="p-2 hover:bg-white/10 rounded-xl text-slate-400 hover:text-white transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="th_emp_id">사번</label>
+                    <input type="text" id="empFormId" class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-indigo-500 transition disabled:opacity-50" placeholder="EMP-001">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="th_emp_name">이름</label>
+                    <input type="text" id="empFormName" class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="emp_form_tags">태그 (부서 등, 쉼표로 구분 · 선택)</label>
+                    <input type="text" id="empFormTags" class="w-full bg-white/5 border border-cardBorder rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition" placeholder="영업부, 팀장">
+                </div>
+                <div id="empFormError" class="text-xs text-rose-400 bg-rose-500/10 border border-rose-500/20 px-4 py-2 rounded-lg hidden"></div>
+            </div>
+            <div class="flex gap-3 mt-6">
+                <button id="empFormCancel" class="flex-1 px-4 py-3 bg-white/5 hover:bg-white/10 text-slate-300 rounded-xl font-semibold transition" data-i18n="btn_cancel">취소</button>
+                <button id="empFormSave" class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-pink-600 hover:from-indigo-700 hover:to-pink-700 text-white rounded-xl font-bold shadow-lg transition">
+                    <i data-lucide="check" class="w-4 h-4"></i><span data-i18n="btn_save">저장</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== 전자결재 문서 상세 모달 ===== -->
     <div id="approvalDetailModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm hidden p-4">
         <div class="w-full max-w-3xl max-h-[90vh] overflow-y-auto glass-panel rounded-3xl border border-white/10 shadow-2xl">

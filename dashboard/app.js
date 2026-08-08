@@ -228,7 +228,7 @@ const translations = {
         th_login_status: "로그인 상태",
         th_admin_role: "관리 권한",
         th_actions: "작업",
-        emp_add: "직원 추가", emp_edit: "정보 수정", emp_delete: "삭제", th_emp_tags: "태그",
+        emp_add: "직원 추가", emp_edit_title: "직원 정보 수정", emp_form_tags: "태그 (부서 등, 쉼표로 구분 · 선택)", emp_edit: "정보 수정", emp_delete: "삭제", th_emp_tags: "태그",
         emp_manage_help: "직원을 추가·수정·삭제하고, 로그인 계정 생성 및 관리 권한(서브 관리자/직원 관리자)을 부여할 수 있습니다. 최고 관리자(admin) 권한은 부여되지 않습니다.",
         prompt_emp_id: "사번(직원 ID)을 입력하세요", prompt_emp_name: "직원 이름을 입력하세요", prompt_emp_tags: "태그(부서 등, 쉼표 구분, 선택)",
         err_emp_id_required: "사번은 필수입니다.", err_emp_name_required: "이름은 필수입니다.",
@@ -575,7 +575,7 @@ const translations = {
         th_login_status: "Login Status",
         th_admin_role: "Privilege",
         th_actions: "Actions",
-        emp_add: "Add Employee", emp_edit: "Edit", emp_delete: "Delete", th_emp_tags: "Tags",
+        emp_add: "Add Employee", emp_edit_title: "Edit Employee", emp_form_tags: "Tags (dept, comma-separated · optional)", emp_edit: "Edit", emp_delete: "Delete", th_emp_tags: "Tags",
         emp_manage_help: "Add, edit, and delete employees, create login accounts, and grant management roles (Sub Admin / Employee Manager). The top admin role is never granted.",
         prompt_emp_id: "Enter employee ID", prompt_emp_name: "Enter employee name", prompt_emp_tags: "Tags (dept, comma-separated, optional)",
         err_emp_id_required: "Employee ID is required.", err_emp_name_required: "Name is required.",
@@ -923,7 +923,7 @@ const translations = {
         th_login_status: "สถานะเข้าสู่ระบบ",
         th_admin_role: "สิทธิ์",
         th_actions: "การดำเนินการ",
-        emp_add: "เพิ่มพนักงาน", emp_edit: "แก้ไข", emp_delete: "ลบ", th_emp_tags: "แท็ก",
+        emp_add: "เพิ่มพนักงาน", emp_edit_title: "แก้ไขข้อมูลพนักงาน", emp_form_tags: "แท็ก (แผนก, คั่นด้วยจุลภาค · ไม่บังคับ)", emp_edit: "แก้ไข", emp_delete: "ลบ", th_emp_tags: "แท็ก",
         emp_manage_help: "เพิ่ม แก้ไข ลบพนักงาน สร้างบัญชีเข้าสู่ระบบ และมอบสิทธิ์การจัดการ (ผู้ดูแลรอง/ผู้จัดการพนักงาน) สิทธิ์ผู้ดูแลสูงสุดจะไม่ถูกมอบให้",
         prompt_emp_id: "กรอกรหัสพนักงาน", prompt_emp_name: "กรอกชื่อพนักงาน", prompt_emp_tags: "แท็ก (แผนก, คั่นด้วยจุลภาค, ไม่บังคับ)",
         err_emp_id_required: "จำเป็นต้องมีรหัสพนักงาน", err_emp_name_required: "จำเป็นต้องมีชื่อ",
@@ -1272,7 +1272,7 @@ const translations = {
         th_login_status: "ສະຖານະເຂົ້າສູ່ລະບົບ",
         th_admin_role: "ສິດ",
         th_actions: "ການດຳເນີນການ",
-        emp_add: "ເພີ່ມພະນັກງານ", emp_edit: "ແກ້ໄຂ", emp_delete: "ລຶບ", th_emp_tags: "ແທັກ",
+        emp_add: "ເພີ່ມພະນັກງານ", emp_edit_title: "ແກ້ໄຂຂໍ້ມູນພະນັກງານ", emp_form_tags: "ແທັກ (ພະແນກ, ຄັ່ນດ້ວຍຈຸດ · ທາງເລືອກ)", emp_edit: "ແກ້ໄຂ", emp_delete: "ລຶບ", th_emp_tags: "ແທັກ",
         emp_manage_help: "ເພີ່ມ, ແກ້ໄຂ, ລຶບພະນັກງານ, ສ້າງບັນຊີເຂົ້າສູ່ລະບົບ ແລະ ມອບສິດການຈັດການ (ຜູ້ດູແລຮອງ/ຜູ້ຈັດການພະນັກງານ). ສິດຜູ້ດູແລສູງສຸດຈະບໍ່ຖືກມອບໃຫ້.",
         prompt_emp_id: "ປ້ອນລະຫັດພະນັກງານ", prompt_emp_name: "ປ້ອນຊື່ພະນັກງານ", prompt_emp_tags: "ແທັກ (ພະແນກ, ຄັ່ນດ້ວຍຈຸດ, ທາງເລືອກ)",
         err_emp_id_required: "ຕ້ອງມີລະຫັດພະນັກງານ", err_emp_name_required: "ຕ້ອງມີຊື່",
@@ -5054,6 +5054,75 @@ function renderApprovalAdminContent() {
 }
 
 // 직원 계정/권한 목록 렌더링
+// 직원 등록/수정 모달
+function openEmployeeModal(mode, data) {
+    const dict = translations[currentLang] || translations.ko;
+    const modal = document.getElementById("employeeFormModal");
+    if (!modal) return;
+    const idEl = document.getElementById("empFormId");
+    const nameEl = document.getElementById("empFormName");
+    const tagsEl = document.getElementById("empFormTags");
+    const titleEl = document.getElementById("empFormTitle");
+    const errEl = document.getElementById("empFormError");
+    const saveBtn = document.getElementById("empFormSave");
+    const closeBtn = document.getElementById("empFormClose");
+    const cancelBtn = document.getElementById("empFormCancel");
+
+    const isEdit = mode === "edit";
+    titleEl.textContent = isEdit ? (dict.emp_edit_title || "직원 정보 수정") : (dict.emp_add || "직원 추가");
+    idEl.value = data ? (data.employee_id || "") : "";
+    idEl.disabled = isEdit; // 수정 시 사번 변경 불가
+    nameEl.value = data ? (data.employee_name || "") : "";
+    tagsEl.value = data ? (data.tags || "") : "";
+    errEl.classList.add("hidden");
+    modal.classList.remove("hidden");
+    setTimeout(() => (isEdit ? nameEl : idEl).focus(), 50);
+
+    const close = () => {
+        modal.classList.add("hidden");
+        saveBtn.onclick = null; closeBtn.onclick = null; cancelBtn.onclick = null;
+        modal.onclick = null; nameEl.onkeydown = null; tagsEl.onkeydown = null; idEl.onkeydown = null;
+    };
+    const showErr = (m) => { errEl.textContent = m; errEl.classList.remove("hidden"); };
+
+    const save = async () => {
+        const employee_id = idEl.value.trim();
+        const employee_name = nameEl.value.trim();
+        const tags = tagsEl.value.trim();
+        if (!isEdit && !employee_id) return showErr(dict.err_emp_id_required || "사번은 필수입니다.");
+        if (!employee_name) return showErr(dict.err_emp_name_required || "이름은 필수입니다.");
+        saveBtn.disabled = true;
+        try {
+            let resp;
+            if (isEdit) {
+                resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees/${encodeURIComponent(data.employee_id)}`, {
+                    method: "PUT", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ employee_name, tags })
+                });
+            } else {
+                resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees`, {
+                    method: "POST", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ employee_id, employee_name, tags })
+                });
+            }
+            if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+            close();
+            reloadEmployeeList();
+        } catch (err) {
+            saveBtn.disabled = false;
+            showErr((isEdit ? (dict.emp_update_failed || "직원 수정 실패: ") : (dict.emp_add_failed || "직원 추가 실패: ")) + err.message);
+        }
+    };
+
+    saveBtn.disabled = false;
+    saveBtn.onclick = save;
+    closeBtn.onclick = close;
+    cancelBtn.onclick = close;
+    modal.onclick = (e) => { if (e.target === modal) close(); };
+    const onEnter = (e) => { if (e.key === "Enter") { e.preventDefault(); save(); } };
+    idEl.onkeydown = onEnter; nameEl.onkeydown = onEnter; tagsEl.onkeydown = onEnter;
+}
+
 async function renderEmployeeAccounts(container) {
     const dict = translations[currentLang] || translations.ko;
     container.className = "";
@@ -5163,47 +5232,16 @@ async function renderEmployeeAccounts(container) {
 function bindEmployeeAccountActions(container) {
     const dict = translations[currentLang] || translations.ko;
 
-    // 직원 추가
-    document.getElementById("btnAddEmployee")?.addEventListener("click", async () => {
-        const employee_id = prompt(dict.prompt_emp_id || "사번(직원 ID)을 입력하세요");
-        if (employee_id === null) return;
-        if (!employee_id.trim()) { alert(dict.err_emp_id_required || "사번은 필수입니다."); return; }
-        const employee_name = prompt(dict.prompt_emp_name || "직원 이름을 입력하세요");
-        if (employee_name === null) return;
-        if (!employee_name.trim()) { alert(dict.err_emp_name_required || "이름은 필수입니다."); return; }
-        const tags = prompt(dict.prompt_emp_tags || "태그(부서 등, 쉼표 구분, 선택)") || "";
-        try {
-            const resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees`, {
-                method: "POST", headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ employee_id: employee_id.trim(), employee_name: employee_name.trim(), tags: tags.trim() })
-            });
-            if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
-            alert(dict.emp_added || "직원이 추가되었습니다.");
-            reloadEmployeeList();
-        } catch (err) { alert((dict.emp_add_failed || "직원 추가 실패: ") + err.message); }
-    });
+    // 직원 추가 (모달)
+    document.getElementById("btnAddEmployee")?.addEventListener("click", () => openEmployeeModal("create", null));
 
-    // 직원 정보 수정 (이름/태그)
+    // 직원 정보 수정 (모달)
     container.querySelectorAll("button[data-emp-edit]").forEach(btn => {
-        btn.addEventListener("click", async () => {
-            const employeeId = btn.getAttribute("data-emp-edit");
-            const curName = btn.getAttribute("data-emp-name") || "";
-            const curTags = btn.getAttribute("data-emp-tags") || "";
-            const employee_name = prompt(dict.prompt_emp_name || "직원 이름을 입력하세요", curName);
-            if (employee_name === null) return;
-            if (!employee_name.trim()) { alert(dict.err_emp_name_required || "이름은 필수입니다."); return; }
-            const tags = prompt(dict.prompt_emp_tags || "태그(부서 등, 쉼표 구분, 선택)", curTags);
-            if (tags === null) return;
-            try {
-                const resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees/${encodeURIComponent(employeeId)}`, {
-                    method: "PUT", headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ employee_name: employee_name.trim(), tags: tags.trim() })
-                });
-                if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
-                alert(dict.emp_updated || "직원 정보가 수정되었습니다.");
-                reloadEmployeeList();
-            } catch (err) { alert((dict.emp_update_failed || "직원 수정 실패: ") + err.message); }
-        });
+        btn.addEventListener("click", () => openEmployeeModal("edit", {
+            employee_id: btn.getAttribute("data-emp-edit"),
+            employee_name: btn.getAttribute("data-emp-name") || "",
+            tags: btn.getAttribute("data-emp-tags") || ""
+        }));
     });
 
     // 직원 삭제
