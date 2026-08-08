@@ -1,0 +1,48 @@
+name: Build PGuard Agent
+
+# 수동 실행: GitHub → Actions → "Build PGuard Agent" → Run workflow
+on:
+  workflow_dispatch:
+
+jobs:
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Build macOS (release)
+        working-directory: pguard_agent_flutter
+        run: |
+          flutter pub get
+          flutter build macos --release
+      - name: Zip .app
+        working-directory: pguard_agent_flutter/build/macos/Build/Products/Release
+        run: ditto -c -k --keepParent *.app PGuardAgent-macOS.zip
+      - name: Upload macOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PGuardAgent-macOS
+          path: pguard_agent_flutter/build/macos/Build/Products/Release/PGuardAgent-macOS.zip
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Build Windows (release)
+        working-directory: pguard_agent_flutter
+        run: |
+          flutter pub get
+          flutter build windows --release
+      - name: Zip Release folder
+        working-directory: pguard_agent_flutter/build/windows/x64/runner/Release
+        run: Compress-Archive -Path * -DestinationPath PGuardAgent-Windows.zip
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PGuardAgent-Windows
+          path: pguard_agent_flutter/build/windows/x64/runner/Release/PGuardAgent-Windows.zip
