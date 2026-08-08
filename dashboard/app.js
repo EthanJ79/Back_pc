@@ -186,7 +186,7 @@ const translations = {
         mode_employee: "직원 모드",
         menu_approval_admin: "전자결재 관리",
         menu_approval_user: "나의 결재",
-        navgrp_monitoring: "모니터링", navgrp_approval: "전자결재", navgrp_admin: "관리", menu_employee_mgmt: "직원 관리", emp_mgmt_desc: "직원 정보, 로그인 계정, 관리 권한을 한 곳에서 관리합니다.",
+        navgrp_monitoring: "모니터링", navgrp_approval: "전자결재", navgrp_admin: "관리", menu_employee_mgmt: "직원 관리", menu_org_chart: "조직도 관리", org_desc: "그룹·팀을 트리로 구성하고 직원을 배정합니다. 전자결재 결재선과 KPI에 연동됩니다.", org_add_top: "최상위 조직 추가", org_add_child: "하위 추가", org_company_root: "회사 최상위", org_empty: "조직이 없습니다. 최상위 조직 추가로 시작하세요.", org_type_group: "그룹 (Group)", org_type_team: "팀 (Team)", org_type_group_short: "그룹", org_type_team_short: "팀", org_emp_unit: "명", org_name: "조직 이름", org_type: "유형", org_parent: "상위 조직", org_root_option: "(최상위 - 회사 직속)", org_add_title: "조직 추가", org_edit_title: "조직 수정", org_err_name: "조직 이름을 입력해 주세요.", org_confirm_delete: "이 조직을 삭제하시겠습니까? 배정된 직원은 미배정 처리됩니다.", org_delete_failed: "조직 삭제 실패: ", org_add_failed: "조직 추가 실패: ", org_update_failed: "조직 수정 실패: ", org_unassigned: "(미배정)", emp_form_org: "소속 조직 (팀/그룹)", th_emp_org: "소속 조직", emp_mgmt_desc: "직원 정보, 로그인 계정, 관리 권한을 한 곳에서 관리합니다.",
         approval_admin_title: "전자결재 관리",
         approval_admin_desc: "결재 문서, 양식(템플릿), 직원 로그인 계정, 번역 설정을 관리합니다.",
         approval_user_title: "나의 결재",
@@ -533,7 +533,7 @@ const translations = {
         mode_employee: "Employee Mode",
         menu_approval_admin: "Approval Admin",
         menu_approval_user: "My Approvals",
-        navgrp_monitoring: "Monitoring", navgrp_approval: "Approval", navgrp_admin: "Admin", menu_employee_mgmt: "Employees", emp_mgmt_desc: "Manage employee info, login accounts, and privileges in one place.",
+        navgrp_monitoring: "Monitoring", navgrp_approval: "Approval", navgrp_admin: "Admin", menu_employee_mgmt: "Employees", menu_org_chart: "Org Chart", org_desc: "Build a tree of groups/teams and assign employees. Links to approval lines and KPI.", org_add_top: "Add Top-level Unit", org_add_child: "Add Child", org_company_root: "Company Root", org_empty: "No units yet. Start with Add Top-level Unit.", org_type_group: "Group", org_type_team: "Team", org_type_group_short: "Group", org_type_team_short: "Team", org_emp_unit: "", org_name: "Unit Name", org_type: "Type", org_parent: "Parent Unit", org_root_option: "(Top-level - under company)", org_add_title: "Add Unit", org_edit_title: "Edit Unit", org_err_name: "Please enter a unit name.", org_confirm_delete: "Delete this unit? Assigned employees become unassigned.", org_delete_failed: "Failed to delete unit: ", org_add_failed: "Failed to add unit: ", org_update_failed: "Failed to update unit: ", org_unassigned: "(Unassigned)", emp_form_org: "Organization (Team/Group)", th_emp_org: "Organization", emp_mgmt_desc: "Manage employee info, login accounts, and privileges in one place.",
         approval_admin_title: "Approval Administration",
         approval_admin_desc: "Manage approval documents, templates, employee login accounts, and translation settings.",
         approval_user_title: "My Approvals",
@@ -881,7 +881,7 @@ const translations = {
         mode_employee: "โหมดพนักงาน",
         menu_approval_admin: "จัดการอนุมัติ",
         menu_approval_user: "การอนุมัติของฉัน",
-        navgrp_monitoring: "การติดตาม", navgrp_approval: "การอนุมัติ", navgrp_admin: "จัดการ", menu_employee_mgmt: "จัดการพนักงาน", emp_mgmt_desc: "จัดการข้อมูลพนักงาน บัญชีเข้าสู่ระบบ และสิทธิ์ในที่เดียว",
+        navgrp_monitoring: "การติดตาม", navgrp_approval: "การอนุมัติ", navgrp_admin: "จัดการ", menu_employee_mgmt: "จัดการพนักงาน", menu_org_chart: "ผังองค์กร", org_desc: "สร้างต้นไม้กลุ่ม/ทีมและมอบหมายพนักงาน เชื่อมกับสายอนุมัติและ KPI", org_add_top: "เพิ่มหน่วยระดับบนสุด", org_add_child: "เพิ่มหน่วยย่อย", org_company_root: "ระดับบริษัท", org_empty: "ยังไม่มีหน่วยงาน เริ่มด้วยเพิ่มหน่วยระดับบนสุด", org_type_group: "กลุ่ม", org_type_team: "ทีม", org_type_group_short: "กลุ่ม", org_type_team_short: "ทีม", org_emp_unit: "คน", org_name: "ชื่อหน่วยงาน", org_type: "ประเภท", org_parent: "หน่วยงานแม่", org_root_option: "(ระดับบนสุด - ขึ้นตรงบริษัท)", org_add_title: "เพิ่มหน่วยงาน", org_edit_title: "แก้ไขหน่วยงาน", org_err_name: "กรุณากรอกชื่อหน่วยงาน", org_confirm_delete: "ลบหน่วยงานนี้หรือไม่? พนักงานที่มอบหมายจะกลายเป็นไม่ได้มอบหมาย", org_delete_failed: "ลบหน่วยงานไม่สำเร็จ: ", org_add_failed: "เพิ่มหน่วยงานไม่สำเร็จ: ", org_update_failed: "แก้ไขหน่วยงานไม่สำเร็จ: ", org_unassigned: "(ไม่ได้มอบหมาย)", emp_form_org: "องค์กร (ทีม/กลุ่ม)", th_emp_org: "องค์กร", emp_mgmt_desc: "จัดการข้อมูลพนักงาน บัญชีเข้าสู่ระบบ และสิทธิ์ในที่เดียว",
         approval_admin_title: "การจัดการเอกสารอนุมัติ",
         approval_admin_desc: "จัดการเอกสารอนุมัติ แม่แบบ บัญชีเข้าสู่ระบบพนักงาน และการตั้งค่าการแปล",
         approval_user_title: "การอนุมัติของฉัน",
@@ -1230,7 +1230,7 @@ const translations = {
         mode_employee: "ໂໝດພະນັກງານ",
         menu_approval_admin: "ຈັດການການອະນຸມັດ",
         menu_approval_user: "ການອະນຸມັດຂອງຂ້ອຍ",
-        navgrp_monitoring: "ການຕິດຕາມ", navgrp_approval: "ການອະນຸມັດ", navgrp_admin: "ຈັດການ", menu_employee_mgmt: "ຈັດການພະນັກງານ", emp_mgmt_desc: "ຈັດການຂໍ້ມູນພະນັກງານ, ບັນຊີເຂົ້າສູ່ລະບົບ ແລະ ສິດ ໃນບ່ອນດຽວ.",
+        navgrp_monitoring: "ການຕິດຕາມ", navgrp_approval: "ການອະນຸມັດ", navgrp_admin: "ຈັດການ", menu_employee_mgmt: "ຈັດການພະນັກງານ", menu_org_chart: "ຜັງອົງກອນ", org_desc: "ສ້າງໂຄງສ້າງກຸ່ມ/ທີມ ແລະ ມອບໝາຍພະນັກງານ. ເຊື່ອມກັບສາຍອະນຸມັດ ແລະ KPI.", org_add_top: "ເພີ່ມໜ່ວຍລະດັບສູງສຸດ", org_add_child: "ເພີ່ມໜ່ວຍຍ່ອຍ", org_company_root: "ລະດັບບໍລິສັດ", org_empty: "ຍັງບໍ່ມີໜ່ວຍງານ. ເລີ່ມດ້ວຍເພີ່ມໜ່ວຍລະດັບສູງສຸດ.", org_type_group: "ກຸ່ມ", org_type_team: "ທີມ", org_type_group_short: "ກຸ່ມ", org_type_team_short: "ທີມ", org_emp_unit: "ຄົນ", org_name: "ຊື່ໜ່ວຍງານ", org_type: "ປະເພດ", org_parent: "ໜ່ວຍງານແມ່", org_root_option: "(ລະດັບສູງສຸດ - ຂຶ້ນກັບບໍລິສັດ)", org_add_title: "ເພີ່ມໜ່ວຍງານ", org_edit_title: "ແກ້ໄຂໜ່ວຍງານ", org_err_name: "ກະລຸນາປ້ອນຊື່ໜ່ວຍງານ", org_confirm_delete: "ລຶບໜ່ວຍງານນີ້ບໍ? ພະນັກງານທີ່ມອບໝາຍຈະກາຍເປັນບໍ່ໄດ້ມອບໝາຍ.", org_delete_failed: "ລຶບໜ່ວຍງານບໍ່ສຳເລັດ: ", org_add_failed: "ເພີ່ມໜ່ວຍງານບໍ່ສຳເລັດ: ", org_update_failed: "ແກ້ໄຂໜ່ວຍງານບໍ່ສຳເລັດ: ", org_unassigned: "(ບໍ່ໄດ້ມອບໝາຍ)", emp_form_org: "ອົງກອນ (ທີມ/ກຸ່ມ)", th_emp_org: "ອົງກອນ", emp_mgmt_desc: "ຈັດການຂໍ້ມູນພະນັກງານ, ບັນຊີເຂົ້າສູ່ລະບົບ ແລະ ສິດ ໃນບ່ອນດຽວ.",
         approval_admin_title: "ການຈັດການເອກະສານອະນຸມັດ",
         approval_admin_desc: "ຈັດການເອກະສານອະນຸມັດ, ແມ່ແບບ, ບັນຊີເຂົ້າສູ່ລະບົບພະນັກງານ ແລະ ການຕັ້ງຄ່າການແປ.",
         approval_user_title: "ການອະນຸມັດຂອງຂ້ອຍ",
@@ -1567,6 +1567,7 @@ function updateTenantUI() {
                 if (target === "tab-patterns" && role === "employee_manager") visible = false;
                 if (target === "tab-approval-admin" && role === "employee_manager") visible = false;
                 if (target === "tab-employee-mgmt" && role === "employee_manager") visible = false;
+                if (target === "tab-org-chart" && role === "employee_manager") visible = false;
             }
             btn.classList.toggle("hidden", !visible);
         });
@@ -2592,6 +2593,10 @@ function switchTab(targetTabId) {
         headerTag.textContent = "EMPLOYEE MGMT";
         headerTitle.setAttribute("data-i18n", "menu_employee_mgmt");
         headerDesc.setAttribute("data-i18n", "emp_mgmt_desc");
+    } else if (targetTabId === "tab-org-chart") {
+        headerTag.textContent = "ORG CHART";
+        headerTitle.setAttribute("data-i18n", "menu_org_chart");
+        headerDesc.setAttribute("data-i18n", "org_desc");
     }
 
     changeLanguage(currentLang); // 동적으로 할당된 data-i18n 바로 번역 적용
@@ -2691,6 +2696,8 @@ async function fetchCurrentTab() {
         await fetchApprovalUserTab();
     } else if (activeTab === "tab-employee-mgmt") {
         fetchEmployeeMgmtTab();
+    } else if (activeTab === "tab-org-chart") {
+        fetchOrgChartTab();
     }
 }
 
@@ -5068,6 +5075,7 @@ function openEmployeeModal(mode, data) {
     const closeBtn = document.getElementById("empFormClose");
     const cancelBtn = document.getElementById("empFormCancel");
 
+    const orgEl = document.getElementById("empFormOrg");
     const isEdit = mode === "edit";
     titleEl.textContent = isEdit ? (dict.emp_edit_title || "직원 정보 수정") : (dict.emp_add || "직원 추가");
     idEl.value = data ? (data.employee_id || "") : "";
@@ -5077,6 +5085,14 @@ function openEmployeeModal(mode, data) {
     errEl.classList.add("hidden");
     modal.classList.remove("hidden");
     setTimeout(() => (isEdit ? nameEl : idEl).focus(), 50);
+
+    // 소속 조직 드롭다운 채우기
+    if (orgEl) {
+        orgEl.innerHTML = `<option value="">${dict.org_unassigned || "(미배정)"}</option>`;
+        ensureOrgUnitsLoaded().then(() => {
+            orgEl.innerHTML = orgUnitSelectOptions(data ? (data.org_unit_id || "") : "");
+        });
+    }
 
     const close = () => {
         modal.classList.add("hidden");
@@ -5089,6 +5105,7 @@ function openEmployeeModal(mode, data) {
         const employee_id = idEl.value.trim();
         const employee_name = nameEl.value.trim();
         const tags = tagsEl.value.trim();
+        const org_unit_id = orgEl ? orgEl.value : "";
         if (!isEdit && !employee_id) return showErr(dict.err_emp_id_required || "사번은 필수입니다.");
         if (!employee_name) return showErr(dict.err_emp_name_required || "이름은 필수입니다.");
         saveBtn.disabled = true;
@@ -5097,7 +5114,7 @@ function openEmployeeModal(mode, data) {
             if (isEdit) {
                 resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees/${encodeURIComponent(data.employee_id)}`, {
                     method: "PUT", headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ employee_name, tags })
+                    body: JSON.stringify({ employee_name, tags, org_unit_id })
                 });
             } else {
                 resp = await authenticatedFetch(`${API_BASE_URL}/admin/employees`, {
@@ -5106,6 +5123,13 @@ function openEmployeeModal(mode, data) {
                 });
             }
             if (!resp.ok) { const e = await resp.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+            // 신규 생성 시 org 배정은 생성 직후 PUT 으로 반영
+            if (!isEdit && org_unit_id) {
+                await authenticatedFetch(`${API_BASE_URL}/admin/employees/${encodeURIComponent(employee_id)}`, {
+                    method: "PUT", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ employee_name, org_unit_id })
+                });
+            }
             close();
             reloadEmployeeList();
         } catch (err) {
@@ -5169,13 +5193,14 @@ async function renderEmployeeAccounts(container) {
                 <td class="py-3 px-4 text-white font-medium">${escapeHtml(r.employee_name || "")}</td>
                 <td class="py-3 px-4 font-mono text-slate-400">${escapeHtml(r.employee_id)}</td>
                 ${companyCell}
+                <td class="py-3 px-4 text-slate-300">${r.org_unit_name ? escapeHtml(r.org_unit_name) : `<span class="text-slate-600">-</span>`}</td>
                 <td class="py-3 px-4 text-slate-400">${escapeHtml(r.tags || "-")}</td>
                 <td class="py-3 px-4 font-mono text-slate-300">${escapeHtml(r.login_id || "-")}</td>
                 <td class="py-3 px-4">${statusBadge}</td>
                 <td class="py-3 px-4">${roleSelect}</td>
                 <td class="py-3 px-4">
                     <div class="flex items-center gap-1.5 flex-wrap">
-                        <button data-emp-edit="${r.employee_id}" data-emp-name="${nameEsc}" data-emp-tags="${tagsEsc}"
+                        <button data-emp-edit="${r.employee_id}" data-emp-name="${nameEsc}" data-emp-tags="${tagsEsc}" data-emp-org="${r.org_unit_id || ''}"
                             class="px-2.5 py-1.5 bg-white/10 hover:bg-white/20 text-slate-200 text-[11px] rounded-lg font-semibold transition">
                             ${dict.emp_edit || "정보 수정"}
                         </button>
@@ -5196,7 +5221,7 @@ async function renderEmployeeAccounts(container) {
             </tr>`;
     }).join("");
 
-    const colspan = isSuperAdmin ? 8 : 7;
+    const colspan = isSuperAdmin ? 9 : 8;
     container.innerHTML = `
         <div class="flex items-center justify-between gap-2 mb-4">
             <div class="flex items-start gap-2 text-xs text-slate-400 bg-white/5 border border-cardBorder rounded-xl p-3 flex-1">
@@ -5214,6 +5239,7 @@ async function renderEmployeeAccounts(container) {
                         <th class="py-3 px-4 font-semibold">${dict.th_emp_name || "이름"}</th>
                         <th class="py-3 px-4 font-semibold">${dict.th_emp_id || "사번"}</th>
                         ${isSuperAdmin ? `<th class="py-3 px-4 font-semibold">${dict.th_company || "회사"}</th>` : ""}
+                        <th class="py-3 px-4 font-semibold">${dict.th_emp_org || "소속 조직"}</th>
                         <th class="py-3 px-4 font-semibold">${dict.th_emp_tags || "태그"}</th>
                         <th class="py-3 px-4 font-semibold">${dict.th_login_id || "로그인 ID"}</th>
                         <th class="py-3 px-4 font-semibold">${dict.th_login_status || "로그인 상태"}</th>
@@ -5240,7 +5266,8 @@ function bindEmployeeAccountActions(container) {
         btn.addEventListener("click", () => openEmployeeModal("edit", {
             employee_id: btn.getAttribute("data-emp-edit"),
             employee_name: btn.getAttribute("data-emp-name") || "",
-            tags: btn.getAttribute("data-emp-tags") || ""
+            tags: btn.getAttribute("data-emp-tags") || "",
+            org_unit_id: btn.getAttribute("data-emp-org") || ""
         }));
     });
 
@@ -6831,3 +6858,221 @@ async function renderApprovalSettings(container) {
 
 // 상세 모달: 번역 병기 표시용 언어 선택 상태
 let detailTransLang = null;
+
+// ==================================================================
+// 조직도 관리 (org_units 트리 + 직원 배정)
+// ==================================================================
+let orgUnitsCache = [];
+
+async function fetchOrgChartTab() {
+    const dict = translations[currentLang] || translations.ko;
+    const container = document.getElementById("orgChartContent");
+    if (!container) return;
+    container.className = "";
+    container.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm">${dict.loading_text || "불러오는 중..."}</div>`;
+
+    // 최상위 추가 버튼 (1회 바인딩)
+    const addRootBtn = document.getElementById("btnAddRootUnit");
+    if (addRootBtn && !addRootBtn.dataset.bound) {
+        addRootBtn.dataset.bound = "1";
+        addRootBtn.addEventListener("click", () => openOrgUnitModal("create", { parent_id: "" }));
+    }
+
+    try {
+        const r = await authenticatedFetch(`${API_BASE_URL}/admin/org-units`);
+        if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+        orgUnitsCache = await r.json();
+    } catch (err) {
+        container.innerHTML = `<div class="text-center py-8 text-rose-400 text-sm">${escapeHtml(err.message)}</div>`;
+        return;
+    }
+    renderOrgTree(container);
+}
+
+function orgChildrenOf(parentId) {
+    return orgUnitsCache
+        .filter(u => (u.parent_id || null) === (parentId || null))
+        .sort((a, b) => (a.sort_order - b.sort_order) || (a.id - b.id));
+}
+
+function renderOrgTree(container) {
+    const dict = translations[currentLang] || translations.ko;
+    const companyLabel = localStorage.getItem("pguard_company_code") === "auton"
+        ? "AUTON" : (localStorage.getItem("pguard_company_code") || "회사");
+
+    const roots = orgChildrenOf(null);
+    const treeHtml = roots.length
+        ? roots.map(u => renderOrgNode(u, 0)).join("")
+        : `<div class="text-xs text-slate-500 py-4 text-center">${dict.org_empty || "조직이 없습니다. '최상위 조직 추가'로 시작하세요."}</div>`;
+
+    container.className = "";
+    container.innerHTML = `
+        <div class="flex items-center gap-2 mb-3 px-2">
+            <i data-lucide="building-2" class="w-4 h-4 text-indigo-400"></i>
+            <span class="text-sm font-bold text-white">${escapeHtml(companyLabel)}</span>
+            <span class="text-[10px] text-slate-500">(${dict.org_company_root || "회사 최상위"})</span>
+        </div>
+        <div class="space-y-1">${treeHtml}</div>`;
+
+    lucide.createIcons();
+    bindOrgNodeActions(container);
+}
+
+function renderOrgNode(unit, depth) {
+    const dict = translations[currentLang] || translations.ko;
+    const children = orgChildrenOf(unit.id);
+    const isGroup = unit.unit_type === "group";
+    const icon = isGroup ? "folder" : "users";
+    const typeBadge = isGroup
+        ? `<span class="px-1.5 py-0.5 bg-amber-600/20 text-amber-300 text-[9px] rounded">${dict.org_type_group_short || "그룹"}</span>`
+        : `<span class="px-1.5 py-0.5 bg-indigo-600/20 text-indigo-300 text-[9px] rounded">${dict.org_type_team_short || "팀"}</span>`;
+    const empBadge = unit.employee_count > 0
+        ? `<span class="px-1.5 py-0.5 bg-white/10 text-slate-300 text-[9px] rounded">${unit.employee_count}${dict.org_emp_unit || "명"}</span>` : "";
+
+    const row = `
+        <div class="flex items-center justify-between rounded-lg hover:bg-white/5 px-2 py-2 group" style="margin-left:${depth * 22}px">
+            <div class="flex items-center gap-2 min-w-0">
+                ${depth > 0 ? `<span class="text-slate-600">└</span>` : ""}
+                <i data-lucide="${icon}" class="w-4 h-4 ${isGroup ? "text-amber-400" : "text-indigo-400"} shrink-0"></i>
+                <span class="text-sm text-white truncate">${escapeHtml(unit.name)}</span>
+                ${typeBadge} ${empBadge}
+            </div>
+            <div class="flex items-center gap-1 opacity-70 group-hover:opacity-100 transition">
+                <button data-org-add="${unit.id}" title="${dict.org_add_child || "하위 추가"}" class="p-1.5 hover:bg-white/10 rounded text-slate-400 hover:text-emerald-400"><i data-lucide="plus" class="w-3.5 h-3.5"></i></button>
+                <button data-org-edit="${unit.id}" title="${dict.btn_edit || "수정"}" class="p-1.5 hover:bg-white/10 rounded text-slate-400 hover:text-white"><i data-lucide="pencil" class="w-3.5 h-3.5"></i></button>
+                <button data-org-del="${unit.id}" title="${dict.btn_delete || "삭제"}" class="p-1.5 hover:bg-rose-500/20 rounded text-slate-400 hover:text-rose-400"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+            </div>
+        </div>`;
+    const childHtml = children.map(c => renderOrgNode(c, depth + 1)).join("");
+    return row + childHtml;
+}
+
+function bindOrgNodeActions(container) {
+    const dict = translations[currentLang] || translations.ko;
+    container.querySelectorAll("[data-org-add]").forEach(btn => {
+        btn.addEventListener("click", () => openOrgUnitModal("create", { parent_id: btn.getAttribute("data-org-add") }));
+    });
+    container.querySelectorAll("[data-org-edit]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const u = orgUnitsCache.find(x => String(x.id) === btn.getAttribute("data-org-edit"));
+            if (u) openOrgUnitModal("edit", u);
+        });
+    });
+    container.querySelectorAll("[data-org-del]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+            const u = orgUnitsCache.find(x => String(x.id) === btn.getAttribute("data-org-del"));
+            if (!u) return;
+            if (!confirm((dict.org_confirm_delete || "이 조직을 삭제하시겠습니까? 배정된 직원은 미배정 처리됩니다.") + `\n[${u.name}]`)) return;
+            try {
+                const r = await authenticatedFetch(`${API_BASE_URL}/admin/org-units/${u.id}`, { method: "DELETE" });
+                if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+                fetchOrgChartTab();
+            } catch (err) { alert((dict.org_delete_failed || "조직 삭제 실패: ") + err.message); }
+        });
+    });
+}
+
+// 상위 조직 선택 옵션 (자기 자신/후손 제외)
+function orgParentOptions(selectedParentId, excludeId) {
+    const dict = translations[currentLang] || translations.ko;
+    const excluded = new Set();
+    if (excludeId != null) {
+        const collect = (pid) => { excluded.add(pid); orgChildrenOf(pid).forEach(c => collect(c.id)); };
+        collect(excludeId);
+    }
+    let opts = `<option value="">${dict.org_root_option || "(최상위 - 회사 직속)"}</option>`;
+    const walk = (parentId, depth) => {
+        orgChildrenOf(parentId).forEach(u => {
+            if (!excluded.has(u.id)) {
+                const indent = "  ".repeat(depth);
+                opts += `<option value="${u.id}" ${String(selectedParentId) === String(u.id) ? "selected" : ""}>${indent}${escapeHtml(u.name)}</option>`;
+            }
+            walk(u.id, depth + 1);
+        });
+    };
+    walk(null, 0);
+    return opts;
+}
+
+function openOrgUnitModal(mode, data) {
+    const dict = translations[currentLang] || translations.ko;
+    const modal = document.getElementById("orgUnitModal");
+    if (!modal) return;
+    const nameEl = document.getElementById("orgUnitName");
+    const typeEl = document.getElementById("orgUnitType");
+    const parentEl = document.getElementById("orgUnitParent");
+    const titleEl = document.getElementById("orgUnitTitle");
+    const errEl = document.getElementById("orgUnitError");
+    const saveBtn = document.getElementById("orgUnitSave");
+    const closeBtn = document.getElementById("orgUnitClose");
+    const cancelBtn = document.getElementById("orgUnitCancel");
+
+    const isEdit = mode === "edit";
+    titleEl.textContent = isEdit ? (dict.org_edit_title || "조직 수정") : (dict.org_add_title || "조직 추가");
+    nameEl.value = isEdit ? (data.name || "") : "";
+    typeEl.value = isEdit ? (data.unit_type || "team") : "team";
+    parentEl.innerHTML = orgParentOptions(isEdit ? data.parent_id : (data.parent_id || ""), isEdit ? data.id : null);
+    errEl.classList.add("hidden");
+    modal.classList.remove("hidden");
+    setTimeout(() => nameEl.focus(), 50);
+
+    const close = () => {
+        modal.classList.add("hidden");
+        saveBtn.onclick = closeBtn.onclick = cancelBtn.onclick = modal.onclick = nameEl.onkeydown = null;
+    };
+    const showErr = (m) => { errEl.textContent = m; errEl.classList.remove("hidden"); };
+
+    const save = async () => {
+        const name = nameEl.value.trim();
+        if (!name) return showErr(dict.org_err_name || "조직 이름을 입력해 주세요.");
+        const payload = { name, unit_type: typeEl.value, parent_id: parentEl.value || "" };
+        saveBtn.disabled = true;
+        try {
+            let r;
+            if (isEdit) {
+                r = await authenticatedFetch(`${API_BASE_URL}/admin/org-units/${data.id}`, {
+                    method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload)
+                });
+            } else {
+                r = await authenticatedFetch(`${API_BASE_URL}/admin/org-units`, {
+                    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload)
+                });
+            }
+            if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.error || "실패"); }
+            close();
+            fetchOrgChartTab();
+        } catch (err) {
+            saveBtn.disabled = false;
+            showErr((isEdit ? (dict.org_update_failed || "조직 수정 실패: ") : (dict.org_add_failed || "조직 추가 실패: ")) + err.message);
+        }
+    };
+
+    saveBtn.disabled = false;
+    saveBtn.onclick = save;
+    closeBtn.onclick = cancelBtn.onclick = close;
+    modal.onclick = (e) => { if (e.target === modal) close(); };
+    nameEl.onkeydown = (e) => { if (e.key === "Enter") { e.preventDefault(); save(); } };
+}
+
+// 직원 모달용 조직 옵션 로더 (캐시 없으면 조회)
+async function ensureOrgUnitsLoaded() {
+    if (orgUnitsCache.length) return orgUnitsCache;
+    try {
+        const r = await authenticatedFetch(`${API_BASE_URL}/admin/org-units`);
+        if (r.ok) orgUnitsCache = await r.json();
+    } catch (e) {}
+    return orgUnitsCache;
+}
+function orgUnitSelectOptions(selectedId) {
+    const dict = translations[currentLang] || translations.ko;
+    let opts = `<option value="">${dict.org_unassigned || "(미배정)"}</option>`;
+    const walk = (parentId, depth) => {
+        orgChildrenOf(parentId).forEach(u => {
+            const indent = "  ".repeat(depth);
+            opts += `<option value="${u.id}" ${String(selectedId) === String(u.id) ? "selected" : ""}>${indent}${escapeHtml(u.name)}</option>`;
+            walk(u.id, depth + 1);
+        });
+    };
+    walk(null, 0);
+    return opts;
+}

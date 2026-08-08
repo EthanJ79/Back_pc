@@ -172,6 +172,14 @@ function initializeDatabase() {
                         else console.log("employees 테이블 admin_role 컬럼 마이그레이션 완료.");
                     });
                 }
+                // 소속 조직(팀/그룹) 연결
+                const hasOrgUnit = columns.some(col => col.name === 'org_unit_id');
+                if (!hasOrgUnit) {
+                    db.run("ALTER TABLE employees ADD COLUMN org_unit_id INTEGER", (alterErr) => {
+                        if (alterErr) console.error("employees 테이블 org_unit_id 컬럼 마이그레이션 실패:", alterErr.message);
+                        else console.log("employees 테이블 org_unit_id 컬럼 마이그레이션 완료.");
+                    });
+                }
             }
         });
 
@@ -390,6 +398,20 @@ function initializeDatabase() {
                 PRIMARY KEY (company_code, key)
             )
         `);
+
+        // 조직도 (그룹/팀 트리)
+        db.run(`
+            CREATE TABLE IF NOT EXISTS org_units (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                company_code TEXT NOT NULL,
+                parent_id INTEGER,
+                name TEXT NOT NULL,
+                unit_type TEXT NOT NULL DEFAULT 'team',
+                sort_order INTEGER NOT NULL DEFAULT 0,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        `);
+        db.run(`CREATE INDEX IF NOT EXISTS idx_org_units_company ON org_units(company_code, parent_id)`);
 
         db.run(`CREATE INDEX IF NOT EXISTS idx_approval_docs_company_status ON approval_documents(company_code, status)`);
         db.run(`CREATE INDEX IF NOT EXISTS idx_approval_docs_submitted_by ON approval_documents(company_code, submitted_by)`);
@@ -1044,6 +1066,7 @@ app.delete('/api/super/companies/:company_code', authMiddleware, superAdminOnly,
         db.run("DELETE FROM approval_documents WHERE company_code = ?", [targetCode]);
         db.run("DELETE FROM approval_templates WHERE company_code = ?", [targetCode]);
         db.run("DELETE FROM approval_settings WHERE company_code = ?", [targetCode]);
+        db.run("DELETE FROM org_units WHERE company_code = ?", [targetCode]);
         db.run("DELETE FROM companies WHERE company_code = ?", [targetCode], function(err) {
             if (err) {
                 db.run("ROLLBACK");
@@ -2063,6 +2086,9 @@ app.put('/api/admin/employees/:employee_id', authMiddleware, (req, res) => {
     const { employee_id } = req.params;
     const employee_name = (req.body.employee_name || '').trim();
     const tags = req.body.tags !== undefined ? String(req.body.tags).trim() : null;
+    // org_unit_id: 값이 오면 배정, 빈문자/null 이면 미배정으로 해제
+    const hasOrg = Object.prototype.hasOwnProperty.call(req.body, 'org_unit_id');
+    const orgUnitId = hasOrg ? (req.body.org_unit_id === '' || req.body.org_unit_id === null ? null : parseInt(req.body.org_unit_id, 10)) : undefined;
     const companyCode = req.companyCode;
 
     if (!employee_name) return res.status(400).json({ error: '이름을 입력해 주세요.' });
@@ -2075,12 +2101,125 @@ app.put('/api/admin/employees/:employee_id', authMiddleware, (req, res) => {
         const sets = ["employee_name = ?"];
         const params = [employee_name];
         if (tags !== null) { sets.push("tags = ?"); params.push(tags); }
+        if (orgUnitId !== undefined) { sets.push("org_unit_id = ?"); params.push(orgUnitId); }
         params.push(employee_id);
 
         db.run(`UPDATE employees SET ${sets.join(', ')} WHERE employee_id = ?`, params, function(uErr) {
             if (uErr) return res.status(500).json({ error: '직원 수정 실패: ' + uErr.message });
             logAdminAction(req, 'employee_update', `직원 정보 수정 | 사번: ${employee_id} | 이름: ${employee_name}`);
             return res.json({ success: true });
+        });
+    });
+});
+
+// ------------------------------------------------------------------
+// 조직도 (org_units) 관리 API — 전자결재/KPI 연동 기반
+// ------------------------------------------------------------------
+
+// 조직도 트리 조회 (units + 유닛별 직원 수)
+app.get('/api/admin/org-units', authMiddleware, (req, res) => {
+    if (req.role === 'employee' || req.role === 'employee_manager') {
+        return res.status(403).json({ error: '조직도 조회 권한이 없습니다.' });
+    }
+    const companyCode = req.companyCode === 'auton' ? (req.query.company_code || '').trim().toUpperCase() : req.companyCode;
+    if (!companyCode) return res.status(400).json({ error: '회사 코드가 필요합니다.' });
+
+    db.all("SELECT * FROM org_units WHERE company_code = ? ORDER BY sort_order, id", [companyCode], (err, units) => {
+        if (err) return res.status(500).json({ error: '조직도 조회 실패: ' + err.message });
+        db.all("SELECT org_unit_id, COUNT(*) AS cnt FROM employees WHERE company_code = ? AND org_unit_id IS NOT NULL GROUP BY org_unit_id", [companyCode], (e2, counts) => {
+            const countMap = {};
+            (counts || []).forEach(c => { countMap[c.org_unit_id] = c.cnt; });
+            const result = (units || []).map(u => ({ ...u, employee_count: countMap[u.id] || 0 }));
+            return res.json(result);
+        });
+    });
+});
+
+// 조직 유닛 생성
+app.post('/api/admin/org-units', authMiddleware, (req, res) => {
+    if (req.role === 'employee' || req.role === 'employee_manager') {
+        return res.status(403).json({ error: '조직도 수정 권한이 없습니다.' });
+    }
+    const companyCode = req.companyCode === 'auton' ? (req.body.company_code || '').trim().toUpperCase() : req.companyCode;
+    if (!companyCode) return res.status(400).json({ error: '회사 코드가 필요합니다.' });
+    const name = (req.body.name || '').trim();
+    const unitType = req.body.unit_type === 'group' ? 'group' : 'team';
+    const parentId = (req.body.parent_id === '' || req.body.parent_id == null) ? null : parseInt(req.body.parent_id, 10);
+    const sortOrder = parseInt(req.body.sort_order, 10) || 0;
+    if (!name) return res.status(400).json({ error: '조직 이름을 입력해 주세요.' });
+
+    const doInsert = () => {
+        db.run("INSERT INTO org_units (company_code, parent_id, name, unit_type, sort_order) VALUES (?, ?, ?, ?, ?)",
+            [companyCode, parentId, name, unitType, sortOrder],
+            function(err) {
+                if (err) return res.status(500).json({ error: '조직 생성 실패: ' + err.message });
+                logAdminAction(req, 'org_unit_create', `조직 생성 | ${name} (${unitType})`);
+                return res.status(201).json({ success: true, id: this.lastID });
+            });
+    };
+    if (parentId) {
+        db.get("SELECT company_code FROM org_units WHERE id = ?", [parentId], (e, p) => {
+            if (e) return res.status(500).json({ error: '상위 조직 조회 실패' });
+            if (!p || (companyCode !== p.company_code)) return res.status(400).json({ error: '유효하지 않은 상위 조직입니다.' });
+            doInsert();
+        });
+    } else doInsert();
+});
+
+// 조직 유닛 수정 (이름/유형/상위/정렬)
+app.put('/api/admin/org-units/:id', authMiddleware, (req, res) => {
+    if (req.role === 'employee' || req.role === 'employee_manager') {
+        return res.status(403).json({ error: '조직도 수정 권한이 없습니다.' });
+    }
+    const id = parseInt(req.params.id, 10);
+    const companyCode = req.companyCode;
+    db.get("SELECT * FROM org_units WHERE id = ?", [id], (err, unit) => {
+        if (err) return res.status(500).json({ error: '조회 실패' });
+        if (!unit) return res.status(404).json({ error: '존재하지 않는 조직입니다.' });
+        if (companyCode !== 'auton' && unit.company_code !== companyCode) return res.status(403).json({ error: '권한이 없습니다.' });
+
+        const name = req.body.name !== undefined ? String(req.body.name).trim() : unit.name;
+        if (!name) return res.status(400).json({ error: '조직 이름을 입력해 주세요.' });
+        const unitType = req.body.unit_type !== undefined ? (req.body.unit_type === 'group' ? 'group' : 'team') : unit.unit_type;
+        let parentId = unit.parent_id;
+        if (Object.prototype.hasOwnProperty.call(req.body, 'parent_id')) {
+            parentId = (req.body.parent_id === '' || req.body.parent_id == null) ? null : parseInt(req.body.parent_id, 10);
+            if (parentId === id) return res.status(400).json({ error: '자기 자신을 상위로 지정할 수 없습니다.' });
+        }
+        const sortOrder = req.body.sort_order !== undefined ? (parseInt(req.body.sort_order, 10) || 0) : unit.sort_order;
+
+        db.run("UPDATE org_units SET name = ?, unit_type = ?, parent_id = ?, sort_order = ? WHERE id = ?",
+            [name, unitType, parentId, sortOrder, id],
+            function(uErr) {
+                if (uErr) return res.status(500).json({ error: '조직 수정 실패: ' + uErr.message });
+                logAdminAction(req, 'org_unit_update', `조직 수정 | ID:${id} | ${name}`);
+                return res.json({ success: true });
+            });
+    });
+});
+
+// 조직 유닛 삭제 (하위 조직 있으면 차단, 배정 직원은 미배정 처리)
+app.delete('/api/admin/org-units/:id', authMiddleware, (req, res) => {
+    if (req.role === 'employee' || req.role === 'employee_manager') {
+        return res.status(403).json({ error: '조직도 수정 권한이 없습니다.' });
+    }
+    const id = parseInt(req.params.id, 10);
+    const companyCode = req.companyCode;
+    db.get("SELECT * FROM org_units WHERE id = ?", [id], (err, unit) => {
+        if (err) return res.status(500).json({ error: '조회 실패' });
+        if (!unit) return res.status(404).json({ error: '존재하지 않는 조직입니다.' });
+        if (companyCode !== 'auton' && unit.company_code !== companyCode) return res.status(403).json({ error: '권한이 없습니다.' });
+
+        db.get("SELECT COUNT(*) AS cnt FROM org_units WHERE parent_id = ?", [id], (e2, row) => {
+            if (row && row.cnt > 0) return res.status(400).json({ error: '하위 조직을 먼저 삭제하거나 이동해 주세요.' });
+            db.serialize(() => {
+                db.run("UPDATE employees SET org_unit_id = NULL WHERE org_unit_id = ?", [id]);
+                db.run("DELETE FROM org_units WHERE id = ?", [id], function(dErr) {
+                    if (dErr) return res.status(500).json({ error: '조직 삭제 실패: ' + dErr.message });
+                    logAdminAction(req, 'org_unit_delete', `조직 삭제 | ID:${id} | ${unit.name}`);
+                    return res.json({ success: true });
+                });
+            });
         });
     });
 });
@@ -2252,12 +2391,13 @@ app.get('/api/admin/employees/accounts', authMiddleware, (req, res) => {
     }
     const companyCode = req.companyCode;
 
+    const cols = "e.employee_id, e.employee_name, e.company_code, e.login_id, e.is_login_enabled, e.admin_role, e.tags, e.org_unit_id, o.name AS org_unit_name";
     let sql, params;
     if (companyCode === 'auton') {
-        sql = "SELECT employee_id, employee_name, company_code, login_id, is_login_enabled, admin_role, tags FROM employees ORDER BY company_code, employee_name";
+        sql = `SELECT ${cols} FROM employees e LEFT JOIN org_units o ON e.org_unit_id = o.id ORDER BY e.company_code, e.employee_name`;
         params = [];
     } else {
-        sql = "SELECT employee_id, employee_name, company_code, login_id, is_login_enabled, admin_role, tags FROM employees WHERE company_code = ? ORDER BY employee_name";
+        sql = `SELECT ${cols} FROM employees e LEFT JOIN org_units o ON e.org_unit_id = o.id WHERE e.company_code = ? ORDER BY e.employee_name`;
         params = [companyCode];
     }
 
